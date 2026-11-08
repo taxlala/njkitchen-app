@@ -11,12 +11,13 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.13'
+      - name: Point Gradle at the preinstalled Android SDK
+        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
       - name: Build debug APK
-        run: gradle assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon --stacktrace
       - name: Rename APK
         run: cp app/build/outputs/apk/debug/app-debug.apk NJKitchen-v1.2.apk
       - uses: actions/upload-artifact@v4
