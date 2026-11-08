@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/favicon-64.png">
+<link rel="apple-touch-icon" href="images/logo-160.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NJ Kitchen — Homemade Tiffin, Catering & Laddu in Pune</title>
+<meta name="description" content="NJ Kitchen, Wadgaonsheri, Pune: homemade veg, egg, chicken and bhakri tiffin with a 4-week no-repeat menu, trials from ₹450, party orders, starters and laddus.">
+<style>
+:root{
+  --cream:#FFF8EC; --paper:#FFFDF8; --turmeric:#E8A317; --turmeric-d:#C7840A;
+  --curry:#7A2E12; --curry-l:#A2451F; --leaf:#2F6B3A; --leaf-l:#E6F1E3;
+  --ink:#2B1A10; --muted:#7B6556; --line:#EADBC6; --chili:#C8381E;
+  --r:18px; --shadow:0 10px 30px -12px rgba(122,46,18,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Mukta',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--cream);color:var(--ink);font-size:16.5px;line-height:1.55}
+h1,h2,h3,.disp{font-family:'Fraunces',Georgia,serif;letter-spacing:-.01em;line-height:1.15}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:16px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(255,248,236,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Fraunces',serif;font-weight:800;font-size:22px;color:var(--curry)}
+.logo small{display:block;font-family:'Mukta';font-weight:500;font-size:11.5px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:-3px}
+.links{display:flex;gap:4px;margin-left:auto}
+.links a{text-decoration:none;padding:8px 12px;border-radius:999px;font-weight:600;font-size:15px;color:var(--ink)}
+.links a:hover,.links a.on{background:#F6E6CC;color:var(--curry)}
+.hbtns{display:flex;gap:8px;align-items:center}
+.iconbtn{position:relative;border:1px solid var(--line);background:var(--paper);border-radius:999px;height:40px;padding:0 14px;font-weight:600;display:flex;align-items:center;gap:6px}
+.badge{position:absolute;top:-6px;right:-6px;background:var(--chili);color:#fff;font-size:11px;min-width:19px;height:19px;border-radius:99px;display:grid;place-items:center;padding:0 5px}
+.burger{display:none}
+body{overflow-x:hidden}
+@media(max-width:600px){.logo>span{display:none}.hide-sm,#acctLabel{display:none}.iconbtn{padding:0 11px}.nav{gap:10px}.hero-photo>img:first-child{left:-6px!important;bottom:-18px!important;width:84px!important;height:84px!important}}
+@media(max-width:980px){
+  .links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--cream);flex-direction:column;padding:10px 16px 16px;border-bottom:1px solid var(--line)}
+  .links.open{display:flex}
+  .burger{display:flex}
+  .hbtns{margin-left:auto}
+}
+
+/* buttons */
+.btn{border:0;border-radius:999px;padding:12px 22px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--curry);color:#fff;box-shadow:0 6px 18px -8px var(--curry)}
+.btn-p:hover{background:var(--curry-l)}
+.btn-y{background:var(--turmeric);color:var(--ink)}
+.btn-y:hover{background:#F1B32E}
+.btn-o{background:transparent;border:1.5px solid var(--curry);color:var(--curry)}
+.btn-g{background:var(--leaf);color:#fff}
+.btn-s{padding:8px 14px;font-size:14px}
+.btn[disabled]{opacity:.45;pointer-events:none}
+
+/* hero */
+.hero{padding:56px 0 40px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:var(--leaf-l);color:var(--leaf);font-weight:700;font-size:13.5px;padding:6px 12px;border-radius:99px;letter-spacing:.02em}
+.hero h1{font-size:clamp(36px,5.2vw,62px);margin:16px 0 14px;color:var(--curry)}
+.hero h1 em{font-style:italic;color:var(--turmeric-d)}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:540px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 22px}
+.trust{display:flex;gap:22px;flex-wrap:wrap;color:var(--muted);font-size:14.5px}
+.trust b{display:block;font-family:'Fraunces';font-size:24px;color:var(--ink)}
+.hero-art{position:relative;aspect-ratio:1;max-width:460px;justify-self:center;width:100%}
+.hero-art .plate{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 50%,#fff 0 58%,#F3E7D3 59% 62%,#fff 63% 100%);box-shadow:var(--shadow), inset 0 0 0 10px #F9F1E3}
+.hero-art .katori{position:absolute;border-radius:50%;box-shadow:0 6px 14px -6px rgba(0,0,0,.35), inset 0 0 0 6px #E9DCC6}
+.chip-float{position:absolute;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:8px 12px;font-weight:700;font-size:13.5px;box-shadow:var(--shadow)}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-art{max-width:340px}}
+
+/* sections */
+section.block{padding:54px 0}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:26px;flex-wrap:wrap}
+.sh h2{font-size:clamp(28px,3.4vw,40px);color:var(--curry)}
+.sh p{color:var(--muted);max-width:560px}
+.kicker{font-weight:700;color:var(--turmeric-d);letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin-bottom:6px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.grid{display:grid;gap:18px}
+.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:980px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.g4,.g3,.g2{grid-template-columns:1fr}}
+
+.cat{display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:transform .2s, box-shadow .2s;cursor:pointer}
+.cat:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.cat .art{height:130px;border-radius:14px;display:grid;place-items:center}
+.cat h3{font-size:22px}
+.cat p{color:var(--muted);font-size:15px}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;background:#F6E6CC;color:var(--curry)}
+.tag.g{background:var(--leaf-l);color:var(--leaf)}
+
+/* area checker */
+.area-box{background:var(--curry);color:#FFF3E0;border-radius:24px;padding:28px;display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center}
+.area-box h3{font-size:28px;color:#fff}
+.area-box .row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.area-box select{flex:1;min-width:200px;padding:12px 14px;border-radius:12px;border:0}
+.areas{display:flex;flex-wrap:wrap;gap:8px}
+.areas span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:5px 12px;border-radius:99px;font-size:14px}
+.area-res{margin-top:12px;font-weight:600;min-height:24px}
+@media(max-width:860px){.area-box{grid-template-columns:1fr}}
+
+/* plans */
+.toggle{display:inline-flex;background:#F3E4CB;border-radius:99px;padding:4px}
+.toggle button{border:0;background:transparent;padding:8px 18px;border-radius:99px;font-weight:700;color:var(--muted)}
+.toggle button.on{background:var(--paper);color:var(--curry);box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.plan{position:relative;display:flex;flex-direction:column;gap:12px}
+.plan.pop{border:2px solid var(--turmeric);box-shadow:var(--shadow)}
+.plan .ribbon{position:absolute;top:-12px;right:18px;background:var(--turmeric);font-weight:800;font-size:12px;padding:4px 10px;border-radius:99px}
+.plan h3{font-size:24px}
+.price{font-family:'Fraunces';font-size:38px;font-weight:800;color:var(--curry)}
+.price small{font-family:'Mukta';font-size:15px;color:var(--muted);font-weight:500}
+.plan ul{list-style:none;display:grid;gap:6px;font-size:15.5px}
+.plan li::before{content:"✓";color:var(--leaf);font-weight:800;margin-right:8px}
+.permeal{font-size:14px;color:var(--leaf);font-weight:700}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.step{display:flex;gap:12px;align-items:flex-start}
+.step .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--turmeric);display:grid;place-items:center;font-weight:800}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px}
+.dish{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center;position:relative;transition:transform .2s}
+.dish:hover{transform:translateY(-3px)}
+.dish .day{position:absolute;top:10px;left:10px;font-size:12px;font-weight:800;color:var(--muted);background:var(--cream);padding:2px 8px;border-radius:99px}
+.dish.today{border:2px solid var(--leaf);background:#F7FBF5}
+.dish.today .day{background:var(--leaf);color:#fff}
+.dish h4{font-family:'Fraunces';font-size:17px;margin-top:6px}
+.dish p{font-size:13.5px;color:var(--muted)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.pill{border:1.5px solid var(--line);background:var(--paper);padding:7px 14px;border-radius:99px;font-weight:600;font-size:14.5px}
+.pill.on{background:var(--curry);color:#fff;border-color:var(--curry)}
+
+/* products */
+.prod{display:flex;flex-direction:column;gap:8px}
+.prod .art{height:150px;border-radius:14px;display:grid;place-items:center;margin-bottom:4px}
+.prod h4{font-family:'Fraunces';font-size:19px}
+.prod .desc{font-size:14.5px;color:var(--muted);flex:1}
+.prod .bot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px}
+.prod .pr{font-family:'Fraunces';font-weight:800;font-size:22px;color:var(--curry)}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--curry);border-radius:99px;overflow:hidden}
+.qty button{border:0;background:transparent;width:34px;height:34px;font-size:18px;font-weight:700;color:var(--curry)}
+.qty span{min-width:22px;text-align:center;font-weight:700}
+.variant{display:flex;gap:6px}
+.variant button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:4px 10px;font-size:13.5px;font-weight:700}
+.variant button.on{border-color:var(--turmeric-d);background:#FDF1D8}
+
+/* forms */
+label.f{display:grid;gap:5px;font-weight:600;font-size:14.5px}
+.f input,.f select,.f textarea{padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--turmeric-d)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.frow{grid-template-columns:1fr}}
+.note{font-size:13.5px;color:var(--muted)}
+.err{color:var(--chili);font-weight:600;font-size:14px;min-height:20px}
+.ok{background:var(--leaf-l);color:var(--leaf);padding:12px 14px;border-radius:12px;font-weight:600}
+.warnbox{background:#FFF2D6;border:1px solid #F2D18A;padding:10px 14px;border-radius:12px;font-size:14px}
+
+/* modal */
+.ov{position:fixed;inset:0;background:rgba(43,26,16,.55);z-index:80;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:30px 14px}
+.ov.open{display:flex}
+.modal{background:var(--paper);border-radius:22px;width:100%;max-width:640px;padding:26px;position:relative;animation:pop .2s ease}
+.modal.wide{max-width:860px}
+@keyframes pop{from{transform:translateY(12px);opacity:0}}
+.modal h3{font-size:26px;color:var(--curry);margin-bottom:4px}
+.x{position:absolute;top:14px;right:14px;border:0;background:#F3E4CB;width:36px;height:36px;border-radius:50%;font-size:18px}
+.stepper{display:flex;gap:6px;margin:12px 0 18px}
+.stepper div{flex:1;height:5px;border-radius:9px;background:var(--line)}
+.stepper div.on{background:var(--turmeric)}
+
+/* calendar */
+.cal-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.cal h5{font-family:'Fraunces';font-size:17px;margin-bottom:8px;text-align:center}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-g .wd{font-size:11.5px;font-weight:700;color:var(--muted);text-align:center;padding:2px 0}
+.cd{aspect-ratio:1;border-radius:10px;border:1.5px solid transparent;background:#F7EEDF;font-weight:700;font-size:14px;display:grid;place-items:center;color:var(--ink);position:relative}
+.cd.empty{background:transparent}
+.cd.dis{background:transparent;color:#CBB9A6;cursor:not-allowed}
+.cd.sel{background:var(--leaf);color:#fff}
+.cd.sun:not(.sel):not(.dis){color:var(--chili)}
+.cd.st-delivered{background:var(--leaf);color:#fff}
+.cd.st-scheduled{background:#FDE7B5;border-color:var(--turmeric)}
+.cd.st-skipped{background:#F6D5CC;color:var(--chili);text-decoration:line-through}
+.cd.today{outline:2px solid var(--curry);outline-offset:1px}
+button.cd{border:1.5px solid transparent}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13.5px;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:5px}
+.counter{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:var(--cream);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.counter b{font-family:'Fraunces';font-size:22px}
+
+/* dashboard */
+.subcard{display:grid;grid-template-columns:220px 1fr;gap:24px}
+@media(max-width:760px){.subcard{grid-template-columns:1fr}}
+.ring{position:relative;width:180px;height:180px;margin:0 auto}
+.ring .mid{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .mid b{font-family:'Fraunces';font-size:44px;color:var(--curry);display:block;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{background:var(--cream);border-radius:12px;padding:10px;text-align:center}
+.stat b{font-family:'Fraunces';font-size:24px;display:block}
+.stat span{font-size:12.5px;color:var(--muted);font-weight:600}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.status{font-size:12.5px;font-weight:800;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.status.delivered{background:var(--leaf-l);color:var(--leaf)}
+.status.scheduled,.status.placed{background:#FDE7B5;color:#8A5A00}
+.status.skipped,.status.cancelled{background:#F6D5CC;color:var(--chili)}
+.status.new{background:#E3ECF8;color:#2B5797}
+.tabs{display:flex;gap:6px;border-bottom:1.5px solid var(--line);margin-bottom:18px;flex-wrap:wrap}
+.tabs button{border:0;background:transparent;padding:10px 14px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-1.5px}
+.tabs button.on{color:var(--curry);border-color:var(--curry)}
+
+/* cart drawer */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--paper);z-index:90;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;box-shadow:-10px 0 30px rgba(0,0,0,.15)}
+.drawer.open{transform:none}
+.drawer .hd{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.drawer .bd{flex:1;overflow:auto;padding:16px 20px}
+.drawer .ft{padding:16px 20px;border-top:1px solid var(--line)}
+.ci{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.ci .t{flex:1}
+.ci .t b{display:block;font-size:15.5px}
+.ci .t span{font-size:13.5px;color:var(--muted)}
+
+footer{background:var(--ink);color:#EADCCB;padding:46px 0 26px;margin-top:30px}
+footer h4{font-family:'Fraunces';color:#fff;font-size:18px;margin-bottom:10px}
+footer a{color:#EADCCB;text-decoration:none;display:block;padding:3px 0;font-size:15px;cursor:pointer}
+footer a:hover{color:var(--turmeric)}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:26px}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+.copy{border-top:1px solid #4a3426;margin-top:28px;padding-top:16px;font-size:13.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(30px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:99px;font-weight:600;opacity:0;transition:.25s;z-index:120;pointer-events:none;max-width:92vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.view{display:none}.view.on{display:block}
+.pagehead{padding:40px 0 10px}
+.pagehead h1{font-size:clamp(32px,4.4vw,50px);color:var(--curry)}
+.pagehead p{color:var(--muted);font-size:18px;max-width:640px;margin-top:8px}
+.hero-photo{position:relative;justify-self:center;width:100%;max-width:520px}
+.hero-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:28px;box-shadow:var(--shadow);display:block}
+.hero-photo .chip-float{position:absolute}
+.cat .art.ph{padding:0;overflow:hidden}.cat .art.ph img{width:100%;height:100%;object-fit:cover}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:12px}
+.pgrid figure{position:relative;border-radius:16px;overflow:hidden;margin:0;cursor:zoom-in}
+.pgrid figure.big{grid-column:span 2;grid-row:span 2}
+.pgrid figure.wide{grid-column:span 2}
+.pgrid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.pgrid figure:hover img{transform:scale(1.05)}
+.pgrid figcaption{position:absolute;left:10px;bottom:10px;background:rgba(43,26,16,.75);color:#fff;font-weight:600;font-size:13.5px;padding:4px 10px;border-radius:99px}
+@media(max-width:760px){.pgrid{grid-template-columns:1fr 1fr;grid-auto-rows:150px}}
+.dish.ph{padding:0;overflow:hidden;text-align:left}
+.dish.ph img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.dish.ph .txt{padding:10px 14px 14px}
+.dish.ph .day{z-index:2}
+.real{position:absolute;top:10px;right:10px;background:var(--turmeric);font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;z-index:2}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:860px){.contact{grid-template-columns:1fr}}
+.cline{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.cline span:first-child{font-size:22px}
+.lightimg{width:100%;border-radius:16px;display:block}
+.wa{position:fixed;right:18px;bottom:18px;z-index:50;background:#1FAF55;color:#fff;border-radius:99px;padding:12px 18px;font-weight:700;box-shadow:0 8px 20px -6px rgba(0,0,0,.35);border:0}
+.empty-st{text-align:center;padding:40px 20px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home">
+      <img src="images/logo-160.png" alt="NJ Kitchen logo" width="54" height="54" style="display:block">
+      <span>NJ Kitchen<small>Home Kitchen & Catering</small></span>
+    </a>
+    <nav class="links" id="links">
+      <a href="#tiffin" data-l="tiffin">Tiffin Plans</a>
+      <a href="#gallery" data-l="gallery">4-Week Menu</a>
+      <a href="#catering" data-l="catering">Party Orders</a>
+      <a href="#snacks" data-l="snacks">Starters</a>
+      <a href="#laddu" data-l="laddu">Laddu Range</a>
+    </nav>
+    <div class="hbtns">
+      <button class="iconbtn" id="cartBtn" title="Cart">🛒 <span class="hide-sm">Cart</span><span class="badge" id="cartCount" style="display:none">0</span></button>
+      <button class="iconbtn" id="acctBtn">👤 <span id="acctLabel">Login</span></button>
+      <button class="iconbtn burger" id="burger">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<div class="view" data-view="home">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">🌿 Roz taaza · Veg · Egg · Chicken · Bhakri thali</span>
+        <h1>Maa ke haath jaisa khana, <em>roz aapke darwaze par.</em></h1>
+        <p class="lead">Homemade tiffin with a 4-week no-repeat menu, Monday to Friday. Start with a 3-day trial from ₹450. Party orders, starters and laddus delivered across Pune.</p>
+        <div class="cta">
+          <a class="btn btn-p" href="#tiffin">Tiffin plan dekhein →</a>
+          <a class="btn btn-o" href="#gallery">Is hafte ka menu</a>
+        </div>
+        <div class="trust">
+          <div><b>4 weeks</b>no-repeat menu</div>
+          <div><b>₹450</b>3-day trial</div>
+          <div><b>Skip</b>any day, meals carry forward</div>
+        </div>
+      </div>
+      <div class="hero-photo"><img src="images/logo-160.png" alt="NJ Kitchen" style="position:absolute;width:110px;height:110px;aspect-ratio:auto;left:-26px;bottom:-26px;border-radius:50%;box-shadow:0 8px 20px -6px rgba(0,0,0,.45);z-index:2"><img src="images/tiffin-thali.jpg" alt="NJ Kitchen tiffin: dal, sabzi, rice, roti, salad and gulab jamun"><div class="chip-float" style="left:-12px;top:18px" id="todayChip">🔥 Aaj ki sabzi</div><div class="chip-float" style="right:-8px;bottom:22px">🫓 Fresh phulka, roz</div></div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:20px">
+    <div class="wrap">
+      <div class="sh"><div><div class="kicker">Hamari Rasoi</div><h2>What we cook for you</h2></div><p>Tiffin is delivered in Wadgaonsheri, Kharadi, Viman Nagar and Kalyani Nagar. Party orders, starters and laddus go all over Pune.</p></div>
+      <div class="grid g4" id="catCards"></div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:10px">
+    <div class="wrap"><div id="areaBoxHome"></div></div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sh"><div><div class="kicker">Is hafte ka menu</div><h2>This week's menu</h2><p class="note">Every tiffin: 3 chapati, daal, rice & salad. Choose either sabji of the day.</p></div><a class="btn btn-o btn-s" href="#gallery">View 4-week menu →</a></div>
+      <div class="gal" id="weekGal"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sh"><div><div class="kicker">Hamari Rasoi se</div><h2>Straight from our kitchen</h2></div><p>Real photos of food cooked at NJ Kitchen, Wadgaonsheri.</p></div>
+      <div class="pgrid" id="photoGrid"></div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="sh"><div><div class="kicker">Contact & Address</div><h2>Visit or call NJ Kitchen</h2></div></div>
+      <div class="contact">
+        <div class="card">
+          <div class="cline" style="align-items:center"><img src="images/logo-160.png" alt="NJ Kitchen logo" width="72" height="72"><div><b style="font-size:19px">NJ Kitchen</b><br><span class="note">Home Kitchen & Catering Services · Serving Pune since October 2024</span></div></div>
+          <div class="cline"><span>📍</span><div>S.No. 56/20, Piraji Nagar,<br>Pune Nagar Road & Sangamwadi, Wadgaonsheri,<br>Pune, Maharashtra 411014</div></div>
+          <div class="cline"><span>📞</span><div><b>+91 86602 48225</b><br><span class="note">Calls & WhatsApp</span></div></div>
+          <div class="cline"><span>✉️</span><div>soudagarmehbobi@gmail.com</div></div>
+          <div class="cline" style="border:0"><span>🏅</span><div>Udyam Registered MSME<br><span class="note">UDYAM-MH-26-0926342</span></div></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px"><a class="btn btn-g btn-s" href="https://wa.me/918660248225" target="_blank" rel="noopener">💬 WhatsApp</a><a class="btn btn-o btn-s" href="https://www.google.com/maps/search/?api=1&query=Piraji+Nagar+Wadgaonsheri+Pune+411014" target="_blank" rel="noopener">🗺️ Open in Google Maps</a></div>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden"><img src="images/tiffin-set.jpg" alt="NJ Kitchen tiffin boxes" style="width:100%;height:100%;object-fit:cover;min-height:300px"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- TIFFIN -->
+<div class="view" data-view="tiffin">
+  <div class="wrap pagehead">
+    <div class="kicker">Tiffin Service Plans</div>
+    <h1>Pick a plan. Pick your dates.</h1>
+    <p>Start with a 3-day or weekly trial, or choose a 20 / 30 meal plan. Delivery Monday to Friday. Not needed on a day? Leave that date out, or skip it later from your account. Your meal count stays the same.</p>
+  </div>
+  <section class="block" style="padding-top:20px">
+    <div class="wrap">
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:22px">
+        <div class="toggle" id="mealToggle"><button data-m="20" class="on">20 Meals</button><button data-m="30">30 Meals</button></div>
+        <span class="note">Lunch, dinner or both: you choose at checkout. Both = 2 meals per day.</span>
+      </div>
+      <div class="filters" id="planCats" style="margin-bottom:22px"></div>
+      <div class="grid g3" id="planCards"></div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><div><b>Login</b><br><span class="note">Mobile number + OTP</span></div></div>
+        <div class="step"><div class="n">2</div><div><b>Plan & area</b><br><span class="note">Delivery area must be serviceable</span></div></div>
+        <div class="step"><div class="n">3</div><div><b>Select dates</b><br><span class="note">Tap dates to add or remove</span></div></div>
+        <div class="step"><div class="n">4</div><div><b>Track meals</b><br><span class="note">Delivered & remaining in your account</span></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="block" style="padding-top:0"><div class="wrap"><div id="areaBoxTiffin"></div></div></section>
+</div>
+
+<!-- GALLERY -->
+<div class="view" data-view="gallery">
+  <div class="wrap pagehead">
+    <div class="kicker">4 Weeks · 4 Unique Menus · No Repeats</div>
+    <h1>4-week no-repeat menu</h1>
+    <p>Fresh, healthy and homemade meals, Monday to Friday. Every day you get a choice of two sabjis with 3 chapati, daal, rice and salad, plus a sweet every Thursday. Non-veg plans get egg / chicken curry as per the plan.</p>
+  </div>
+  <section class="block" style="padding-top:20px">
+    <div class="wrap">
+      <div class="filters" id="galFilters" style="margin-bottom:20px"></div>
+      <div class="gal" id="fullGal"></div>
+    </div>
+  </section>
+</div>
+
+<!-- CATERING -->
+<div class="view" data-view="catering">
+  <div class="wrap pagehead">
+    <img src="images/logo-320.png" alt="NJ Kitchen Home Kitchen & Catering Services" width="120" height="120" style="display:block;margin-bottom:10px">
+    <div class="kicker">Party Orders · All over Pune</div>
+    <h1>Party order: full meal combo</h1>
+    <p>Birthdays, pooja, office lunches and family functions. Pick any one item from each column, add starters if you like, and we'll call you with the rate.</p>
+  </div>
+  <section class="block" style="padding-top:20px">
+    <div class="wrap">
+      <div class="grid g2" style="margin-bottom:26px"><img class="lightimg" src="images/catering-spread.jpg" alt="NJ Kitchen party food spread"><img class="lightimg" src="images/tiffin-thali.jpg" alt="NJ Kitchen party food trays"></div>
+      <div class="card">
+        <h3 style="font-size:26px;color:var(--curry)">Build your combo</h3>
+        <p class="note" style="margin-bottom:14px">Pick any one from each column.</p>
+        <form id="cateringForm" class="grid" style="gap:14px">
+          <div class="grid g2" id="comboBox" style="gap:12px"></div>
+          <div class="counter" style="margin:0"><span>Your combo</span><b id="comboSum" style="font-size:17px"></b></div>
+          <div><div class="kicker" style="margin-top:6px">Add starters (optional, price per plate)</div><div class="grid g2" id="starterBox" style="gap:8px"></div></div>
+          <div class="frow">
+            <label class="f">Your name<input name="name" required></label>
+            <label class="f">Mobile number<input name="mobile" required pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" placeholder="10-digit mobile"></label>
+          </div>
+          <div class="frow">
+            <label class="f">Occasion<select name="occasion"><option>Birthday Party</option><option>Pooja / Religious Function</option><option>Office Lunch / Meeting</option><option>Kitty Party</option><option>Engagement / Small Wedding</option><option>House Warming</option><option>Other</option></select></label>
+            <label class="f">Event date<input type="date" name="date" required id="catDate"></label>
+          </div>
+          <div class="frow">
+            <label class="f">Number of guests<input type="number" name="guests" min="1" value="20" required id="catGuests"></label>
+            <label class="f">Area in Pune<input name="area" required placeholder="e.g. Kharadi, Viman Nagar"></label>
+          </div>
+          <label class="f">Notes<textarea name="notes" rows="2" placeholder="Jain food, less spicy, delivery time..."></textarea></label>
+          <div class="counter" style="margin:4px 0 0"><span>Estimate</span><b id="catEst">—</b></div>
+          <div class="err" id="catErr"></div>
+          <div><button class="btn btn-p" type="submit">Send party order request</button></div>
+        </form>
+        <div id="catDone" style="display:none"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SNACKS -->
+<div class="view" data-view="snacks">
+  <div class="wrap pagehead">
+    <div class="kicker">Starters · All over Pune</div>
+    <h1>Garma-garam starters, ghar ke bane.</h1>
+    <p>Samosa, vada, bhajji and kothimbir vadi, made fresh in our kitchen. Order for home, office or parties.</p>
+  </div>
+  <section class="block" style="padding-top:20px"><div class="wrap"><div class="grid g4" id="snackGrid"></div></div></section>
+</div>
+
+<!-- LADDU -->
+<div class="view" data-view="laddu">
+  <div class="wrap pagehead">
+    <div class="kicker">Laddu Range · All over Pune</div>
+    <h1>Pure ghee laddus, haath se bane.</h1>
+    <p>Traditional recipes, desi ghee, no artificial colour. Great for festivals, gifting and the everyday sweet tooth.</p>
+  </div>
+  <section class="block" style="padding-top:20px"><div class="wrap"><div class="grid g4" id="ladduGrid"></div></div></section>
+</div>
+
+<!-- ACCOUNT -->
+<div class="view" data-view="account">
+  <div class="wrap pagehead" id="acctHead"></div>
+  <section class="block" style="padding-top:20px"><div class="wrap" id="acctBody"></div></section>
+</div>
+
+<!-- ADMIN -->
+<div class="view" data-view="kitchen">
+  <div class="wrap pagehead"><div class="kicker">Kitchen Panel</div><h1>Daily deliveries & orders</h1><p>Kitchen staff use this to mark tiffins delivered, manage orders and see party order requests.</p></div>
+  <section class="block" style="padding-top:20px"><div class="wrap" id="adminBody"></div></section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <img src="images/logo-160.png" alt="NJ Kitchen logo" width="84" height="84" style="display:block;margin-bottom:10px">
+        <h4>NJ Kitchen</h4>
+        <p style="font-size:15px;max-width:300px">Homemade tiffin, party orders, starters and laddus. Cooked fresh in our kitchen at Wadgaonsheri, Pune, since 2024.</p>
+        <p style="margin-top:12px;font-size:15px">📍 S.No. 56/20, Piraji Nagar, Pune Nagar Road & Sangamwadi, Wadgaonsheri, Pune 411014<br>📞 +91 86602 48225<br>✉️ soudagarmehbobi@gmail.com</p>
+      </div>
+      <div><h4>Order</h4><a href="#tiffin">Tiffin Plans</a><a href="#catering">Party Orders</a><a href="#snacks">Starters</a><a href="#laddu">Laddu Range</a></div>
+      <div><h4>Explore</h4><a href="#gallery">4-Week Menu</a><a href="#home" onclick="setTimeout(()=>document.getElementById('contact').scrollIntoView(),50)">Contact & Address</a><a href="#account">My Account</a><a href="#kitchen">Kitchen Panel</a></div>
+      <div><h4>Tiffin areas</h4><p style="font-size:14px" id="footAreas"></p></div>
+    </div>
+    <div class="copy"><span>© 2026 NJ Kitchen, Wadgaonsheri, Pune. All rights reserved.</span><span>Udyam Registered MSME · UDYAM-MH-26-0926342</span></div>
+  </div>
+</footer>
+
+<button class="wa" id="waBtn">💬 WhatsApp us</button>
+
+<div class="ov" id="ov"><div class="modal" id="modal"></div></div>
+<div class="drawer" id="drawer">
+  <div class="hd"><h3 class="disp" style="font-size:22px;color:var(--curry)">Your cart</h3><button class="x" style="position:static" id="closeCart">✕</button></div>
+  <div class="bd" id="cartBody"></div>
+  <div class="ft" id="cartFt"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ DATA ============ */
+const BRAND = "NJ Kitchen";
+const WHATSAPP = "+91 86602 48225";
+const TIFFIN_AREAS = ["Wadgaonsheri","Kharadi","Viman Nagar","Kalyani Nagar"];
+const PLAN_CATS = [["all","All plans"],["trial","Trial"],["small","Small Meal"],["full","Full Meal"],["large","Large Meal"],["diet","Diet Meal"],["bhakri","Bhakri Meal"]];
+const PLANS = [
+  {id:"trial-veg", cat:"trial", type:"veg", name:"3-Day Trial (Pure Veg)", items:["3 veg meals","Taste our daily no-repeat menu"], opts:[3], price:{3:450}},
+  {id:"trial-mix", cat:"trial", type:"nonveg", name:"3-Day Trial (Veg + Egg + Chicken)", items:["1 veg meal","1 egg meal","1 chicken meal"], opts:[3], price:{3:499}},
+  {id:"trial-week", cat:"trial", type:"veg", name:"Weekly Trial", items:["7 veg meals"], opts:[7], price:{7:999}},
+  {id:"small-veg", cat:"small", type:"veg", name:"Small Meal (Veg)", items:["3 chapati","Sabji","Salad"], opts:[20,30], price:{20:2400,30:3450}, mrp:{30:3600}},
+  {id:"small-nv", cat:"small", type:"nonveg", name:"Small Meal (Non-Veg)", items:["3 chapati","Egg / chicken curry","Salad"], opts:[20,30], price:{20:2700,30:3900}, mrp:{30:4050}},
+  {id:"full-veg", cat:"full", type:"veg", pop:true, name:"Full Meal (Veg)", items:["3 chapati","Sabji","Daal + Rice","Salad"], opts:[20,30], price:{20:3000,30:4350}, mrp:{30:4500}},
+  {id:"full-alt", cat:"full", type:"mix", name:"Full Meal – Alternate Non-Veg", items:["Non-veg and veg on alternate days","3 chapati","Veg curry / non-veg curry","Daal + Rice","Salad"], opts:[20,30], price:{20:3200,30:4600}, mrp:{30:4800}},
+  {id:"full-nv", cat:"full", type:"nonveg", name:"Full Meal – Daily Non-Veg", items:["3 chapati","Egg curry / chicken curry","Rice","Salad"], opts:[20,30], price:{20:3400,30:4950}, mrp:{30:5100}},
+  {id:"large-veg", cat:"large", type:"veg", name:"Large Meal (Veg)", items:["5 chapati","2 portions sabji","Large portion rice","2 portions daal","Salad / raita","Sweet"], opts:[20,30], price:{20:3999,30:5699}, mrp:{30:5999}},
+  {id:"large-alt", cat:"large", type:"mix", name:"Large Meal – Alternate Non-Veg", items:["5 chapati","2 portions veg curry / non-veg curry","Large portion rice","2 portions daal","Salad","Sweet"], opts:[20,30], price:{20:4399,30:6399}, mrp:{30:6600}},
+  {id:"large-nv", cat:"large", type:"nonveg", name:"Large Meal – Daily Non-Veg", items:["5 chapati","2 portions egg / chicken (dry or gravy)","Large portion rice","2 portions daal","Salad","Raita"], opts:[20,30], price:{20:4600,30:6599}, mrp:{30:6900}},
+  {id:"diet-nv", cat:"diet", type:"nonveg", name:"Diet Meal (Non-Veg)", items:["Option 1: 250 g boneless chicken (raw weight), 200 g rice, daal, sabji, salad","Option 2: 1 bhakri, 2 boiled eggs, daal / sabji, 250 g chicken (raw weight), salad"], variants:["Option 1 – Chicken + rice","Option 2 – Bhakri + eggs + chicken"], opts:[20,30], price:{20:5400,30:7800}, mrp:{30:8100}},
+  {id:"bhakri-small", cat:"bhakri", type:"veg", name:"Bhakri Small Meal", items:["1 bhakri","Sabji","Salad"], opts:[20,30], price:{20:2400,30:3450}, mrp:{30:3600}},
+  {id:"bhakri-full", cat:"bhakri", type:"veg", name:"Bhakri Full Meal", items:["1 bhakri","Sabji","Daal + Rice","Salad"], opts:[20,30], price:{20:3200,30:4600}, mrp:{30:4800}}
+];
+const TYPE_TAG = {veg:["🟢 Veg","g"], nonveg:["🔴 Non-Veg",""], mix:["🟢🔴 Veg + Non-Veg",""]};
+const SLOTS = {lunch:"Lunch (12:30–1:30 pm)", dinner:"Dinner (7:30–8:30 pm)", both:"Lunch + Dinner"};
+const WEEKMENU = [
+ [["Palak Paneer","Masala Baigan"],["Chole Masala","Matar Gajar Masala"],["Aloo Gobhi","Lehsuni Methi"],["Bhindi Fry","Aloo Matar",1],["Matki","Aloo Chana Masala"]],
+ [["Dum Aloo","Paneer Kadhai"],["Chana Daal Lauki","Gawar Fry"],["Nutrella Masala","Paneer Bhurji"],["Nutrella Masala","Black-eyed Beans Masala",1],["Aloo Baigan","Mix Sprouts Masala"]],
+ [["Gobi Matar Masala","Aloo Capsicum Masala"],["Paneer Masala","Beans Masala"],["Aloo Bhindi","Green Mung Masala"],["Chana Masala","Torai Masala",1],["Baigan Bharta","Aloo Gobhi Matar Masala"]],
+ [["Paneer Do Pyaza","Aloo Nutrella"],["Aloo Methi","Chana Daal Torai"],["Cabbage Masala","Hyderabadi Paneer"],["Matar Paneer","Aloo Beans",1],["Aloo Baigan","Mung Daal Soya (Sepu)"]]
+];
+const DAYS = ["Mon","Tue","Wed","Thu","Fri"];
+const DISH_COL = [["#3E6B2F","#F6F0E1"],["#8A4A1C","#DDAA60"],["#E0A93B","#F7E7B8"],["#6E8B3D","#B5CC78"],["#9A4A1E","#C98B4A"],["#B5481F","#E8B04A"],["#B9A23E","#E8D88C"],["#C8642B","#8DBF4E"],["#7A4A2A","#C9A06A"],["#E7B85A","#F8EDD3"]];
+const SNACKS = [
+ {id:"st1",name:"Mini Samosa",pack:"1 pc",price:12,desc:"Bite-size crispy samosa with spiced aloo filling.",art:"samosa",c:["#E8B456","#B8762A"]},
+ {id:"st2",name:"Samosa",pack:"1 pc",price:20,desc:"Classic Punjabi samosa, crisp ajwain crust.",art:"samosa",c:["#E2A545","#C7832B"]},
+ {id:"st3",name:"Kanda Bhajji",pack:"4 pcs",price:25,desc:"Crunchy onion pakoda, Pune style.",art:"balls",c:["#D49A3E","#A8702A"]},
+ {id:"st4",name:"Mung Daal Vada",pack:"4 pcs",price:25,desc:"Soft inside, crispy outside moong daal vada.",art:"balls",c:["#E6C060","#C9962A"]},
+ {id:"st5",name:"Mini Batata Vada",pack:"2 pcs",price:25,desc:"Mumbai-style batata vada in a besan coat.",art:"balls",c:["#F0C04A","#D79A2A"]},
+ {id:"st6",name:"Daal Vada",pack:"2 pcs",price:30,desc:"Crispy chana daal vada with green chilli.",art:"tikki",c:["#C9963E","#A8702A"]},
+ {id:"st7",name:"Dahi Vada",pack:"2 pcs",price:50,desc:"Soft vada in chilled curd with chutneys.",art:"tikki",c:["#F6F0E1","#D9C9A8"]},
+ {id:"st8",name:"Kothimbir Vadi",pack:"4 pcs",price:40,desc:"Maharashtrian coriander-besan vadi.",art:"vadi",c:["#B8A13E","#6C8E32"]}
+];
+const LADDU = [
+ {id:"l1",name:"Besan Laddu",price:320,desc:"Slow-roasted besan in desi ghee, with cardamom.",c:["#E5A93A","#C9862A"]},
+ {id:"l2",name:"Motichoor Laddu",price:300,desc:"Tiny boondi pearls, soft and melt-in-mouth.",c:["#F08A24","#D86E14"]},
+ {id:"l3",name:"Dry Fruit Laddu",price:650,desc:"Dates, figs, almonds and cashews. No added sugar.",c:["#7A4A2A","#B07A4A"]},
+ {id:"l4",name:"Dink (Gond) Laddu",price:520,desc:"Traditional Maharashtrian winter laddu with dink and dry fruits.",c:["#9A6A3A","#C99A5A"]},
+ {id:"l5",name:"Til-Gul Laddu",price:280,desc:"Sesame and jaggery. Tilgul ghya, god god bola!",c:["#C9A060","#8A6A3A"]},
+ {id:"l6",name:"Rava Coconut Laddu",price:300,desc:"Roasted rava, fresh coconut, raisins and ghee.",c:["#F3E2B8","#D8BE84"]},
+ {id:"l7",name:"Methi Laddu",price:450,desc:"Healthy methi, gond and jaggery, good for joints.",c:["#7E5A2E","#A8804A"]},
+ {id:"l8",name:"Nachni (Ragi) Laddu",price:380,desc:"Ragi flour with jaggery and ghee, rich in calcium.",c:["#6A4030","#94604A"]}
+];
+const LADDU_VAR = [{k:"250g",m:.55},{k:"500g",m:1},{k:"1kg",m:1.9}];
+const PARTY = {
+  "Roti": ["2 Chapati","4 Puri","3 Phulka"],
+  "Sabji": ["Mix Veg","Shahi Paneer","Matar Paneer","Kadhai Paneer","Chole Masala","Chana Masala","Vadi Rassa","Aloo Matar (Dry)","Aloo Matar Curry","Aloo Tamatar"],
+  "Daal / Rice": ["Veg Pulao + Raita","Veg Biryani","Jeera Rice + Daal Tadka","Jeera Rice + Daal","Steam Rice + Daal","Steam Rice + Daal Tadka","Masala Bhat + Koshimbir"],
+  "Sweet": ["Gulab Jamun (2 pc)","Jalebi (2 pc)","Sheera","Rice Kheer"]
+};
+
+/* ============ STATE ============ */
+const KEY = "njk_site_v1";
+function fresh(){return {users:{},subs:[],orders:[],enquiries:[],session:null,cart:[]};}
+let S; try{ S = JSON.parse(localStorage.getItem(KEY)) || fresh(); }catch(e){ S = fresh(); }
+for(const k of Object.keys(fresh())) if(S[k]===undefined) S[k]=fresh()[k];
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+/* ============ HELPERS ============ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const inr = n => "₹" + Math.round(n).toLocaleString("en-IN");
+const pad = n => String(n).padStart(2,"0");
+const ds = d => d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const pd = s => { const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); };
+const addDays = (s,n) => { const d=pd(s); d.setDate(d.getDate()+n); return ds(d); };
+const todayS = () => ds(new Date());
+const nice = s => pd(s).toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
+const isSun = s => pd(s).getDay()===0;
+const isWkend = s => { const g=pd(s).getDay(); return g===0||g===6; };
+const uid = p => p + Date.now().toString(36).slice(-5).toUpperCase() + Math.random().toString(36).slice(2,4).toUpperCase();
+function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2600); }
+function menuIdx(s){ // 4-week cycle, Mon–Fri. Week 1 starts Mon 5 Jan 2026
+  const g=pd(s).getDay(); if(g===0||g===6) return null;
+  const diff=Math.round((pd(s)-new Date(2026,0,5))/864e5);
+  const w=((Math.floor(diff/7)%4)+4)%4; return [w,g-1];
+}
+function menuFor(s){ const ix=menuIdx(s); if(!ix) return null; const m=WEEKMENU[ix[0]][ix[1]]; return m[0]+" / "+m[1]+(m[2]?" + Sweet":""); }
+const menuText = s => menuFor(s) || "Weekend – no delivery";
+
+/* food art */
+function bowl(c1,c2,size=110,seed=1){
+  let dots=""; let r=seed*9301+49297;
+  for(let i=0;i<9;i++){ r=(r*9301+49297)%233280; const a=r/233280*6.28; r=(r*9301+49297)%233280; const rad=6+r/233280*20;
+    dots+=`<ellipse cx="${50+Math.cos(a)*rad}" cy="${44+Math.sin(a)*rad*.45}" rx="${4+i%3}" ry="${3+i%2}" fill="${c2}" opacity=".95"/>`; }
+  return `<svg width="${size}" height="${size}" viewBox="0 0 100 100"><ellipse cx="50" cy="84" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M12 44 Q14 82 50 82 Q86 82 88 44 Z" fill="#fff" stroke="#E6D6BE" stroke-width="2"/><ellipse cx="50" cy="44" rx="38" ry="13" fill="#F4EADA"/><ellipse cx="50" cy="44" rx="33" ry="10.5" fill="${c1}"/>${dots}<path d="M30 40 q4 -3 8 0" stroke="#fff" stroke-width="1.6" fill="none" opacity=".5"/><circle cx="66" cy="41" r="2" fill="#3E7A2E"/><circle cx="62" cy="46" r="1.6" fill="#3E7A2E"/></svg>`;
+}
+function snackArt(kind,c){
+  const [a,b]=c; let g="";
+  if(kind==="samosa") g=`<path d="M20 78 L50 22 L80 78 Z" fill="${a}" stroke="${b}" stroke-width="3" stroke-linejoin="round"/><path d="M50 22 L54 78" stroke="${b}" stroke-width="2" opacity=".6"/><path d="M8 82 L30 50 L52 82 Z" fill="${a}" stroke="${b}" stroke-width="3" stroke-linejoin="round" opacity=".9"/>`;
+  else if(kind==="tikki") g=`<ellipse cx="38" cy="62" rx="24" ry="12" fill="${b}"/><ellipse cx="38" cy="58" rx="24" ry="12" fill="${a}"/><ellipse cx="64" cy="48" rx="24" ry="12" fill="${b}"/><ellipse cx="64" cy="44" rx="24" ry="12" fill="${a}"/>${[0,1,2,3,4].map(i=>`<circle cx="${52+i*6}" cy="${42+(i%2)*4}" r="1.6" fill="${b}"/>`).join("")}`;
+  else if(kind==="roll") g=[0,1,2].map(i=>`<g transform="rotate(-18 50 50) translate(0 ${i*16-14})"><rect x="16" y="40" width="68" height="14" rx="7" fill="${a}" stroke="${b}" stroke-width="2.5"/><path d="M30 40 v14 M48 40 v14 M66 40 v14" stroke="${b}" stroke-width="1.4" opacity=".5"/></g>`).join("");
+  else if(kind==="vadi") g=[[22,40],[50,40],[36,60],[64,60]].map(([x,y])=>`<rect x="${x}" y="${y}" width="24" height="18" rx="3" fill="${a}" stroke="${b}" stroke-width="2.5"/><circle cx="${x+8}" cy="${y+7}" r="2" fill="#3E7A2E"/><circle cx="${x+16}" cy="${y+11}" r="2" fill="#3E7A2E"/>`).join("");
+  else g=[[34,58],[58,58],[46,38],[70,40],[24,40]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="13" fill="${a}" stroke="${b}" stroke-width="2.5"/><circle cx="${x-4}" cy="${y-4}" r="3" fill="#fff" opacity=".4"/>`).join("");
+  return `<svg width="120" height="120" viewBox="0 0 100 100"><ellipse cx="50" cy="86" rx="40" ry="6" fill="#000" opacity=".07"/>${g}</svg>`;
+}
+function ladduArt(c){
+  const [a,b]=c; const pos=[[30,64],[54,64],[78,64],[42,42],[66,42],[54,22]];
+  return `<svg width="120" height="120" viewBox="0 0 100 100"><ellipse cx="54" cy="84" rx="40" ry="6" fill="#000" opacity=".08"/>${pos.map(([x,y],i)=>`<circle cx="${x-4}" cy="${y+2}" r="13" fill="${b}"/><circle cx="${x-4}" cy="${y}" r="12.5" fill="${a}"/><circle cx="${x-8}" cy="${y-4}" r="3.2" fill="#fff" opacity=".35"/>${[0,1,2].map(j=>`<circle cx="${x-8+j*5}" cy="${y+3+(j%2)*3}" r="1" fill="${b}"/>`).join("")}`).join("")}</svg>`;
+}
+
+/* ============ ROUTER ============ */
+const VIEWS = ["home","tiffin","gallery","catering","snacks","laddu","account","kitchen"];
+function route(){
+  let v = location.hash.replace("#","") || "home";
+  if(!VIEWS.includes(v)) v="home";
+  document.querySelectorAll(".view").forEach(el=>el.classList.toggle("on", el.dataset.view===v));
+  document.querySelectorAll(".links a").forEach(a=>a.classList.toggle("on", a.dataset.l===v));
+  $("#links").classList.remove("open");
+  if(v==="account") renderAccount();
+  if(v==="kitchen") renderAdmin();
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange", route);
+
+/* ============ HOME ============ */
+function renderCats(){
+  const cats = [
+    {t:"Tiffin Service",d:"Trials from ₹450, 20 / 30 meal plans, veg & non-veg.",h:"#tiffin",tag:"Selected areas",bg:"#FDF0D5",img:"images/tiffin-set.jpg"},
+    {t:"Party Orders",d:"Full meal combo: pick roti, sabji, daal/rice and sweet.",h:"#catering",tag:"All Pune",bg:"#F6E1D6",img:"images/catering-spread.jpg"},
+    {t:"Starters",d:"Samosa, vada, kanda bhajji and kothimbir vadi.",h:"#snacks",tag:"All Pune",bg:"#FBEBC8",art:snackArt("samosa",["#E2A545","#C7832B"])},
+    {t:"Laddu Range",d:"Besan, dink, dry fruit and more, made in pure ghee.",h:"#laddu",tag:"All Pune",bg:"#F8E3C2",art:ladduArt(["#E5A93A","#C9862A"])}
+  ];
+  $("#catCards").innerHTML = cats.map(c=>`<a class="card cat" href="${c.h}">${c.img?`<div class="art ph"><img src="${c.img}" alt="${c.t}"></div>`:`<div class="art" style="background:${c.bg}">${c.art}</div>`}<span class="tag ${c.tag==='All Pune'?'g':''}" style="align-self:flex-start">${c.tag}</span><h3>${c.t}</h3><p>${c.d}</p><b style="color:var(--curry)">Explore →</b></a>`).join("");
+}
+function areaBox(id){
+  $(id).innerHTML = `<div class="area-box"><div><div class="kicker" style="color:var(--turmeric)">Tiffin delivery area</div><h3>Do we deliver tiffin to you?</h3><p style="opacity:.85">Tiffin runs in fixed routes so food reaches you hot. Party orders, starters and laddus are delivered all over Pune.</p><div class="row"><select class="areaSel"><option value="">Select your area…</option>${TIFFIN_AREAS.map(a=>`<option>${a}</option>`).join("")}<option value="__other">My area is not listed</option></select><button class="btn btn-y areaChk">Check</button></div><div class="area-res"></div></div><div class="areas">${TIFFIN_AREAS.map(a=>`<span>📍 ${a}</span>`).join("")}</div></div>`;
+  const box=$(id);
+  box.querySelector(".areaChk").onclick=()=>{
+    const v=box.querySelector(".areaSel").value, r=box.querySelector(".area-res");
+    if(!v) r.textContent="Please select an area.";
+    else if(v==="__other") r.innerHTML=`😔 Tiffin isn't available there yet. WhatsApp us on ${WHATSAPP} and we'll tell you when we start. Party orders, starters & laddus are still available!`;
+    else r.innerHTML=`✅ Yes! We deliver tiffin in <b>${esc(v)}</b>. <a href="#tiffin" style="color:var(--turmeric)">Choose a plan →</a>`;
+  };
+}
+const MENU_PHOTO = {"0-2":"images/aloo-gobi-matar.jpg","2-4":"images/aloo-gobi-matar.jpg","0-0":"images/bharli-vangi.jpg","3-0":"images/soya-aloo.jpg","0-3":"images/mix-veg.jpg"};
+const PHOTOS = [["tiffin-thali","Daily tiffin with gulab jamun",1],["aloo-gobi-matar","Aloo Gobi Matar"],["bharli-vangi","Bharli Vangi"],["catering-spread","Catering spread"],["soya-aloo","Soya Aloo Masala"],["mix-veg","Mix Veg",2],["tiffin-set","Tiffin boxes, ready to go",2]];
+function renderPhotos(){
+  $("#photoGrid").innerHTML = PHOTOS.map(([f,c,big])=>`<figure class="${big===1?'big':big===2?'wide':''}" data-img="images/${f}.jpg" data-cap="${c}"><img src="images/${f}.jpg" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join("");
+  $("#photoGrid").querySelectorAll("figure").forEach(f=>f.onclick=()=>openModal(`<img class="lightimg" src="${f.dataset.img}" alt="${f.dataset.cap}" style="margin-top:30px"><p style="margin-top:10px;font-weight:700">${f.dataset.cap}</p>`,true));
+}
+function galCard(w, d, dateS, isToday){
+  const m=WEEKMENU[w][d]; const key=w+"-"+d; const [c1,c2]=DISH_COL[(w*5+d)%DISH_COL.length];
+  const lbl = isToday? "Today" : (dateS? nice(dateS).replace(",","") : DAYS[d]+(WEEKMENU[w][d][2]?" ★":""));
+  const body = `<h4>${m[0]}</h4><p style="font-weight:700;color:var(--turmeric-d);margin:2px 0">or</p><h4 style="margin-top:0">${m[1]}</h4><p>3 chapati, daal, rice & salad${m[2]?' <b style="color:var(--leaf)">+ sweet</b>':''}</p>`;
+  if(MENU_PHOTO[key]) return `<div class="dish ph ${isToday?'today':''}"><span class="day">${lbl}</span><span class="real">📷 Real photo</span><img src="${MENU_PHOTO[key]}" alt="${m[0]}" loading="lazy"><div class="txt">${body}</div></div>`;
+  return `<div class="dish ${isToday?'today':''}"><span class="day">${lbl}</span>${bowl(c1,c2,110,w*5+d+1)}${body}</div>`;
+}
+function weekStart(){ // Monday of this week, or next week on Sat/Sun
+  let t=todayS(); const g=pd(t).getDay();
+  if(g===6) return addDays(t,2); if(g===0) return addDays(t,1);
+  return addDays(t,-(g-1));
+}
+function renderWeek(){
+  const mon=weekStart(), t=todayS(); let h="";
+  for(let k=0;k<5;k++){ const d=addDays(mon,k); const ix=menuIdx(d); h+=galCard(ix[0],ix[1],d,d===t); }
+  $("#weekGal").innerHTML=h;
+}
+let galFilter=null;
+function renderGallery(){
+  const cur=menuIdx(weekStart())[0]; if(galFilter===null) galFilter=cur;
+  $("#galFilters").innerHTML=[0,1,2,3].map(w=>`<button class="pill ${galFilter===w?'on':''}" data-f="${w}">Week ${w+1}${w===cur?' (this week)':''}</button>`).join("");
+  $("#galFilters").querySelectorAll("button").forEach(b=>b.onclick=()=>{galFilter=+b.dataset.f;renderGallery();});
+  const ti=menuIdx(todayS()); let h="";
+  for(let d=0;d<5;d++) h+=galCard(galFilter,d,null, !!ti && ti[0]===galFilter && ti[1]===d);
+  $("#fullGal").innerHTML=h;
+}
+
+/* ============ TIFFIN PLANS ============ */
+let mealsSel=20, planCat="all";
+function planPriceBlock(p, n){
+  const per=p.price[n]/n, mrp=p.mrp&&p.mrp[n];
+  return `<div class="price">${inr(p.price[n])} <small>/ ${n} meals</small></div>${mrp?`<div class="note"><s>${inr(mrp)}</s> <b style="color:var(--leaf)">Save ${inr(mrp-p.price[n])}</b></div>`:''}<div class="permeal">≈ ${inr(per)} per meal</div>`;
+}
+function renderPlans(){
+  $("#mealToggle").querySelectorAll("button").forEach(b=>{ b.classList.toggle("on", +b.dataset.m===mealsSel); b.onclick=()=>{mealsSel=+b.dataset.m; renderPlans();}; });
+  $("#planCats").innerHTML=PLAN_CATS.map(([k,l])=>`<button class="pill ${planCat===k?'on':''}" data-c="${k}">${l}</button>`).join("");
+  $("#planCats").querySelectorAll("button").forEach(b=>b.onclick=()=>{planCat=b.dataset.c; renderPlans();});
+  const list=PLANS.filter(p=>planCat==="all"||p.cat===planCat);
+  $("#planCards").innerHTML = list.map(p=>{ const n=p.opts.includes(mealsSel)?mealsSel:p.opts[0]; const tt=TYPE_TAG[p.type];
+    return `<div class="card plan ${p.pop?'pop':''}">${p.pop?'<span class="ribbon">⭐ MOST POPULAR</span>':''}${p.cat==='trial'?'<span class="ribbon" style="background:var(--leaf);color:#fff">TRY FIRST</span>':''}<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">${PLAN_CATS.find(c=>c[0]===p.cat)[1]}</span><span class="tag ${tt[1]}">${tt[0]}</span></div><h3>${p.name}</h3>${planPriceBlock(p,n)}<ul>${p.items.map(i=>`<li>${i}</li>`).join("")}</ul><button class="btn ${p.pop||p.cat==='trial'?'btn-p':'btn-o'}" style="justify-content:center;margin-top:auto" data-plan="${p.id}" data-n="${n}">${p.cat==='trial'?'Start trial →':'Subscribe →'}</button></div>`; }).join("");
+  $("#planCards").querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>startSubscribe(b.dataset.plan, +b.dataset.n));
+}
+
+/* ============ MODAL ============ */
+function openModal(html, wide){ const m=$("#modal"); m.className="modal"+(wide?" wide":""); m.innerHTML=`<button class="x" onclick="closeModal()">✕</button>`+html; $("#ov").classList.add("open"); }
+function closeModal(){ $("#ov").classList.remove("open"); }
+$("#ov").addEventListener("click",e=>{ if(e.target.id==="ov") closeModal(); });
+
+/* ============ LOGIN ============ */
+let afterLogin=null;
+function openLogin(next){
+  afterLogin=next||null;
+  openModal(`<img src="images/logo-160.png" alt="NJ Kitchen" width="70" height="70" style="display:block;margin-bottom:8px"><h3>Login / Sign up</h3><p class="note">Use your mobile number. We'll send you an OTP.</p>
+  <div id="lg1" class="grid" style="gap:12px;margin-top:16px">
+    <label class="f">Mobile number<input id="lgMob" maxlength="10" inputmode="numeric" placeholder="10-digit mobile"></label>
+    <div class="err" id="lgErr"></div>
+    <button class="btn btn-p" id="lgSend" style="justify-content:center">Send OTP</button>
+  </div>
+  <div id="lg2" class="grid" style="gap:12px;margin-top:16px;display:none">
+    <div class="warnbox">Demo mode: your OTP is <b>1234</b>. Once an SMS gateway is connected, the real OTP will go to the customer's mobile.</div>
+    <label class="f">Enter OTP<input id="lgOtp" maxlength="4" inputmode="numeric" placeholder="4-digit OTP"></label>
+    <label class="f" id="lgNameWrap" style="display:none">Your name<input id="lgName" placeholder="Full name"></label>
+    <div class="err" id="lgErr2"></div>
+    <button class="btn btn-p" id="lgVerify" style="justify-content:center">Verify & continue</button>
+  </div>`);
+  $("#lgSend").onclick=()=>{
+    const m=$("#lgMob").value.trim();
+    if(!/^[6-9]\d{9}$/.test(m)){ $("#lgErr").textContent="Please enter a valid 10-digit mobile number."; return; }
+    $("#lg1").style.display="none"; $("#lg2").style.display="grid";
+    if(!S.users[m]) $("#lgNameWrap").style.display="grid";
+    $("#lgOtp").focus();
+    $("#lgVerify").onclick=()=>{
+      if($("#lgOtp").value.trim()!=="1234"){ $("#lgErr2").textContent="Wrong OTP. Please try again."; return; }
+      if(!S.users[m]){ const n=$("#lgName").value.trim(); if(!n){ $("#lgErr2").textContent="Please enter your name."; return; } S.users[m]={name:n,mobile:m,address:"",area:""}; }
+      S.session=m; save(); closeModal(); updateHeader(); toast("Welcome, "+S.users[m].name+"! 🙏");
+      if(afterLogin){ const f=afterLogin; afterLogin=null; f(); } else if(location.hash==="#account") renderAccount();
+    };
+  };
+}
+const me = () => S.session ? S.users[S.session] : null;
+function updateHeader(){
+  $("#acctLabel").textContent = me()? me().name.split(" ")[0] : "Login";
+  const c=S.cart.reduce((a,i)=>a+i.qty,0); const b=$("#cartCount"); b.textContent=c; b.style.display=c?"grid":"none";
+}
+$("#acctBtn").onclick=()=>{ if(me()) location.hash="#account"; else openLogin(()=>location.hash="#account"); };
+$("#burger").onclick=()=>$("#links").classList.toggle("open");
+
+/* ============ SUBSCRIBE FLOW ============ */
+let SUB=null;
+function startSubscribe(planId, meals){
+  if(!me()){ openLogin(()=>startSubscribe(planId, meals)); return; }
+  const u=me();
+  let st=addDays(todayS(),1); while(isWkend(st)) st=addDays(st,1);
+  const pl=PLANS.find(x=>x.id===planId);
+  SUB={planId, meals, slot:"lunch", area:u.area||"", address:u.address||"", start:st, sundayOff:true, variant:(pl.variants||[])[0]||"", selected:new Set(), step:1};
+  subStep1();
+}
+const daysNeeded = () => SUB.slot==="both" ? Math.ceil(SUB.meals/2) : SUB.meals;
+function stepper(n){ return `<div class="stepper">${[1,2,3].map(i=>`<div class="${i<=n?'on':''}"></div>`).join("")}</div>`; }
+function subStep1(){
+  const p=PLANS.find(x=>x.id===SUB.planId);
+  openModal(`<h3>${p.name} · ${SUB.meals} meals</h3><p class="note">Step 1 of 3: delivery details</p>${stepper(1)}
+  <div class="grid" style="gap:12px">
+    <div class="frow">
+      <label class="f">Meals<select id="sMeals">${p.opts.map(n=>`<option value="${n}" ${SUB.meals===n?'selected':''}>${n} meals · ${inr(p.price[n])}</option>`).join("")}</select></label>
+      <label class="f">Meal slot<select id="sSlot">${Object.entries(SLOTS).map(([k,v])=>`<option value="${k}" ${SUB.slot===k?'selected':''}>${v}</option>`).join("")}</select></label>
+    </div>
+    ${p.variants?`<label class="f">Meal option<select id="sVar">${p.variants.map(v=>`<option ${SUB.variant===v?'selected':''}>${v}</option>`).join("")}</select></label>`:''}
+    <label class="f">Delivery area<select id="sArea"><option value="">Select area…</option>${TIFFIN_AREAS.map(a=>`<option ${SUB.area===a?'selected':''}>${a}</option>`).join("")}</select></label>
+    <label class="f">Full address<textarea id="sAddr" rows="2" placeholder="Flat no, building, landmark">${esc(SUB.address)}</textarea></label>
+    <div class="frow">
+      <label class="f">Start date<input type="date" id="sStart" value="${SUB.start}" min="${addDays(todayS(),1)}"></label>
+      <div class="note" style="align-self:end;padding-bottom:12px">🗓️ Delivery <b>Monday to Friday</b>. No delivery on Saturday & Sunday.</div>
+    </div>
+    <p class="note">Tiffin is delivered only in listed areas. Not listed? WhatsApp us on ${WHATSAPP}.</p>
+    <div class="err" id="sErr"></div>
+    <button class="btn btn-p" id="sNext" style="justify-content:center">Next: select dates →</button>
+  </div>`);
+  $("#sNext").onclick=()=>{
+    SUB.meals=+$("#sMeals").value; SUB.slot=$("#sSlot").value; SUB.area=$("#sArea").value; SUB.address=$("#sAddr").value.trim();
+    SUB.start=$("#sStart").value; if($("#sVar")) SUB.variant=$("#sVar").value;
+    if(!SUB.area) return $("#sErr").textContent="Please select your delivery area.";
+    if(SUB.address.length<8) return $("#sErr").textContent="Please enter your full delivery address.";
+    if(!SUB.start || SUB.start<addDays(todayS(),1)) return $("#sErr").textContent="Start date must be tomorrow or later.";
+    while(isWkend(SUB.start)) SUB.start=addDays(SUB.start,1);
+    autoFill(true); subStep2();
+  };
+}
+function autoFill(reset){
+  if(reset) SUB.selected=new Set();
+  let d=SUB.start, guard=0;
+  while(SUB.selected.size<daysNeeded() && guard<200){ if(!isWkend(d)) SUB.selected.add(d); d=addDays(d,1); guard++; }
+}
+function monthsSpan(fromS, toS){
+  const out=[]; const a=pd(fromS), b=pd(toS); let y=a.getFullYear(), m=a.getMonth();
+  while(y<b.getFullYear() || (y===b.getFullYear() && m<=b.getMonth())){ out.push([y,m]); m++; if(m>11){m=0;y++;} }
+  return out;
+}
+function calMonth(y,m,cellFn){
+  const first=new Date(y,m,1), days=new Date(y,m+1,0).getDate(); const off=(first.getDay()+6)%7;
+  let h=`<div class="cal"><h5>${first.toLocaleDateString("en-IN",{month:"long",year:"numeric"})}</h5><div class="cal-g">${["M","T","W","T","F","S","S"].map(w=>`<div class="wd">${w}</div>`).join("")}`;
+  for(let i=0;i<off;i++) h+=`<div class="cd empty"></div>`;
+  for(let d=1;d<=days;d++) h+=cellFn(ds(new Date(y,m,d)), d);
+  return h+`</div></div>`;
+}
+function subStep2(){
+  const need=daysNeeded(), sel=SUB.selected, sorted=[...sel].sort();
+  const last = sorted.length? sorted[sorted.length-1] : SUB.start;
+  const end = addDays(last > addDays(SUB.start,40) ? last : addDays(SUB.start,40), 0);
+  const months = monthsSpan(SUB.start, end);
+  const left = need - sel.size;
+  openModal(`<h3>Select your delivery dates</h3><p class="note">Step 2 of 3: tap a date to add or remove it. ${SUB.slot==="both"?`Lunch + Dinner = 2 meals per day, so you need <b>${need} days</b> for ${SUB.meals} meals.`:`1 meal per day, so you need <b>${need} days</b>.`}</p>${stepper(2)}
+  <div class="counter"><div>Selected <b>${sel.size}</b> / ${need} days</div><div style="font-weight:700;color:${left===0?'var(--leaf)':'var(--chili)'}">${left===0?'✓ All dates selected':left>0?`Select ${left} more`:`Remove ${-left}`}</div><div style="display:flex;gap:6px"><button class="btn btn-o btn-s" id="cAuto">Auto-fill</button><button class="btn btn-o btn-s" id="cClear">Clear all</button></div></div>
+  <div class="cal-wrap">${months.map(([y,m])=>calMonth(y,m,(d,n)=>{
+      const dis = d<SUB.start || isWkend(d); const on=sel.has(d);
+      return dis? `<div class="cd dis">${n}</div>` : `<button class="cd ${on?'sel':''} ${isSun(d)?'sun':''}" data-d="${d}">${n}</button>`;
+  })).join("")}</div>
+  <div class="legend"><span><i style="background:var(--leaf)"></i>Delivery date</span><span><i style="background:#F7EEDF"></i>No delivery</span><span>Sat & Sun: no delivery</span></div>
+  <div class="err" id="cErr" style="margin-top:8px"></div>
+  <div style="display:flex;gap:10px;justify-content:space-between;margin-top:8px"><button class="btn btn-o" id="cBack">← Back</button><button class="btn btn-p" id="cNext" ${left!==0?'disabled':''}>Next: review & pay →</button></div>`, true);
+  $("#modal").querySelectorAll("button.cd").forEach(b=>b.onclick=()=>{
+    const d=b.dataset.d;
+    if(sel.has(d)) sel.delete(d);
+    else { if(sel.size>=need){ $("#cErr").textContent=`You already have ${need} dates. Remove one first, then pick a new one.`; return; } sel.add(d); }
+    subStep2();
+  });
+  $("#cAuto").onclick=()=>{ autoFill(false); subStep2(); };
+  $("#cClear").onclick=()=>{ SUB.selected=new Set(); subStep2(); };
+  $("#cBack").onclick=subStep1;
+  $("#cNext").onclick=subStep3;
+}
+function subStep3(){
+  const p=PLANS.find(x=>x.id===SUB.planId), sorted=[...SUB.selected].sort();
+  openModal(`<h3>Review & pay</h3><p class="note">Step 3 of 3</p>${stepper(3)}
+  <table class="tbl">
+    <tr><td>Plan</td><td><b>${p.name}</b>, ${SUB.meals} meals</td></tr>
+    <tr><td>Slot</td><td>${SLOTS[SUB.slot]}</td></tr>${SUB.variant?`<tr><td>Option</td><td>${esc(SUB.variant)}</td></tr>`:''}
+    <tr><td>Delivery</td><td>${esc(SUB.address)}<br><span class="tag">${esc(SUB.area)}</span></td></tr>
+    <tr><td>Dates</td><td>${sorted.length} days: <b>${nice(sorted[0])}</b> to <b>${nice(sorted[sorted.length-1])}</b></td></tr>
+    <tr><td>Amount</td><td><span class="price" style="font-size:28px">${inr(p.price[SUB.meals])}</span></td></tr>
+  </table>
+  <label class="f" style="margin-top:14px">Payment method<select id="pMode"><option>UPI (GPay / PhonePe / Paytm)</option><option>Debit / Credit Card</option><option>Cash on first delivery</option></select></label>
+  <p class="note" style="margin-top:8px">Demo mode: no money is charged. A payment gateway (e.g. Razorpay) is connected at launch.</p>
+  <div style="display:flex;gap:10px;justify-content:space-between;margin-top:16px"><button class="btn btn-o" id="pBack">← Change dates</button><button class="btn btn-g" id="pPay">Pay ${inr(p.price[SUB.meals])} & confirm</button></div>`);
+  $("#pBack").onclick=subStep2;
+  $("#pPay").onclick=()=>{
+    const u=me(); u.address=SUB.address; u.area=SUB.area;
+    const sub={id:uid("TF"), mobile:S.session, planId:SUB.planId, meals:SUB.meals, slot:SUB.slot, area:SUB.area, address:SUB.address, sundayOff:true, wkend:true, variant:SUB.variant, amount:p.price[SUB.meals], payMode:$("#pMode").value, created:todayS(), dates:sorted.map(d=>({d,s:"scheduled"}))};
+    S.subs.push(sub); save(); closeModal();
+    toast("🎉 Subscription confirmed! "+sub.id);
+    location.hash="#account"; if(location.hash==="#account") renderAccount();
+  };
+}
+
+/* ============ SUBSCRIPTION MATH ============ */
+const perDay = s => s.slot==="both"?2:1;
+function normalizeSubs(){
+  const t=todayS(); let ch=false;
+  S.subs.forEach(s=>s.dates.forEach(x=>{ if(x.s==="scheduled" && x.d<t){ x.s="delivered"; ch=true; } }));
+  if(ch) save();
+}
+function subStats(s){
+  const pdm=perDay(s);
+  const delivered=s.dates.filter(x=>x.s==="delivered").length*pdm;
+  const skipped=s.dates.filter(x=>x.s==="skipped").length;
+  const delivered2=Math.min(delivered, s.meals);
+  return {delivered:delivered2, remaining:Math.max(0,s.meals-delivered2), skipped, upcoming:s.dates.filter(x=>x.s==="scheduled").sort((a,b)=>a.d<b.d?-1:1)};
+}
+function canSkip(d){
+  const t=todayS(); if(d<=t) return false;
+  if(d===addDays(t,1)) return new Date().getHours()<21; // cut-off 9 pm previous day
+  return true;
+}
+function skipDate(subId, d){
+  const s=S.subs.find(x=>x.id===subId); const x=s.dates.find(y=>y.d===d);
+  if(!x || x.s!=="scheduled" || !canSkip(d)) return;
+  x.s="skipped";
+  let last=s.dates.map(y=>y.d).sort().pop(), n=addDays(last,1);
+  while(s.wkend ? isWkend(n) : (s.sundayOff && isSun(n))) n=addDays(n,1);
+  s.dates.push({d:n,s:"scheduled"});
+  save(); toast(`Skipped ${nice(d)}. Meal moved to ${nice(n)}.`); renderAccount();
+}
+function ring(pct, big, small){
+  const r=78, c=2*Math.PI*r;
+  return `<div class="ring"><svg width="180" height="180" viewBox="0 0 180 180"><circle cx="90" cy="90" r="${r}" stroke="#F1E4CF" stroke-width="16" fill="none"/><circle cx="90" cy="90" r="${r}" stroke="var(--leaf)" stroke-width="16" fill="none" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-pct)}" transform="rotate(-90 90 90)"/></svg><div class="mid"><div><b>${big}</b><span class="note">${small}</span></div></div></div>`;
+}
+
+/* ============ ACCOUNT ============ */
+let acctTab="subs";
+function renderAccount(){
+  normalizeSubs();
+  const u=me();
+  if(!u){
+    $("#acctHead").innerHTML=`<div class="kicker">My Account</div><h1>Login to see your meals</h1>`;
+    $("#acctBody").innerHTML=`<div class="card empty-st"><p style="font-size:18px;margin-bottom:14px">Track delivered & remaining meals, skip dates and see your orders.</p><button class="btn btn-p" onclick="openLogin(renderAccount)">Login with mobile</button></div>`;
+    return;
+  }
+  $("#acctHead").innerHTML=`<div class="kicker">My Account</div><h1>Namaste, ${esc(u.name.split(" ")[0])} 🙏</h1><p>+91 ${esc(u.mobile)} · <a href="javascript:void 0" id="logout" style="color:var(--chili);font-weight:600">Logout</a></p>`;
+  $("#logout").onclick=()=>{ S.session=null; save(); updateHeader(); renderAccount(); toast("Logged out"); };
+  const subs=S.subs.filter(s=>s.mobile===u.mobile).reverse();
+  const orders=S.orders.filter(o=>o.mobile===u.mobile).reverse();
+  let body=`<div class="tabs"><button data-t="subs" class="${acctTab==='subs'?'on':''}">🍱 My Tiffin Plans (${subs.length})</button><button data-t="orders" class="${acctTab==='orders'?'on':''}">🛍️ Orders (${orders.length})</button><button data-t="profile" class="${acctTab==='profile'?'on':''}">👤 Profile</button></div>`;
+  if(acctTab==="subs"){
+    if(!subs.length) body+=`<div class="card empty-st"><p style="font-size:18px;margin-bottom:14px">You don't have a tiffin plan yet.</p><a class="btn btn-p" href="#tiffin">See plans</a></div>`;
+    subs.forEach(s=>{
+      const p=PLANS.find(x=>x.id===s.planId), st=subStats(s), pdm=perDay(s);
+      const done = st.remaining===0;
+      const allD=s.dates.map(x=>x.d).sort(); const months=monthsSpan(allD[0], allD[allD.length-1]);
+      const map=Object.fromEntries(s.dates.map(x=>[x.d,x.s])); const t=todayS();
+      const next=st.upcoming[0];
+      body+=`<div class="card" style="margin-bottom:22px">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px"><div><h3 style="font-size:24px">${p.name}, ${s.meals} meals</h3><span class="note">${s.id} · ${SLOTS[s.slot]} · ${esc(s.area)}</span></div><span class="status ${done?'delivered':'scheduled'}">${done?'COMPLETED':'ACTIVE'}</span></div>
+        <div class="subcard">
+          <div>${ring(st.delivered/s.meals, st.remaining, "meals remaining")}
+            <div class="stats"><div class="stat"><b>${s.meals}</b><span>Total</span></div><div class="stat"><b style="color:var(--leaf)">${st.delivered}</b><span>Delivered</span></div><div class="stat"><b style="color:var(--chili)">${st.skipped}</b><span>Days skipped</span></div></div>
+            ${next?`<div class="ok">Next delivery: ${nice(next.d)}<br><span style="font-weight:500">Menu: ${menuText(next.d)}</span></div>`:''}
+            ${done?`<button class="btn btn-p" style="width:100%;justify-content:center;margin-top:10px" onclick="startSubscribe('${s.planId}',${s.meals})">Renew plan</button>`:''}
+          </div>
+          <div>
+            <p class="note" style="margin-bottom:10px">Tap an upcoming (yellow) date to skip it. The meal is added after your last date. Skip before 9 pm the previous day.</p>
+            <div class="cal-wrap">${months.map(([y,m])=>calMonth(y,m,(d,n)=>{
+              const stt=map[d]; const tc=d===t?' today':'';
+              if(!stt) return `<div class="cd dis${tc}">${n}</div>`;
+              if(stt==="scheduled" && canSkip(d)) return `<button class="cd st-scheduled${tc}" data-skip="${d}" data-sub="${s.id}" title="Tap to skip">${n}</button>`;
+              return `<div class="cd st-${stt}${tc}" title="${stt}">${n}</div>`;
+            })).join("")}</div>
+            <div class="legend"><span><i style="background:var(--leaf)"></i>Delivered</span><span><i style="background:#FDE7B5;border:1px solid var(--turmeric)"></i>Upcoming</span><span><i style="background:#F6D5CC"></i>Skipped</span></div>
+            <details style="margin-top:14px"><summary style="cursor:pointer;font-weight:700;color:var(--curry)">Delivery history (${s.dates.filter(x=>x.s==='delivered').length} days)</summary>
+              <table class="tbl" style="margin-top:8px"><tr><th>Date</th><th>Menu</th><th>Meals</th><th>Status</th></tr>${s.dates.slice().sort((a,b)=>a.d<b.d?-1:1).map(x=>`<tr><td>${nice(x.d)}</td><td>${menuText(x.d)}</td><td>${x.s==='skipped'?0:pdm}</td><td><span class="status ${x.s}">${x.s.toUpperCase()}</span></td></tr>`).join("")}</table>
+            </details>
+          </div>
+        </div></div>`;
+    });
+  } else if(acctTab==="orders"){
+    body+= orders.length? `<div class="card"><table class="tbl"><tr><th>Order</th><th>Items</th><th>Total</th><th>Delivery</th><th>Status</th></tr>${orders.map(o=>`<tr><td><b>${o.id}</b><br><span class="note">${nice(o.created)}</span></td><td>${o.items.map(i=>`${esc(i.name)} ${i.v?'('+i.v+')':''} × ${i.qty}`).join("<br>")}</td><td>${inr(o.total)}</td><td>${nice(o.date)}</td><td><span class="status ${o.status}">${o.status.toUpperCase()}</span></td></tr>`).join("")}</table></div>`
+      : `<div class="card empty-st"><p style="font-size:18px;margin-bottom:14px">No orders yet.</p><a class="btn btn-p" href="#snacks">Shop snacks & laddus</a></div>`;
+  } else {
+    body+=`<div class="card" style="max-width:560px"><div class="grid" style="gap:12px"><label class="f">Name<input id="pfName" value="${esc(u.name)}"></label><label class="f">Default tiffin area<select id="pfArea"><option value="">—</option>${TIFFIN_AREAS.map(a=>`<option ${u.area===a?'selected':''}>${a}</option>`).join("")}</select></label><label class="f">Address<textarea id="pfAddr" rows="2">${esc(u.address)}</textarea></label><button class="btn btn-p" id="pfSave" style="justify-self:start">Save</button></div></div>`;
+  }
+  $("#acctBody").innerHTML=body;
+  $("#acctBody").querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{acctTab=b.dataset.t;renderAccount();});
+  $("#acctBody").querySelectorAll("[data-skip]").forEach(b=>b.onclick=()=>{
+    const d=b.dataset.skip, id=b.dataset.sub;
+    openModal(`<h3>Skip ${nice(d)}?</h3><p style="margin:10px 0 18px">No tiffin will come that day. Your meal isn't lost: we'll add one more delivery day after your last date.</p><div style="display:flex;gap:10px"><button class="btn btn-o" onclick="closeModal()">Keep it</button><button class="btn btn-p" id="doSkip">Yes, skip this date</button></div>`);
+    $("#doSkip").onclick=()=>{ closeModal(); skipDate(id,d); };
+  });
+  const ps=$("#pfSave"); if(ps) ps.onclick=()=>{ u.name=$("#pfName").value.trim()||u.name; u.area=$("#pfArea").value; u.address=$("#pfAddr").value.trim(); save(); updateHeader(); toast("Profile saved"); renderAccount(); };
+}
+
+/* ============ SHOP (snacks + laddu) ============ */
+const ladduVar={};
+function prodCard(p, type){
+  if(type==="laddu"){
+    const v=ladduVar[p.id]||"500g"; const m=LADDU_VAR.find(x=>x.k===v).m;
+    return `<div class="card prod"><div class="art" style="background:#FBEBC8">${ladduArt(p.c)}</div><h4>${p.name}</h4><p class="desc">${p.desc}</p><div class="variant">${LADDU_VAR.map(x=>`<button class="${x.k===v?'on':''}" data-lv="${p.id}" data-k="${x.k}">${x.k}</button>`).join("")}</div><div class="bot"><span class="pr">${inr(Math.round(p.price*m/5)*5)}</span><button class="btn btn-p btn-s" data-add="${p.id}" data-type="laddu">Add +</button></div></div>`;
+  }
+  return `<div class="card prod"><div class="art" style="background:#FDF0D5">${snackArt(p.art,p.c)}</div><h4>${p.name}</h4><span class="tag g" style="align-self:flex-start">${p.pack}</span><p class="desc">${p.desc}</p><div class="bot"><span class="pr">${inr(p.price)}</span><button class="btn btn-p btn-s" data-add="${p.id}" data-type="snack">Add +</button></div></div>`;
+}
+function renderShop(){
+  $("#snackGrid").innerHTML=SNACKS.map(p=>prodCard(p,"snack")).join("");
+  $("#ladduGrid").innerHTML=LADDU.map(p=>prodCard(p,"laddu")).join("");
+  document.querySelectorAll("[data-lv]").forEach(b=>b.onclick=()=>{ ladduVar[b.dataset.lv]=b.dataset.k; renderShop(); });
+  document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>addToCart(b.dataset.add,b.dataset.type));
+}
+function addToCart(id,type){
+  let item;
+  if(type==="laddu"){ const p=LADDU.find(x=>x.id===id), v=ladduVar[id]||"500g", m=LADDU_VAR.find(x=>x.k===v).m; item={key:id+"-"+v,name:p.name,v,price:Math.round(p.price*m/5)*5}; }
+  else { const p=SNACKS.find(x=>x.id===id); item={key:id,name:p.name,v:p.pack,price:p.price}; }
+  const ex=S.cart.find(c=>c.key===item.key); if(ex) ex.qty++; else S.cart.push({...item,qty:1});
+  save(); updateHeader(); toast(`${item.name} added to cart`);
+}
+function renderCart(){
+  const tot=S.cart.reduce((a,i)=>a+i.price*i.qty,0); const del=0;
+  $("#cartBody").innerHTML = S.cart.length? S.cart.map((i,ix)=>`<div class="ci"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.v)} · ${inr(i.price)}</span></div><div class="qty"><button data-q="${ix}" data-d="-1">−</button><span>${i.qty}</span><button data-q="${ix}" data-d="1">+</button></div></div>`).join("") : `<div class="empty-st">Your cart is empty.<br><br><a class="btn btn-o btn-s" href="#snacks" onclick="closeCart()">Starters</a> <a class="btn btn-o btn-s" href="#laddu" onclick="closeCart()">Laddus</a></div>`;
+  $("#cartFt").innerHTML = S.cart.length? `<div style="display:flex;justify-content:space-between"><span>Subtotal</span><b>${inr(tot)}</b></div><div class="note">Delivery charge, if any, is confirmed on call.</div><div style="display:flex;justify-content:space-between;font-size:19px;margin:6px 0 12px"><b>Total</b><b style="color:var(--curry)">${inr(tot+del)}</b></div><button class="btn btn-p" style="width:100%;justify-content:center" id="checkout">Checkout →</button><p class="note" style="text-align:center;margin-top:6px">🚚 Delivered all over Pune</p>` : "";
+  $("#cartBody").querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{ const i=S.cart[+b.dataset.q]; i.qty+=+b.dataset.d; if(i.qty<=0) S.cart.splice(+b.dataset.q,1); save(); updateHeader(); renderCart(); });
+  const c=$("#checkout"); if(c) c.onclick=()=>{ closeCart(); if(!me()) openLogin(checkout); else checkout(); };
+}
+function openCart(){ renderCart(); $("#drawer").classList.add("open"); }
+function closeCart(){ $("#drawer").classList.remove("open"); }
+$("#cartBtn").onclick=openCart; $("#closeCart").onclick=closeCart;
+function checkout(){
+  const u=me(); const tot=S.cart.reduce((a,i)=>a+i.price*i.qty,0); const del=0;
+  openModal(`<h3>Checkout</h3><p class="note">Delivered anywhere in Pune, usually within 1–2 days.</p>
+  <div class="grid" style="gap:12px;margin-top:14px">
+    <div class="frow"><label class="f">Name<input id="coName" value="${esc(u.name)}"></label><label class="f">Pincode<input id="coPin" maxlength="6" inputmode="numeric" placeholder="411xxx"></label></div>
+    <label class="f">Full address<textarea id="coAddr" rows="2">${esc(u.address)}</textarea></label>
+    <div class="frow"><label class="f">Delivery date<input type="date" id="coDate" min="${addDays(todayS(),1)}" value="${addDays(todayS(),1)}"></label><label class="f">Payment<select id="coPay"><option>UPI</option><option>Card</option><option>Cash on Delivery</option></select></label></div>
+    <div class="counter" style="margin:0"><span>${S.cart.reduce((a,i)=>a+i.qty,0)} items · delivery charge confirmed on call</span><b>${inr(tot+del)}</b></div>
+    <div class="err" id="coErr"></div>
+    <button class="btn btn-g" id="coPlace" style="justify-content:center">Place order</button>
+  </div>`);
+  $("#coPlace").onclick=()=>{
+    const pin=$("#coPin").value.trim(), addr=$("#coAddr").value.trim();
+    if(!/^41[0-2]\d{3}$/.test(pin)) return $("#coErr").textContent="Please enter a valid Pune pincode (starts with 411 / 412 / 410).";
+    if(addr.length<8) return $("#coErr").textContent="Please enter your full address.";
+    const o={id:uid("OD"),mobile:u.mobile,name:$("#coName").value.trim()||u.name,address:addr,pin,date:$("#coDate").value,pay:$("#coPay").value,items:S.cart.map(i=>({...i})),total:tot+del,status:"placed",created:todayS()};
+    S.orders.push(o); S.cart=[]; if(!u.address) u.address=addr; save(); updateHeader(); closeModal();
+    toast("✅ Order placed: "+o.id); acctTab="orders"; location.hash="#account"; renderAccount();
+  };
+}
+
+/* ============ PARTY ORDERS ============ */
+let PSEL={};
+function renderCatering(){
+  Object.keys(PARTY).forEach(k=>{ if(!PSEL[k]) PSEL[k]=PARTY[k][0]; });
+  $("#comboBox").innerHTML=Object.entries(PARTY).map(([k,arr])=>`<div class="card" style="padding:16px"><div class="kicker">Pick 1 · ${k}</div><div class="filters">${arr.map(v=>`<button type="button" class="pill ${PSEL[k]===v?'on':''}" data-pk="${k}" data-pv="${v}">${v}</button>`).join("")}</div></div>`).join("");
+  $("#comboBox").querySelectorAll("[data-pk]").forEach(b=>b.onclick=()=>{ PSEL[b.dataset.pk]=b.dataset.pv; renderCatering(); });
+  $("#starterBox").innerHTML=SNACKS.map(p=>`<label style="display:flex;gap:10px;align-items:center;padding:8px 10px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-weight:600"><input type="checkbox" class="stChk" value="${p.id}" style="width:18px;height:18px"> <span style="flex:1">${p.name} <span class="note">(${p.pack})</span></span><b>${inr(p.price)}</b></label>`).join("");
+  $("#catDate").min=addDays(todayS(),1);
+  const est=()=>{ const g=Math.max(0,+$("#catGuests").value||0); const st=[...document.querySelectorAll(".stChk:checked")].map(c=>SNACKS.find(x=>x.id===c.value)); const per=st.reduce((a,p)=>a+p.price,0);
+    $("#catEst").innerHTML = per? `${inr(per*g)} <span class="note" style="font-family:Mukta">starters (${inr(per)} × ${g})</span>` : `<span class="note" style="font-family:Mukta">Combo rate confirmed on call</span>`; };
+  document.querySelectorAll(".stChk").forEach(c=>c.onchange=est); $("#catGuests").oninput=est; est();
+  $("#comboSum").textContent=Object.values(PSEL).join(" + ");
+  $("#cateringForm").onsubmit=e=>{
+    e.preventDefault(); const f=new FormData(e.target); const d=Object.fromEntries(f.entries());
+    if(!/^[6-9]\d{9}$/.test(d.mobile)) return $("#catErr").textContent="Please enter a valid 10-digit mobile number.";
+    if(!(+d.guests>0)) return $("#catErr").textContent="Please enter the number of guests.";
+    const st=[...document.querySelectorAll(".stChk:checked")].map(c=>SNACKS.find(x=>x.id===c.value));
+    const combo=Object.entries(PSEL).map(([k,v])=>k+": "+v).join(", ");
+    const en={id:uid("PO"),...d,combo,starters:st.map(p=>p.name+" ("+p.pack+")").join(", "),estimate:st.reduce((a,p)=>a+p.price,0)*(+d.guests),status:"new",created:todayS()};
+    S.enquiries.push(en); save();
+    const msg=`Hi ${BRAND}, party order ${en.id}: ${d.occasion} on ${d.date}, ${d.guests} guests, area ${d.area}. Combo: ${combo}.${en.starters?" Starters: "+en.starters+".":""} Name: ${d.name}, ${d.mobile}. ${d.notes||""}`;
+    e.target.style.display="none";
+    $("#catDone").style.display="block";
+    $("#catDone").innerHTML=`<div class="ok" style="margin-bottom:12px">✅ Party order request received (${en.id}). We'll call you on ${esc(d.mobile)} to confirm the rate.</div><p class="note">Want a faster reply? Copy this message and send it to us on WhatsApp (${WHATSAPP}):</p><div class="warnbox" style="margin:8px 0;white-space:pre-wrap">${esc(msg)}</div><button class="btn btn-g btn-s" id="cpMsg">Copy message</button> <button class="btn btn-o btn-s" id="newEnq">New request</button>`;
+    $("#cpMsg").onclick=async()=>{ try{ await navigator.clipboard.writeText(msg); toast("Copied!"); }catch(err){ toast("Select the text and copy it manually"); } };
+    $("#newEnq").onclick=()=>{ e.target.reset(); e.target.style.display="grid"; $("#catDone").style.display="none"; renderCatering(); };
+  };
+}
+
+/* ============ ADMIN (Kitchen) ============ */
+let adminOK=false, adminTab="today", adminDate=null;
+function renderAdmin(){
+  normalizeSubs();
+  const B=$("#adminBody");
+  if(!adminOK){
+    B.innerHTML=`<div class="card" style="max-width:420px"><label class="f">Kitchen PIN<input id="adPin" type="password" maxlength="6" inputmode="numeric" placeholder="Demo PIN: 0000"></label><div class="err" id="adErr"></div><button class="btn btn-p" id="adGo">Open panel</button></div>`;
+    $("#adGo").onclick=()=>{ if($("#adPin").value==="0000"){adminOK=true;renderAdmin();} else $("#adErr").textContent="Wrong PIN"; };
+    return;
+  }
+  adminDate = adminDate || todayS();
+  let h=`<div class="tabs">${[["today","🍱 Tiffin deliveries"],["subs","📋 Subscriptions"],["orders","🛍️ Shop orders"],["enq","🎉 Party orders"]].map(([k,l])=>`<button data-at="${k}" class="${adminTab===k?'on':''}">${l}</button>`).join("")}</div>`;
+  if(adminTab==="today"){
+    const list=S.subs.filter(s=>s.dates.some(x=>x.d===adminDate && x.s!=="skipped"));
+    const byArea={}; list.forEach(s=>{ (byArea[s.area]=byArea[s.area]||[]).push(s); });
+    h+=`<div style="display:flex;gap:14px;align-items:end;flex-wrap:wrap;margin-bottom:16px"><label class="f">Date<input type="date" id="adDate" value="${adminDate}"></label><div class="ok">Menu: <b>${menuText(adminDate)}</b> · ${list.length} tiffins</div></div>`;
+    if(!list.length) h+=`<div class="card empty-st">No tiffin deliveries on this date.</div>`;
+    Object.keys(byArea).sort().forEach(a=>{
+      h+=`<div class="card" style="margin-bottom:14px"><h3 style="font-size:20px;margin-bottom:8px">📍 ${esc(a)} (${byArea[a].length})</h3><table class="tbl"><tr><th>Customer</th><th>Address</th><th>Plan / Slot</th><th>Left</th><th></th></tr>${byArea[a].map(s=>{ const u=S.users[s.mobile]||{}; const x=s.dates.find(y=>y.d===adminDate); const st=subStats(s); const p=PLANS.find(q=>q.id===s.planId);
+        return `<tr><td><b>${esc(u.name)}</b><br><span class="note">${esc(s.mobile)}</span></td><td>${esc(s.address)}</td><td>${p.name}${s.variant?`<br><span class="note">${esc(s.variant)}</span>`:''}<br><span class="note">${SLOTS[s.slot]}</span></td><td>${st.remaining}/${s.meals}</td><td>${x.s==="delivered"?`<span class="status delivered">DELIVERED</span>`:`<button class="btn btn-g btn-s" data-dv="${s.id}">Mark delivered</button>`}</td></tr>`;}).join("")}</table></div>`;
+    });
+  } else if(adminTab==="subs"){
+    h+= S.subs.length? `<div class="card"><table class="tbl"><tr><th>ID</th><th>Customer</th><th>Plan</th><th>Area</th><th>Delivered</th><th>Remaining</th><th>Ends</th></tr>${S.subs.slice().reverse().map(s=>{const u=S.users[s.mobile]||{}; const st=subStats(s); const last=s.dates.filter(x=>x.s!=='skipped').map(x=>x.d).sort().pop(); return `<tr><td>${s.id}</td><td>${esc(u.name)}<br><span class="note">${esc(s.mobile)}</span></td><td>${PLANS.find(p=>p.id===s.planId).name} · ${s.meals}</td><td>${esc(s.area)}</td><td>${st.delivered}</td><td><b>${st.remaining}</b></td><td>${nice(last)}</td></tr>`;}).join("")}</table></div>` : `<div class="card empty-st">No subscriptions yet.</div>`;
+  } else if(adminTab==="orders"){
+    h+= S.orders.length? `<div class="card"><table class="tbl"><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Delivery</th><th>Status</th></tr>${S.orders.slice().reverse().map(o=>`<tr><td>${o.id}</td><td>${esc(o.name)}<br><span class="note">${esc(o.mobile)} · ${esc(o.pin)}</span><br><span class="note">${esc(o.address)}</span></td><td>${o.items.map(i=>`${esc(i.name)} (${esc(i.v)}) × ${i.qty}`).join("<br>")}</td><td>${inr(o.total)}<br><span class="note">${esc(o.pay)}</span></td><td>${nice(o.date)}</td><td><select data-os="${o.id}">${["placed","delivered","cancelled"].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join("")}</select></td></tr>`).join("")}</table></div>` : `<div class="card empty-st">No shop orders yet.</div>`;
+  } else {
+    h+= S.enquiries.length? `<div class="card"><table class="tbl"><tr><th>ID</th><th>Customer</th><th>Event</th><th>Combo & starters</th><th>Starters est.</th><th>Notes</th></tr>${S.enquiries.slice().reverse().map(e=>`<tr><td>${e.id}<br><span class="status new">NEW</span></td><td>${esc(e.name)}<br><span class="note">${esc(e.mobile)}</span></td><td>${esc(e.occasion)}<br>${nice(e.date)} · ${esc(e.guests)} guests<br><span class="note">${esc(e.area)}</span></td><td>${esc(e.combo||e.pkgName)}${e.starters?`<br><span class="note">Starters: ${esc(e.starters)}</span>`:''}</td><td>${e.estimate?inr(e.estimate):'—'}</td><td>${esc(e.notes)}</td></tr>`).join("")}</table></div>` : `<div class="card empty-st">No party order requests yet.</div>`;
+  }
+  B.innerHTML=h;
+  B.querySelectorAll("[data-at]").forEach(b=>b.onclick=()=>{adminTab=b.dataset.at;renderAdmin();});
+  const dd=$("#adDate"); if(dd) dd.onchange=()=>{adminDate=dd.value||todayS();renderAdmin();};
+  B.querySelectorAll("[data-dv]").forEach(b=>b.onclick=()=>{ const s=S.subs.find(x=>x.id===b.dataset.dv); const x=s.dates.find(y=>y.d===adminDate); x.s="delivered"; save(); toast("Marked delivered"); renderAdmin(); });
+  B.querySelectorAll("[data-os]").forEach(sel=>sel.onchange=()=>{ S.orders.find(o=>o.id===sel.dataset.os).status=sel.value; save(); toast("Order updated"); });
+}
+
+/* ============ INIT ============ */
+$("#footAreas").textContent=TIFFIN_AREAS.join(" · ");
+$("#waBtn").onclick=()=>openModal(`<h3>Chat with us on WhatsApp</h3><p style="margin:10px 0">Message us on <b>${WHATSAPP}</b> for tiffin, party orders and starters.</p><a class="btn btn-g" href="https://wa.me/918660248225" target="_blank" rel="noopener">Open WhatsApp</a>`);
+renderCats(); renderPhotos(); $("#todayChip").textContent= menuFor(todayS()) ? "🔥 Aaj: "+menuFor(todayS()) : "🗓️ Mon–Fri delivery"; areaBox("#areaBoxHome"); areaBox("#areaBoxTiffin"); renderWeek(); renderGallery(); renderPlans(); renderShop(); renderCatering(); updateHeader(); normalizeSubs(); route();
+</script>
+</body>
+</html>
