@@ -21,15 +21,15 @@ jobs:
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon --stacktrace
       - name: Rename APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk NJKitchen-v1.2.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk NJKitchen-v1.3.apk
       - uses: actions/upload-artifact@v4
         with:
           name: NJKitchen-APK
-          path: NJKitchen-v1.2.apk
+          path: NJKitchen-v1.3.apk
       - name: Publish APK as a release
         if: github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release delete v1.2 --yes --cleanup-tag || true
-          gh release create v1.2 NJKitchen-v1.2.apk --title "NJ Kitchen v1.2" --notes "Test APK: tiffin plans, trials, 4-week menu, party orders, starters, new logo."
+          gh release delete v1.3 --yes --cleanup-tag || true
+          gh release create v1.3 NJKitchen-v1.3.apk --title "NJ Kitchen v1.3" --notes "Lunch+Dinner doubles meals, per-day lunch/dinner choice, weekends selectable, ₹149 party combo, kids combos, delivery time."

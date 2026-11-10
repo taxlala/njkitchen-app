@@ -179,6 +179,9 @@ label.f{display:grid;gap:5px;font-weight:600;font-size:14.5px}
 .cd.empty{background:transparent}
 .cd.dis{background:transparent;color:#CBB9A6;cursor:not-allowed}
 .cd.sel{background:var(--leaf);color:#fff}
+.cd.half{background:#8DBF7E;color:#fff}
+.cd{line-height:1.05;flex-direction:column}
+.cd small{display:block;font-size:9.5px;font-weight:800;letter-spacing:.02em;opacity:.95}
 .cd.sun:not(.sel):not(.dis){color:var(--chili)}
 .cd.st-delivered{background:var(--leaf);color:#fff}
 .cd.st-scheduled{background:#FDE7B5;border-color:var(--turmeric)}
@@ -363,7 +366,7 @@ footer a:hover{color:var(--turmeric)}
     <div class="wrap">
       <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:22px">
         <div class="toggle" id="mealToggle"><button data-m="20" class="on">20 Meals</button><button data-m="30">30 Meals</button></div>
-        <span class="note">Lunch, dinner or both: you choose at checkout. Both = 2 meals per day.</span>
+        <span class="note">Lunch, dinner or both: you choose at checkout. Lunch + Dinner doubles the plan, e.g. 30 meals → 60 meals (30 lunch + 30 dinner) at 2× price.</span>
       </div>
       <div class="filters" id="planCats" style="margin-bottom:22px"></div>
       <div class="grid g3" id="planCards"></div>
@@ -399,13 +402,13 @@ footer a:hover{color:var(--turmeric)}
     <img src="images/logo-320.png" alt="NJ Kitchen Home Kitchen & Catering Services" width="120" height="120" style="display:block;margin-bottom:10px">
     <div class="kicker">Party Orders · All over Pune</div>
     <h1>Party order: full meal combo</h1>
-    <p>Birthdays, pooja, office lunches and family functions. Pick any one item from each column, add starters if you like, and we'll call you with the rate.</p>
+    <p>Birthdays, pooja, office lunches and family functions. Full meal combo at ₹149 per person, plus Kids Party Combos from ₹119. <a href="#catering" onclick="setTimeout(()=>document.getElementById('kids').scrollIntoView({behavior:'smooth'}),50)" style="color:var(--curry);font-weight:700">See kids combos ↓</a></p>
   </div>
   <section class="block" style="padding-top:20px">
     <div class="wrap">
       <div class="grid g2" style="margin-bottom:26px"><img class="lightimg" src="images/catering-spread.jpg" alt="NJ Kitchen party food spread"><img class="lightimg" src="images/tiffin-thali.jpg" alt="NJ Kitchen party food trays"></div>
       <div class="card">
-        <h3 style="font-size:26px;color:var(--curry)">Build your combo</h3>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="font-size:26px;color:var(--curry)">Full Meal Combo</h3><div class="price">₹149 <small>/ person</small></div></div>
         <p class="note" style="margin-bottom:14px">Pick any one from each column.</p>
         <form id="cateringForm" class="grid" style="gap:14px">
           <div class="grid g2" id="comboBox" style="gap:12px"></div>
@@ -423,12 +426,44 @@ footer a:hover{color:var(--turmeric)}
             <label class="f">Number of guests<input type="number" name="guests" min="1" value="20" required id="catGuests"></label>
             <label class="f">Area in Pune<input name="area" required placeholder="e.g. Kharadi, Viman Nagar"></label>
           </div>
-          <label class="f">Notes<textarea name="notes" rows="2" placeholder="Jain food, less spicy, delivery time..."></textarea></label>
+          <div class="frow">
+            <label class="f">Delivery time (kab chahiye?)<input type="time" name="time" required id="catTime" value="13:00"></label>
+            <label class="f">Full delivery address<input name="address" required placeholder="Flat / building / landmark"></label>
+          </div>
+          <label class="f">Notes<textarea name="notes" rows="2" placeholder="Jain food, less spicy..."></textarea></label>
           <div class="counter" style="margin:4px 0 0"><span>Estimate</span><b id="catEst">—</b></div>
           <div class="err" id="catErr"></div>
           <div><button class="btn btn-p" type="submit">Send party order request</button></div>
         </form>
         <div id="catDone" style="display:none"></div>
+      </div>
+
+      <div class="card" style="margin-top:26px" id="kids">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="font-size:26px;color:var(--curry)">🎈 Kids Party Combos</h3><span class="tag g">Choose your favourites · Celebrate with delicious bites!</span></div>
+        <p class="note" style="margin:4px 0 14px">Choose a combo, then pick the items. Price is per kid.</p>
+        <div class="grid g4" id="kidsCombos" style="gap:10px;margin-bottom:14px"></div>
+        <div class="grid g2" id="kidsBox" style="gap:12px"></div>
+        <div class="counter" style="margin:14px 0 0"><span id="kidsRule"></span><b id="kidsSum" style="font-size:16px"></b></div>
+        <form id="kidsForm" class="grid" style="gap:12px;margin-top:14px">
+          <div class="frow">
+            <label class="f">Your name<input name="name" required></label>
+            <label class="f">Mobile number<input name="mobile" required pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" placeholder="10-digit mobile"></label>
+          </div>
+          <div class="frow">
+            <label class="f">Party date<input type="date" name="date" required id="kDate"></label>
+            <label class="f">Delivery time (kab chahiye?)<input type="time" name="time" required value="17:00"></label>
+          </div>
+          <div class="frow">
+            <label class="f">Number of kids<input type="number" name="guests" min="1" value="15" required id="kGuests"></label>
+            <label class="f">Area in Pune<input name="area" required placeholder="e.g. Kharadi, Viman Nagar"></label>
+          </div>
+          <label class="f">Full delivery address<input name="address" required placeholder="Flat / building / landmark"></label>
+          <label class="f">Notes<textarea name="notes" rows="2" placeholder="Less spicy, birthday theme..."></textarea></label>
+          <div class="counter" style="margin:0"><span>Estimate</span><b id="kEst">—</b></div>
+          <div class="err" id="kErr"></div>
+          <div><button class="btn btn-p" type="submit">Send kids party order</button></div>
+        </form>
+        <div id="kDone" style="display:none"></div>
       </div>
     </div>
   </section>
@@ -547,6 +582,19 @@ const LADDU = [
  {id:"l8",name:"Nachni (Ragi) Laddu",price:380,desc:"Ragi flour with jaggery and ghee, rich in calcium.",c:["#6A4030","#94604A"]}
 ];
 const LADDU_VAR = [{k:"250g",m:.55},{k:"500g",m:1},{k:"1kg",m:1.9}];
+const PARTY_RATE = 149; // full meal combo, per person
+const KIDS = {
+  "A. Main Items": ["Burger","Noodles","Pasta","Fried Rice"],
+  "B. Snacks": ["French Fries","Manchurian (1 cup)","Spring Roll (2 pcs)","Cheese Ball (2 pcs)","Sandwich"],
+  "C. Starters": ["Veg Cutlet (2 pcs)","Paneer Popcorn (2 pcs)","Corn Chat","Nuggets (4 pcs)"],
+  "D. Sweets": ["Cup Cake (1 pc)","Gulab Jamun (2 pcs)","Mini Samosa (2 pcs)","Samosa (1 pc)","Chocolate Ball"]
+};
+const KIDS_COMBOS = [
+  {id:1, price:119, cols:["B","C","D"], rule:"Pick 1 item each from columns B, C & D"},
+  {id:2, price:149, cols:["A","B","C"], rule:"Pick 1 item each from columns A, B & C"},
+  {id:3, price:199, cols:["A","B","C","D"], rule:"Pick 1 item each from columns A, B, C & D"},
+  {id:4, price:219, cols:["A","B","C","D"], any:4, rule:"Pick any 4 items from A, B, C & D (up to 2 from the same column)"}
+];
 const PARTY = {
   "Roti": ["2 Chapati","4 Puri","3 Phulka"],
   "Sabji": ["Mix Veg","Shahi Paneer","Matar Paneer","Kadhai Paneer","Chole Masala","Chana Masala","Vadi Rassa","Aloo Matar (Dry)","Aloo Matar Curry","Aloo Tamatar"],
@@ -581,7 +629,7 @@ function menuIdx(s){ // 4-week cycle, Mon–Fri. Week 1 starts Mon 5 Jan 2026
   const w=((Math.floor(diff/7)%4)+4)%4; return [w,g-1];
 }
 function menuFor(s){ const ix=menuIdx(s); if(!ix) return null; const m=WEEKMENU[ix[0]][ix[1]]; return m[0]+" / "+m[1]+(m[2]?" + Sweet":""); }
-const menuText = s => menuFor(s) || "Weekend – no delivery";
+const menuText = s => menuFor(s) || "Weekend special menu";
 
 /* food art */
 function bowl(c1,c2,size=110,seed=1){
@@ -622,7 +670,7 @@ window.addEventListener("hashchange", route);
 function renderCats(){
   const cats = [
     {t:"Tiffin Service",d:"Trials from ₹450, 20 / 30 meal plans, veg & non-veg.",h:"#tiffin",tag:"Selected areas",bg:"#FDF0D5",img:"images/tiffin-set.jpg"},
-    {t:"Party Orders",d:"Full meal combo: pick roti, sabji, daal/rice and sweet.",h:"#catering",tag:"All Pune",bg:"#F6E1D6",img:"images/catering-spread.jpg"},
+    {t:"Party Orders",d:"Full meal combo ₹149/person · Kids combos from ₹119.",h:"#catering",tag:"All Pune",bg:"#F6E1D6",img:"images/catering-spread.jpg"},
     {t:"Starters",d:"Samosa, vada, kanda bhajji and kothimbir vadi.",h:"#snacks",tag:"All Pune",bg:"#FBEBC8",art:snackArt("samosa",["#E2A545","#C7832B"])},
     {t:"Laddu Range",d:"Besan, dink, dry fruit and more, made in pure ghee.",h:"#laddu",tag:"All Pune",bg:"#F8E3C2",art:ladduArt(["#E5A93A","#C9862A"])}
   ];
@@ -733,49 +781,62 @@ $("#burger").onclick=()=>$("#links").classList.toggle("open");
 
 /* ============ SUBSCRIBE FLOW ============ */
 let SUB=null;
+const SLOT_L = {L:"Lunch", D:"Dinner"};
+const mult = slot => slot==="both"?2:1;
 function startSubscribe(planId, meals){
   if(!me()){ openLogin(()=>startSubscribe(planId, meals)); return; }
   const u=me();
   let st=addDays(todayS(),1); while(isWkend(st)) st=addDays(st,1);
   const pl=PLANS.find(x=>x.id===planId);
-  SUB={planId, meals, slot:"lunch", area:u.area||"", address:u.address||"", start:st, sundayOff:true, variant:(pl.variants||[])[0]||"", selected:new Set(), step:1};
+  SUB={planId, meals, slot:"lunch", area:u.area||"", address:u.address||"", start:st, variant:(pl.variants||[])[0]||"", sel:{}};
   subStep1();
 }
-const daysNeeded = () => SUB.slot==="both" ? Math.ceil(SUB.meals/2) : SUB.meals;
+const totalMeals = () => SUB.meals*mult(SUB.slot);
+const slotLetters = () => SUB.slot==="both"?["L","D"]:[SUB.slot==="dinner"?"D":"L"];
+const selCount = () => Object.values(SUB.sel).reduce((a,v)=>a+v.length,0);
 function stepper(n){ return `<div class="stepper">${[1,2,3].map(i=>`<div class="${i<=n?'on':''}"></div>`).join("")}</div>`; }
 function subStep1(){
   const p=PLANS.find(x=>x.id===SUB.planId);
-  openModal(`<h3>${p.name} · ${SUB.meals} meals</h3><p class="note">Step 1 of 3: delivery details</p>${stepper(1)}
+  openModal(`<h3>${p.name}</h3><p class="note">Step 1 of 3: delivery details</p>${stepper(1)}
   <div class="grid" style="gap:12px">
     <div class="frow">
-      <label class="f">Meals<select id="sMeals">${p.opts.map(n=>`<option value="${n}" ${SUB.meals===n?'selected':''}>${n} meals · ${inr(p.price[n])}</option>`).join("")}</select></label>
+      <label class="f">Plan size<select id="sMeals">${p.opts.map(n=>`<option value="${n}" ${SUB.meals===n?'selected':''}>${n} meals · ${inr(p.price[n])}</option>`).join("")}</select></label>
       <label class="f">Meal slot<select id="sSlot">${Object.entries(SLOTS).map(([k,v])=>`<option value="${k}" ${SUB.slot===k?'selected':''}>${v}</option>`).join("")}</select></label>
     </div>
+    <div class="warnbox" id="sSum"></div>
     ${p.variants?`<label class="f">Meal option<select id="sVar">${p.variants.map(v=>`<option ${SUB.variant===v?'selected':''}>${v}</option>`).join("")}</select></label>`:''}
     <label class="f">Delivery area<select id="sArea"><option value="">Select area…</option>${TIFFIN_AREAS.map(a=>`<option ${SUB.area===a?'selected':''}>${a}</option>`).join("")}</select></label>
     <label class="f">Full address<textarea id="sAddr" rows="2" placeholder="Flat no, building, landmark">${esc(SUB.address)}</textarea></label>
     <div class="frow">
       <label class="f">Start date<input type="date" id="sStart" value="${SUB.start}" min="${addDays(todayS(),1)}"></label>
-      <div class="note" style="align-self:end;padding-bottom:12px">🗓️ Delivery <b>Monday to Friday</b>. No delivery on Saturday & Sunday.</div>
+      <div class="note" style="align-self:end;padding-bottom:12px">🗓️ Regular menu Monday to Friday. Saturday & Sunday can be added on the next step.</div>
     </div>
     <p class="note">Tiffin is delivered only in listed areas. Not listed? WhatsApp us on ${WHATSAPP}.</p>
     <div class="err" id="sErr"></div>
     <button class="btn btn-p" id="sNext" style="justify-content:center">Next: select dates →</button>
   </div>`);
+  const sum=()=>{ const n=+$("#sMeals").value, sl=$("#sSlot").value, k=mult(sl);
+    $("#sSum").innerHTML = sl==="both" ? `<b>Lunch + Dinner:</b> ${n} lunch + ${n} dinner = <b>${n*2} meals</b> · ${inr(p.price[n])} × 2 = <b>${inr(p.price[n]*2)}</b>` : `<b>${n} meals</b> (${sl==="dinner"?"dinner":"lunch"} only) · <b>${inr(p.price[n])}</b>`; };
+  $("#sMeals").onchange=sum; $("#sSlot").onchange=sum; sum();
   $("#sNext").onclick=()=>{
-    SUB.meals=+$("#sMeals").value; SUB.slot=$("#sSlot").value; SUB.area=$("#sArea").value; SUB.address=$("#sAddr").value.trim();
+    const nm=+$("#sMeals").value, ns=$("#sSlot").value;
+    if(nm!==SUB.meals || ns!==SUB.slot) SUB.sel={};
+    SUB.meals=nm; SUB.slot=ns; SUB.area=$("#sArea").value; SUB.address=$("#sAddr").value.trim();
     SUB.start=$("#sStart").value; if($("#sVar")) SUB.variant=$("#sVar").value;
     if(!SUB.area) return $("#sErr").textContent="Please select your delivery area.";
     if(SUB.address.length<8) return $("#sErr").textContent="Please enter your full delivery address.";
     if(!SUB.start || SUB.start<addDays(todayS(),1)) return $("#sErr").textContent="Start date must be tomorrow or later.";
-    while(isWkend(SUB.start)) SUB.start=addDays(SUB.start,1);
-    autoFill(true); subStep2();
+    Object.keys(SUB.sel).forEach(d=>{ if(d<SUB.start) delete SUB.sel[d]; });
+    if(!selCount()) autoFill();
+    subStep2();
   };
 }
-function autoFill(reset){
-  if(reset) SUB.selected=new Set();
-  let d=SUB.start, guard=0;
-  while(SUB.selected.size<daysNeeded() && guard<200){ if(!isWkend(d)) SUB.selected.add(d); d=addDays(d,1); guard++; }
+function autoFill(){ // fills Mon–Fri from start date with all chosen slots; weekends are added by tapping
+  const L=slotLetters(); let d=SUB.start, guard=0;
+  while(selCount()<totalMeals() && guard<400){
+    if(!isWkend(d)){ const cur=SUB.sel[d]||[]; const room=totalMeals()-selCount(); const add=L.filter(x=>!cur.includes(x)).slice(0,room); if(add.length) SUB.sel[d]=cur.concat(add).sort().reverse(); }
+    d=addDays(d,1); guard++;
+  }
 }
 function monthsSpan(fromS, toS){
   const out=[]; const a=pd(fromS), b=pd(toS); let y=a.getFullYear(), m=a.getMonth();
@@ -789,49 +850,58 @@ function calMonth(y,m,cellFn){
   for(let d=1;d<=days;d++) h+=cellFn(ds(new Date(y,m,d)), d);
   return h+`</div></div>`;
 }
+const slotTag = arr => arr.length===2 ? "L+D" : (arr[0]||"");
 function subStep2(){
-  const need=daysNeeded(), sel=SUB.selected, sorted=[...sel].sort();
-  const last = sorted.length? sorted[sorted.length-1] : SUB.start;
-  const end = addDays(last > addDays(SUB.start,40) ? last : addDays(SUB.start,40), 0);
+  const need=totalMeals(), have=selCount(), both=SUB.slot==="both";
+  const dates=Object.keys(SUB.sel).sort(); const last=dates.length?dates[dates.length-1]:SUB.start;
+  const end = last > addDays(SUB.start,40) ? last : addDays(SUB.start, both?40:Math.max(40,need*1.6|0));
   const months = monthsSpan(SUB.start, end);
-  const left = need - sel.size;
-  openModal(`<h3>Select your delivery dates</h3><p class="note">Step 2 of 3: tap a date to add or remove it. ${SUB.slot==="both"?`Lunch + Dinner = 2 meals per day, so you need <b>${need} days</b> for ${SUB.meals} meals.`:`1 meal per day, so you need <b>${need} days</b>.`}</p>${stepper(2)}
-  <div class="counter"><div>Selected <b>${sel.size}</b> / ${need} days</div><div style="font-weight:700;color:${left===0?'var(--leaf)':'var(--chili)'}">${left===0?'✓ All dates selected':left>0?`Select ${left} more`:`Remove ${-left}`}</div><div style="display:flex;gap:6px"><button class="btn btn-o btn-s" id="cAuto">Auto-fill</button><button class="btn btn-o btn-s" id="cClear">Clear all</button></div></div>
+  const left = need - have;
+  openModal(`<h3>Select your delivery dates</h3><p class="note">Step 2 of 3: ${both?`tap a date to cycle <b>Lunch + Dinner → Lunch only → Dinner only → none</b>. You need <b>${need} meals</b> (${SUB.meals} lunch + ${SUB.meals} dinner, any mix of days).`:`tap a date to add or remove it. You need <b>${need} meals</b>.`} Saturday & Sunday can be selected too.</p>${stepper(2)}
+  <div class="counter"><div>Selected <b>${have}</b> / ${need} meals</div><div style="font-weight:700;color:${left===0?'var(--leaf)':'var(--chili)'}">${left===0?'✓ All meals selected':left>0?`Select ${left} more`:`Remove ${-left}`}</div><div style="display:flex;gap:6px"><button class="btn btn-o btn-s" id="cAuto">Auto-fill</button><button class="btn btn-o btn-s" id="cClear">Clear all</button></div></div>
   <div class="cal-wrap">${months.map(([y,m])=>calMonth(y,m,(d,n)=>{
-      const dis = d<SUB.start || isWkend(d); const on=sel.has(d);
-      return dis? `<div class="cd dis">${n}</div>` : `<button class="cd ${on?'sel':''} ${isSun(d)?'sun':''}" data-d="${d}">${n}</button>`;
+      if(d<SUB.start) return `<div class="cd dis">${n}</div>`;
+      const v=SUB.sel[d]||[]; const cls = v.length===0?'':(both && v.length===1?'half':'sel');
+      return `<button class="cd ${cls} ${isWkend(d)?'sun':''}" data-d="${d}">${n}${both&&v.length?`<small>${slotTag(v)}</small>`:''}</button>`;
   })).join("")}</div>
-  <div class="legend"><span><i style="background:var(--leaf)"></i>Delivery date</span><span><i style="background:#F7EEDF"></i>No delivery</span><span>Sat & Sun: no delivery</span></div>
+  <div class="legend"><span><i style="background:var(--leaf)"></i>${both?'Lunch + Dinner':'Delivery date'}</span>${both?'<span><i style="background:#8DBF7E"></i>Lunch only (L) / Dinner only (D)</span>':''}<span><i style="background:#F7EEDF"></i>No delivery</span><span style="color:var(--chili)">Red = Sat / Sun (weekend special menu)</span></div>
   <div class="err" id="cErr" style="margin-top:8px"></div>
   <div style="display:flex;gap:10px;justify-content:space-between;margin-top:8px"><button class="btn btn-o" id="cBack">← Back</button><button class="btn btn-p" id="cNext" ${left!==0?'disabled':''}>Next: review & pay →</button></div>`, true);
   $("#modal").querySelectorAll("button.cd").forEach(b=>b.onclick=()=>{
-    const d=b.dataset.d;
-    if(sel.has(d)) sel.delete(d);
-    else { if(sel.size>=need){ $("#cErr").textContent=`You already have ${need} dates. Remove one first, then pick a new one.`; return; } sel.add(d); }
-    subStep2();
+    const d=b.dataset.d, cur=SUB.sel[d]||[], L=slotLetters();
+    const order = both ? [[],["L","D"],["L"],["D"]] : [[],L];
+    const key = a => a.join(""); let i=order.findIndex(o=>key(o)===key(cur)); if(i<0) i=0;
+    const base = have - cur.length;
+    for(let k=1;k<=order.length;k++){
+      const nx=order[(i+k)%order.length];
+      if(base+nx.length<=need){ if(nx.length) SUB.sel[d]=nx; else delete SUB.sel[d]; subStep2(); return; }
+    }
+    $("#cErr").textContent=`You already have ${need} meals. Remove one first, then pick a new date.`;
   });
-  $("#cAuto").onclick=()=>{ autoFill(false); subStep2(); };
-  $("#cClear").onclick=()=>{ SUB.selected=new Set(); subStep2(); };
+  $("#cAuto").onclick=()=>{ autoFill(); subStep2(); };
+  $("#cClear").onclick=()=>{ SUB.sel={}; subStep2(); };
   $("#cBack").onclick=subStep1;
   $("#cNext").onclick=subStep3;
 }
 function subStep3(){
-  const p=PLANS.find(x=>x.id===SUB.planId), sorted=[...SUB.selected].sort();
+  const p=PLANS.find(x=>x.id===SUB.planId), dates=Object.keys(SUB.sel).sort(), amt=p.price[SUB.meals]*mult(SUB.slot);
+  const nL=dates.filter(d=>SUB.sel[d].includes("L")).length, nD=dates.filter(d=>SUB.sel[d].includes("D")).length;
   openModal(`<h3>Review & pay</h3><p class="note">Step 3 of 3</p>${stepper(3)}
   <table class="tbl">
-    <tr><td>Plan</td><td><b>${p.name}</b>, ${SUB.meals} meals</td></tr>
+    <tr><td>Plan</td><td><b>${p.name}</b>, ${totalMeals()} meals${SUB.slot==="both"?` (${SUB.meals} lunch + ${SUB.meals} dinner)`:''}</td></tr>
     <tr><td>Slot</td><td>${SLOTS[SUB.slot]}</td></tr>${SUB.variant?`<tr><td>Option</td><td>${esc(SUB.variant)}</td></tr>`:''}
     <tr><td>Delivery</td><td>${esc(SUB.address)}<br><span class="tag">${esc(SUB.area)}</span></td></tr>
-    <tr><td>Dates</td><td>${sorted.length} days: <b>${nice(sorted[0])}</b> to <b>${nice(sorted[sorted.length-1])}</b></td></tr>
-    <tr><td>Amount</td><td><span class="price" style="font-size:28px">${inr(p.price[SUB.meals])}</span></td></tr>
+    <tr><td>Dates</td><td>${dates.length} days: <b>${nice(dates[0])}</b> to <b>${nice(dates[dates.length-1])}</b>${SUB.slot==="both"?`<br><span class="note">${nL} lunches · ${nD} dinners</span>`:''}</td></tr>
+    <tr><td>Amount</td><td><span class="price" style="font-size:28px">${inr(amt)}</span>${SUB.slot==="both"?`<br><span class="note">${inr(p.price[SUB.meals])} × 2 (lunch + dinner)</span>`:''}</td></tr>
   </table>
   <label class="f" style="margin-top:14px">Payment method<select id="pMode"><option>UPI (GPay / PhonePe / Paytm)</option><option>Debit / Credit Card</option><option>Cash on first delivery</option></select></label>
   <p class="note" style="margin-top:8px">Demo mode: no money is charged. A payment gateway (e.g. Razorpay) is connected at launch.</p>
-  <div style="display:flex;gap:10px;justify-content:space-between;margin-top:16px"><button class="btn btn-o" id="pBack">← Change dates</button><button class="btn btn-g" id="pPay">Pay ${inr(p.price[SUB.meals])} & confirm</button></div>`);
+  <div style="display:flex;gap:10px;justify-content:space-between;margin-top:16px"><button class="btn btn-o" id="pBack">← Change dates</button><button class="btn btn-g" id="pPay">Pay ${inr(amt)} & confirm</button></div>`);
   $("#pBack").onclick=subStep2;
   $("#pPay").onclick=()=>{
     const u=me(); u.address=SUB.address; u.area=SUB.area;
-    const sub={id:uid("TF"), mobile:S.session, planId:SUB.planId, meals:SUB.meals, slot:SUB.slot, area:SUB.area, address:SUB.address, sundayOff:true, wkend:true, variant:SUB.variant, amount:p.price[SUB.meals], payMode:$("#pMode").value, created:todayS(), dates:sorted.map(d=>({d,s:"scheduled"}))};
+    const entries=[]; dates.forEach(d=>SUB.sel[d].forEach(m=>entries.push({d,m,s:"scheduled"})));
+    const sub={id:uid("TF"), mobile:S.session, planId:SUB.planId, planMeals:SUB.meals, meals:totalMeals(), slot:SUB.slot, area:SUB.area, address:SUB.address, wkend:true, variant:SUB.variant, amount:amt, payMode:$("#pMode").value, created:todayS(), dates:entries, v:2};
     S.subs.push(sub); save(); closeModal();
     toast("🎉 Subscription confirmed! "+sub.id);
     location.hash="#account"; if(location.hash==="#account") renderAccount();
@@ -839,32 +909,40 @@ function subStep3(){
 }
 
 /* ============ SUBSCRIPTION MATH ============ */
-const perDay = s => s.slot==="both"?2:1;
+function migrateSub(s){ // older subs: one entry per day
+  if(s.v===2) return false;
+  const L = s.slot==="both"?["L","D"]:[s.slot==="dinner"?"D":"L"];
+  s.dates = s.dates.flatMap(x=> x.m ? [x] : L.map(m=>({d:x.d,m,s:x.s})));
+  s.planMeals = s.planMeals || (s.slot==="both"? s.meals/2 : s.meals); s.v=2; return true;
+}
 function normalizeSubs(){
   const t=todayS(); let ch=false;
-  S.subs.forEach(s=>s.dates.forEach(x=>{ if(x.s==="scheduled" && x.d<t){ x.s="delivered"; ch=true; } }));
+  S.subs.forEach(s=>{ if(migrateSub(s)) ch=true; s.dates.forEach(x=>{ if(x.s==="scheduled" && x.d<t){ x.s="delivered"; ch=true; } }); });
   if(ch) save();
 }
 function subStats(s){
-  const pdm=perDay(s);
-  const delivered=s.dates.filter(x=>x.s==="delivered").length*pdm;
+  const delivered=Math.min(s.dates.filter(x=>x.s==="delivered").length, s.meals);
   const skipped=s.dates.filter(x=>x.s==="skipped").length;
-  const delivered2=Math.min(delivered, s.meals);
-  return {delivered:delivered2, remaining:Math.max(0,s.meals-delivered2), skipped, upcoming:s.dates.filter(x=>x.s==="scheduled").sort((a,b)=>a.d<b.d?-1:1)};
+  return {delivered, remaining:Math.max(0,s.meals-delivered), skipped, upcoming:s.dates.filter(x=>x.s==="scheduled").sort((a,b)=>(a.d+a.m)<(b.d+b.m)?-1:1)};
 }
 function canSkip(d){
   const t=todayS(); if(d<=t) return false;
   if(d===addDays(t,1)) return new Date().getHours()<21; // cut-off 9 pm previous day
   return true;
 }
-function skipDate(subId, d){
-  const s=S.subs.find(x=>x.id===subId); const x=s.dates.find(y=>y.d===d);
-  if(!x || x.s!=="scheduled" || !canSkip(d)) return;
-  x.s="skipped";
-  let last=s.dates.map(y=>y.d).sort().pop(), n=addDays(last,1);
-  while(s.wkend ? isWkend(n) : (s.sundayOff && isSun(n))) n=addDays(n,1);
-  s.dates.push({d:n,s:"scheduled"});
-  save(); toast(`Skipped ${nice(d)}. Meal moved to ${nice(n)}.`); renderAccount();
+function skipMeals(subId, d, letters){
+  const s=S.subs.find(x=>x.id===subId); if(!canSkip(d)) return;
+  const moved=[];
+  letters.forEach(m=>{
+    const x=s.dates.find(y=>y.d===d && y.m===m && y.s==="scheduled"); if(!x) return;
+    x.s="skipped";
+    let n=addDays(s.dates.map(y=>y.d).sort().pop(),1);
+    // first day after the last date (Mon–Fri) that does not already have this meal
+    let last=s.dates.filter(y=>y.m===m).map(y=>y.d).sort().pop(); n=addDays(last,1);
+    while(isWkend(n) || s.dates.some(y=>y.d===n && y.m===m)) n=addDays(n,1);
+    s.dates.push({d:n,m,s:"scheduled"}); moved.push(SLOT_L[m]+" → "+nice(n));
+  });
+  save(); toast(`Skipped ${nice(d)}. Moved: ${moved.join(", ")}`); renderAccount();
 }
 function ring(pct, big, small){
   const r=78, c=2*Math.PI*r;
@@ -889,46 +967,53 @@ function renderAccount(){
   if(acctTab==="subs"){
     if(!subs.length) body+=`<div class="card empty-st"><p style="font-size:18px;margin-bottom:14px">You don't have a tiffin plan yet.</p><a class="btn btn-p" href="#tiffin">See plans</a></div>`;
     subs.forEach(s=>{
-      const p=PLANS.find(x=>x.id===s.planId), st=subStats(s), pdm=perDay(s);
+      const p=PLANS.find(x=>x.id===s.planId), st=subStats(s);
       const done = st.remaining===0;
       const allD=s.dates.map(x=>x.d).sort(); const months=monthsSpan(allD[0], allD[allD.length-1]);
-      const map=Object.fromEntries(s.dates.map(x=>[x.d,x.s])); const t=todayS();
+      const byDay={}; s.dates.forEach(x=>{ (byDay[x.d]=byDay[x.d]||[]).push(x); }); const t=todayS();
       const next=st.upcoming[0];
       body+=`<div class="card" style="margin-bottom:22px">
         <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px"><div><h3 style="font-size:24px">${p.name}, ${s.meals} meals</h3><span class="note">${s.id} · ${SLOTS[s.slot]} · ${esc(s.area)}</span></div><span class="status ${done?'delivered':'scheduled'}">${done?'COMPLETED':'ACTIVE'}</span></div>
         <div class="subcard">
           <div>${ring(st.delivered/s.meals, st.remaining, "meals remaining")}
-            <div class="stats"><div class="stat"><b>${s.meals}</b><span>Total</span></div><div class="stat"><b style="color:var(--leaf)">${st.delivered}</b><span>Delivered</span></div><div class="stat"><b style="color:var(--chili)">${st.skipped}</b><span>Days skipped</span></div></div>
-            ${next?`<div class="ok">Next delivery: ${nice(next.d)}<br><span style="font-weight:500">Menu: ${menuText(next.d)}</span></div>`:''}
-            ${done?`<button class="btn btn-p" style="width:100%;justify-content:center;margin-top:10px" onclick="startSubscribe('${s.planId}',${s.meals})">Renew plan</button>`:''}
+            <div class="stats"><div class="stat"><b>${s.meals}</b><span>Total</span></div><div class="stat"><b style="color:var(--leaf)">${st.delivered}</b><span>Delivered</span></div><div class="stat"><b style="color:var(--chili)">${st.skipped}</b><span>Meals skipped</span></div></div>
+            ${next?`<div class="ok">Next delivery: ${nice(next.d)} · ${SLOT_L[next.m]}<br><span style="font-weight:500">Menu: ${menuText(next.d)}</span></div>`:''}
+            ${done?`<button class="btn btn-p" style="width:100%;justify-content:center;margin-top:10px" onclick="startSubscribe('${s.planId}',${s.planMeals||s.meals})">Renew plan</button>`:''}
           </div>
           <div>
-            <p class="note" style="margin-bottom:10px">Tap an upcoming (yellow) date to skip it. The meal is added after your last date. Skip before 9 pm the previous day.</p>
+            <p class="note" style="margin-bottom:10px">Tap an upcoming (yellow) date to skip ${s.slot==="both"?"lunch, dinner or both":"it"}. Skipped meals are added after your last date. Skip before 9 pm the previous day.</p>
             <div class="cal-wrap">${months.map(([y,m])=>calMonth(y,m,(d,n)=>{
-              const stt=map[d]; const tc=d===t?' today':'';
-              if(!stt) return `<div class="cd dis${tc}">${n}</div>`;
-              if(stt==="scheduled" && canSkip(d)) return `<button class="cd st-scheduled${tc}" data-skip="${d}" data-sub="${s.id}" title="Tap to skip">${n}</button>`;
-              return `<div class="cd st-${stt}${tc}" title="${stt}">${n}</div>`;
+              const arr=byDay[d]; const tc=d===t?' today':'';
+              if(!arr) return `<div class="cd dis${tc}">${n}</div>`;
+              const live=arr.filter(x=>x.s!=="skipped").map(x=>x.m).sort().reverse();
+              const tag = s.slot==="both" ? `<small>${live.length?slotTag(live):"—"}</small>` : '';
+              const stt = arr.some(x=>x.s==="scheduled") ? "scheduled" : arr.some(x=>x.s==="delivered") ? "delivered" : "skipped";
+              if(stt==="scheduled" && canSkip(d)) return `<button class="cd st-scheduled${tc}" data-skip="${d}" data-sub="${s.id}" title="Tap to skip">${n}${tag}</button>`;
+              return `<div class="cd st-${stt}${tc}" title="${stt}">${n}${tag}</div>`;
             })).join("")}</div>
-            <div class="legend"><span><i style="background:var(--leaf)"></i>Delivered</span><span><i style="background:#FDE7B5;border:1px solid var(--turmeric)"></i>Upcoming</span><span><i style="background:#F6D5CC"></i>Skipped</span></div>
-            <details style="margin-top:14px"><summary style="cursor:pointer;font-weight:700;color:var(--curry)">Delivery history (${s.dates.filter(x=>x.s==='delivered').length} days)</summary>
-              <table class="tbl" style="margin-top:8px"><tr><th>Date</th><th>Menu</th><th>Meals</th><th>Status</th></tr>${s.dates.slice().sort((a,b)=>a.d<b.d?-1:1).map(x=>`<tr><td>${nice(x.d)}</td><td>${menuText(x.d)}</td><td>${x.s==='skipped'?0:pdm}</td><td><span class="status ${x.s}">${x.s.toUpperCase()}</span></td></tr>`).join("")}</table>
+            <div class="legend"><span><i style="background:var(--leaf)"></i>Delivered</span><span><i style="background:#FDE7B5;border:1px solid var(--turmeric)"></i>Upcoming</span><span><i style="background:#F6D5CC"></i>Skipped</span>${s.slot==="both"?'<span>L = Lunch · D = Dinner</span>':''}</div>
+            <details style="margin-top:14px"><summary style="cursor:pointer;font-weight:700;color:var(--curry)">Delivery history (${st.delivered} meals delivered)</summary>
+              <table class="tbl" style="margin-top:8px"><tr><th>Date</th><th>Meal</th><th>Menu</th><th>Status</th></tr>${s.dates.slice().sort((a,b)=>(a.d+(a.m==="L"?0:1))<(b.d+(b.m==="L"?0:1))?-1:1).map(x=>`<tr><td>${nice(x.d)}</td><td>${SLOT_L[x.m]}</td><td>${menuText(x.d)}</td><td><span class="status ${x.s}">${x.s.toUpperCase()}</span></td></tr>`).join("")}</table>
             </details>
           </div>
         </div></div>`;
     });
   } else if(acctTab==="orders"){
     body+= orders.length? `<div class="card"><table class="tbl"><tr><th>Order</th><th>Items</th><th>Total</th><th>Delivery</th><th>Status</th></tr>${orders.map(o=>`<tr><td><b>${o.id}</b><br><span class="note">${nice(o.created)}</span></td><td>${o.items.map(i=>`${esc(i.name)} ${i.v?'('+i.v+')':''} × ${i.qty}`).join("<br>")}</td><td>${inr(o.total)}</td><td>${nice(o.date)}</td><td><span class="status ${o.status}">${o.status.toUpperCase()}</span></td></tr>`).join("")}</table></div>`
-      : `<div class="card empty-st"><p style="font-size:18px;margin-bottom:14px">No orders yet.</p><a class="btn btn-p" href="#snacks">Shop snacks & laddus</a></div>`;
+      : `<div class="card empty-st"><p style="font-size:18px;margin-bottom:14px">No orders yet.</p><a class="btn btn-p" href="#snacks">Shop starters & laddus</a></div>`;
   } else {
     body+=`<div class="card" style="max-width:560px"><div class="grid" style="gap:12px"><label class="f">Name<input id="pfName" value="${esc(u.name)}"></label><label class="f">Default tiffin area<select id="pfArea"><option value="">—</option>${TIFFIN_AREAS.map(a=>`<option ${u.area===a?'selected':''}>${a}</option>`).join("")}</select></label><label class="f">Address<textarea id="pfAddr" rows="2">${esc(u.address)}</textarea></label><button class="btn btn-p" id="pfSave" style="justify-self:start">Save</button></div></div>`;
   }
   $("#acctBody").innerHTML=body;
   $("#acctBody").querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{acctTab=b.dataset.t;renderAccount();});
   $("#acctBody").querySelectorAll("[data-skip]").forEach(b=>b.onclick=()=>{
-    const d=b.dataset.skip, id=b.dataset.sub;
-    openModal(`<h3>Skip ${nice(d)}?</h3><p style="margin:10px 0 18px">No tiffin will come that day. Your meal isn't lost: we'll add one more delivery day after your last date.</p><div style="display:flex;gap:10px"><button class="btn btn-o" onclick="closeModal()">Keep it</button><button class="btn btn-p" id="doSkip">Yes, skip this date</button></div>`);
-    $("#doSkip").onclick=()=>{ closeModal(); skipDate(id,d); };
+    const d=b.dataset.skip, id=b.dataset.sub, s=S.subs.find(x=>x.id===id);
+    const up=s.dates.filter(x=>x.d===d && x.s==="scheduled").map(x=>x.m).sort().reverse();
+    const btns = up.length===2
+      ? `<button class="btn btn-o" data-sk="L">Skip lunch only</button><button class="btn btn-o" data-sk="D">Skip dinner only</button><button class="btn btn-p" data-sk="LD">Skip both</button>`
+      : `<button class="btn btn-p" data-sk="${up[0]}">Skip ${SLOT_L[up[0]].toLowerCase()}</button>`;
+    openModal(`<h3>Skip on ${nice(d)}?</h3><p style="margin:10px 0 18px">Your meal isn't lost: each skipped meal is added after your last date.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-o" onclick="closeModal()">Keep it</button>${btns}</div>`);
+    $("#modal").querySelectorAll("[data-sk]").forEach(x=>x.onclick=()=>{ closeModal(); skipMeals(id,d,x.dataset.sk.split("")); });
   });
   const ps=$("#pfSave"); if(ps) ps.onclick=()=>{ u.name=$("#pfName").value.trim()||u.name; u.area=$("#pfArea").value; u.address=$("#pfAddr").value.trim(); save(); updateHeader(); toast("Profile saved"); renderAccount(); };
 }
@@ -995,7 +1080,7 @@ function renderCatering(){
   $("#starterBox").innerHTML=SNACKS.map(p=>`<label style="display:flex;gap:10px;align-items:center;padding:8px 10px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-weight:600"><input type="checkbox" class="stChk" value="${p.id}" style="width:18px;height:18px"> <span style="flex:1">${p.name} <span class="note">(${p.pack})</span></span><b>${inr(p.price)}</b></label>`).join("");
   $("#catDate").min=addDays(todayS(),1);
   const est=()=>{ const g=Math.max(0,+$("#catGuests").value||0); const st=[...document.querySelectorAll(".stChk:checked")].map(c=>SNACKS.find(x=>x.id===c.value)); const per=st.reduce((a,p)=>a+p.price,0);
-    $("#catEst").innerHTML = per? `${inr(per*g)} <span class="note" style="font-family:Mukta">starters (${inr(per)} × ${g})</span>` : `<span class="note" style="font-family:Mukta">Combo rate confirmed on call</span>`; };
+    $("#catEst").innerHTML = `${inr((PARTY_RATE+per)*g)} <span class="note" style="font-family:Mukta">(₹149${per?' + '+inr(per)+' starters':''}) × ${g}</span>`; };
   document.querySelectorAll(".stChk").forEach(c=>c.onchange=est); $("#catGuests").oninput=est; est();
   $("#comboSum").textContent=Object.values(PSEL).join(" + ");
   $("#cateringForm").onsubmit=e=>{
@@ -1004,14 +1089,54 @@ function renderCatering(){
     if(!(+d.guests>0)) return $("#catErr").textContent="Please enter the number of guests.";
     const st=[...document.querySelectorAll(".stChk:checked")].map(c=>SNACKS.find(x=>x.id===c.value));
     const combo=Object.entries(PSEL).map(([k,v])=>k+": "+v).join(", ");
-    const en={id:uid("PO"),...d,combo,starters:st.map(p=>p.name+" ("+p.pack+")").join(", "),estimate:st.reduce((a,p)=>a+p.price,0)*(+d.guests),status:"new",created:todayS()};
+    const en={id:uid("PO"),...d,kind:"Full meal combo",combo,starters:st.map(p=>p.name+" ("+p.pack+")").join(", "),estimate:(PARTY_RATE+st.reduce((a,p)=>a+p.price,0))*(+d.guests),status:"new",created:todayS()};
     S.enquiries.push(en); save();
-    const msg=`Hi ${BRAND}, party order ${en.id}: ${d.occasion} on ${d.date}, ${d.guests} guests, area ${d.area}. Combo: ${combo}.${en.starters?" Starters: "+en.starters+".":""} Name: ${d.name}, ${d.mobile}. ${d.notes||""}`;
+    const msg=`Hi ${BRAND}, party order ${en.id}: ${d.occasion} on ${d.date} at ${d.time}, ${d.guests} guests, ${d.address}, ${d.area}. Full meal combo ₹149/person: ${combo}.${en.starters?" Starters: "+en.starters+".":""} Name: ${d.name}, ${d.mobile}. ${d.notes||""}`;
     e.target.style.display="none";
     $("#catDone").style.display="block";
-    $("#catDone").innerHTML=`<div class="ok" style="margin-bottom:12px">✅ Party order request received (${en.id}). We'll call you on ${esc(d.mobile)} to confirm the rate.</div><p class="note">Want a faster reply? Copy this message and send it to us on WhatsApp (${WHATSAPP}):</p><div class="warnbox" style="margin:8px 0;white-space:pre-wrap">${esc(msg)}</div><button class="btn btn-g btn-s" id="cpMsg">Copy message</button> <button class="btn btn-o btn-s" id="newEnq">New request</button>`;
+    $("#catDone").innerHTML=`<div class="ok" style="margin-bottom:12px">✅ Party order request received (${en.id}). Estimate ${inr(en.estimate)}. We'll call you on ${esc(d.mobile)} to confirm.</div><p class="note">Want a faster reply? Copy this message and send it to us on WhatsApp (${WHATSAPP}):</p><div class="warnbox" style="margin:8px 0;white-space:pre-wrap">${esc(msg)}</div><button class="btn btn-g btn-s" id="cpMsg">Copy message</button> <button class="btn btn-o btn-s" id="newEnq">New request</button>`;
     $("#cpMsg").onclick=async()=>{ try{ await navigator.clipboard.writeText(msg); toast("Copied!"); }catch(err){ toast("Select the text and copy it manually"); } };
     $("#newEnq").onclick=()=>{ e.target.reset(); e.target.style.display="grid"; $("#catDone").style.display="none"; renderCatering(); };
+  };
+  renderKids();
+}
+let KC=1, KSEL=[]; // KSEL: [[col, item], ...]
+function kidsValid(){
+  const c=KIDS_COMBOS.find(x=>x.id===KC);
+  if(c.any) return KSEL.length===c.any;
+  return c.cols.every(col=>KSEL.some(([k])=>k===col)) && KSEL.length===c.cols.length;
+}
+function renderKids(){
+  const c=KIDS_COMBOS.find(x=>x.id===KC);
+  $("#kidsCombos").innerHTML=KIDS_COMBOS.map(x=>`<button type="button" class="card" data-kc="${x.id}" style="padding:12px;text-align:left;cursor:pointer;${x.id===KC?'border:2px solid var(--curry);background:#FFF3E6':''}"><div class="kicker" style="margin:0">Combo ${x.id}</div><div class="price" style="font-size:26px">${inr(x.price)}</div><div class="note">${x.rule}</div></button>`).join("");
+  $("#kidsCombos").querySelectorAll("[data-kc]").forEach(b=>b.onclick=()=>{ KC=+b.dataset.kc; KSEL=[]; renderKids(); });
+  $("#kidsBox").innerHTML=Object.entries(KIDS).map(([col,arr])=>{ const k=col[0]; const on=c.cols.includes(k);
+    return `<div class="card" style="padding:14px;${on?'':'opacity:.45'}"><div class="kicker">${col}${on?'':' · not in this combo'}</div><div class="filters">${arr.map(v=>`<button type="button" class="pill ${KSEL.some(([a,b])=>a===k&&b===v)?'on':''}" data-kk="${k}" data-kv="${v}" ${on?'':'disabled'}>${v}</button>`).join("")}</div></div>`; }).join("");
+  $("#kidsBox").querySelectorAll("[data-kk]").forEach(b=>b.onclick=()=>{
+    const k=b.dataset.kk, v=b.dataset.kv; const i=KSEL.findIndex(([a,bb])=>a===k&&bb===v);
+    if(i>=0) KSEL.splice(i,1);
+    else if(c.any){ if(KSEL.length>=c.any) return toast(`Combo ${c.id}: only ${c.any} items. Remove one first.`); if(KSEL.filter(([a])=>a===k).length>=2) return toast("Up to 2 items from the same column."); KSEL.push([k,v]); }
+    else { KSEL=KSEL.filter(([a])=>a!==k); KSEL.push([k,v]); }
+    renderKids();
+  });
+  $("#kidsRule").textContent=`Combo ${c.id} · ${c.rule}`;
+  $("#kidsSum").textContent= KSEL.length? KSEL.map(([,v])=>v).join(" + ") : "Pick items above";
+  $("#kDate").min=addDays(todayS(),1);
+  const est=()=>{ const g=Math.max(0,+$("#kGuests").value||0); $("#kEst").innerHTML=`${inr(c.price*g)} <span class="note" style="font-family:Mukta">(${inr(c.price)} × ${g} kids)</span>`; };
+  $("#kGuests").oninput=est; est();
+  $("#kidsForm").onsubmit=e=>{
+    e.preventDefault(); const d=Object.fromEntries(new FormData(e.target).entries());
+    if(!kidsValid()) return $("#kErr").textContent=`Please complete Combo ${c.id}: ${c.rule}.`;
+    if(!/^[6-9]\d{9}$/.test(d.mobile)) return $("#kErr").textContent="Please enter a valid 10-digit mobile number.";
+    $("#kErr").textContent="";
+    const items=KSEL.map(([,v])=>v).join(", ");
+    const en={id:uid("KP"),...d,occasion:"Kids party",kind:`Kids Combo ${c.id} (${inr(c.price)}/kid)`,combo:items,estimate:c.price*(+d.guests),status:"new",created:todayS()};
+    S.enquiries.push(en); save();
+    const msg=`Hi ${BRAND}, kids party order ${en.id}: Combo ${c.id} (${inr(c.price)}/kid) – ${items}. ${d.guests} kids on ${d.date} at ${d.time}, ${d.address}, ${d.area}. Name: ${d.name}, ${d.mobile}. ${d.notes||""}`;
+    e.target.style.display="none"; $("#kDone").style.display="block";
+    $("#kDone").innerHTML=`<div class="ok" style="margin-bottom:12px">✅ Kids party order received (${en.id}). Estimate ${inr(en.estimate)}. We'll call you on ${esc(d.mobile)} to confirm.</div><p class="note">Faster reply: copy this and send it on WhatsApp (${WHATSAPP}):</p><div class="warnbox" style="margin:8px 0;white-space:pre-wrap">${esc(msg)}</div><button class="btn btn-g btn-s" id="kCp">Copy message</button> <button class="btn btn-o btn-s" id="kNew">New request</button>`;
+    $("#kCp").onclick=async()=>{ try{ await navigator.clipboard.writeText(msg); toast("Copied!"); }catch(err){ toast("Select the text and copy it manually"); } };
+    $("#kNew").onclick=()=>{ e.target.reset(); e.target.style.display="grid"; $("#kDone").style.display="none"; KSEL=[]; renderKids(); };
   };
 }
 
@@ -1028,25 +1153,27 @@ function renderAdmin(){
   adminDate = adminDate || todayS();
   let h=`<div class="tabs">${[["today","🍱 Tiffin deliveries"],["subs","📋 Subscriptions"],["orders","🛍️ Shop orders"],["enq","🎉 Party orders"]].map(([k,l])=>`<button data-at="${k}" class="${adminTab===k?'on':''}">${l}</button>`).join("")}</div>`;
   if(adminTab==="today"){
-    const list=S.subs.filter(s=>s.dates.some(x=>x.d===adminDate && x.s!=="skipped"));
-    const byArea={}; list.forEach(s=>{ (byArea[s.area]=byArea[s.area]||[]).push(s); });
-    h+=`<div style="display:flex;gap:14px;align-items:end;flex-wrap:wrap;margin-bottom:16px"><label class="f">Date<input type="date" id="adDate" value="${adminDate}"></label><div class="ok">Menu: <b>${menuText(adminDate)}</b> · ${list.length} tiffins</div></div>`;
+    const list=[]; S.subs.forEach(s=>s.dates.forEach(x=>{ if(x.d===adminDate && x.s!=="skipped") list.push({s,x}); }));
+    list.sort((a,b)=>a.x.m<b.x.m?1:-1);
+    const byArea={}; list.forEach(r=>{ (byArea[r.s.area]=byArea[r.s.area]||[]).push(r); });
+    const nL=list.filter(r=>r.x.m==="L").length, nD=list.length-nL;
+    h+=`<div style="display:flex;gap:14px;align-items:end;flex-wrap:wrap;margin-bottom:16px"><label class="f">Date<input type="date" id="adDate" value="${adminDate}"></label><div class="ok">Menu: <b>${menuText(adminDate)}</b> · ${nL} lunch · ${nD} dinner</div></div>`;
     if(!list.length) h+=`<div class="card empty-st">No tiffin deliveries on this date.</div>`;
     Object.keys(byArea).sort().forEach(a=>{
-      h+=`<div class="card" style="margin-bottom:14px"><h3 style="font-size:20px;margin-bottom:8px">📍 ${esc(a)} (${byArea[a].length})</h3><table class="tbl"><tr><th>Customer</th><th>Address</th><th>Plan / Slot</th><th>Left</th><th></th></tr>${byArea[a].map(s=>{ const u=S.users[s.mobile]||{}; const x=s.dates.find(y=>y.d===adminDate); const st=subStats(s); const p=PLANS.find(q=>q.id===s.planId);
-        return `<tr><td><b>${esc(u.name)}</b><br><span class="note">${esc(s.mobile)}</span></td><td>${esc(s.address)}</td><td>${p.name}${s.variant?`<br><span class="note">${esc(s.variant)}</span>`:''}<br><span class="note">${SLOTS[s.slot]}</span></td><td>${st.remaining}/${s.meals}</td><td>${x.s==="delivered"?`<span class="status delivered">DELIVERED</span>`:`<button class="btn btn-g btn-s" data-dv="${s.id}">Mark delivered</button>`}</td></tr>`;}).join("")}</table></div>`;
+      h+=`<div class="card" style="margin-bottom:14px"><h3 style="font-size:20px;margin-bottom:8px">📍 ${esc(a)} (${byArea[a].length})</h3><table class="tbl"><tr><th>Customer</th><th>Address</th><th>Plan / Meal</th><th>Left</th><th></th></tr>${byArea[a].map(({s,x})=>{ const u=S.users[s.mobile]||{}; const st=subStats(s); const p=PLANS.find(q=>q.id===s.planId);
+        return `<tr><td><b>${esc(u.name)}</b><br><span class="note">${esc(s.mobile)}</span></td><td>${esc(s.address)}</td><td>${p.name}${s.variant?`<br><span class="note">${esc(s.variant)}</span>`:''}<br><span class="tag">${SLOT_L[x.m]}</span></td><td>${st.remaining}/${s.meals}</td><td>${x.s==="delivered"?`<span class="status delivered">DELIVERED</span>`:`<button class="btn btn-g btn-s" data-dv="${s.id}" data-m="${x.m}">Mark delivered</button>`}</td></tr>`;}).join("")}</table></div>`;
     });
   } else if(adminTab==="subs"){
     h+= S.subs.length? `<div class="card"><table class="tbl"><tr><th>ID</th><th>Customer</th><th>Plan</th><th>Area</th><th>Delivered</th><th>Remaining</th><th>Ends</th></tr>${S.subs.slice().reverse().map(s=>{const u=S.users[s.mobile]||{}; const st=subStats(s); const last=s.dates.filter(x=>x.s!=='skipped').map(x=>x.d).sort().pop(); return `<tr><td>${s.id}</td><td>${esc(u.name)}<br><span class="note">${esc(s.mobile)}</span></td><td>${PLANS.find(p=>p.id===s.planId).name} · ${s.meals}</td><td>${esc(s.area)}</td><td>${st.delivered}</td><td><b>${st.remaining}</b></td><td>${nice(last)}</td></tr>`;}).join("")}</table></div>` : `<div class="card empty-st">No subscriptions yet.</div>`;
   } else if(adminTab==="orders"){
     h+= S.orders.length? `<div class="card"><table class="tbl"><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Delivery</th><th>Status</th></tr>${S.orders.slice().reverse().map(o=>`<tr><td>${o.id}</td><td>${esc(o.name)}<br><span class="note">${esc(o.mobile)} · ${esc(o.pin)}</span><br><span class="note">${esc(o.address)}</span></td><td>${o.items.map(i=>`${esc(i.name)} (${esc(i.v)}) × ${i.qty}`).join("<br>")}</td><td>${inr(o.total)}<br><span class="note">${esc(o.pay)}</span></td><td>${nice(o.date)}</td><td><select data-os="${o.id}">${["placed","delivered","cancelled"].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join("")}</select></td></tr>`).join("")}</table></div>` : `<div class="card empty-st">No shop orders yet.</div>`;
   } else {
-    h+= S.enquiries.length? `<div class="card"><table class="tbl"><tr><th>ID</th><th>Customer</th><th>Event</th><th>Combo & starters</th><th>Starters est.</th><th>Notes</th></tr>${S.enquiries.slice().reverse().map(e=>`<tr><td>${e.id}<br><span class="status new">NEW</span></td><td>${esc(e.name)}<br><span class="note">${esc(e.mobile)}</span></td><td>${esc(e.occasion)}<br>${nice(e.date)} · ${esc(e.guests)} guests<br><span class="note">${esc(e.area)}</span></td><td>${esc(e.combo||e.pkgName)}${e.starters?`<br><span class="note">Starters: ${esc(e.starters)}</span>`:''}</td><td>${e.estimate?inr(e.estimate):'—'}</td><td>${esc(e.notes)}</td></tr>`).join("")}</table></div>` : `<div class="card empty-st">No party order requests yet.</div>`;
+    h+= S.enquiries.length? `<div class="card"><table class="tbl"><tr><th>ID</th><th>Customer</th><th>Event</th><th>Order</th><th>Estimate</th><th>Notes</th></tr>${S.enquiries.slice().reverse().map(e=>`<tr><td>${e.id}<br><span class="status new">NEW</span></td><td>${esc(e.name)}<br><span class="note">${esc(e.mobile)}</span></td><td>${esc(e.occasion)}<br>${nice(e.date)}${e.time?' · ⏰ '+esc(e.time):''} · ${esc(e.guests)} ${e.id.startsWith("KP")?"kids":"guests"}<br><span class="note">${esc(e.address||"")} ${esc(e.area)}</span></td><td>${e.kind?`<b>${esc(e.kind)}</b><br>`:''}${esc(e.combo||e.pkgName)}${e.starters?`<br><span class="note">Starters: ${esc(e.starters)}</span>`:''}</td><td>${e.estimate?inr(e.estimate):'—'}</td><td>${esc(e.notes)}</td></tr>`).join("")}</table></div>` : `<div class="card empty-st">No party order requests yet.</div>`;
   }
   B.innerHTML=h;
   B.querySelectorAll("[data-at]").forEach(b=>b.onclick=()=>{adminTab=b.dataset.at;renderAdmin();});
   const dd=$("#adDate"); if(dd) dd.onchange=()=>{adminDate=dd.value||todayS();renderAdmin();};
-  B.querySelectorAll("[data-dv]").forEach(b=>b.onclick=()=>{ const s=S.subs.find(x=>x.id===b.dataset.dv); const x=s.dates.find(y=>y.d===adminDate); x.s="delivered"; save(); toast("Marked delivered"); renderAdmin(); });
+  B.querySelectorAll("[data-dv]").forEach(b=>b.onclick=()=>{ const s=S.subs.find(x=>x.id===b.dataset.dv); const x=s.dates.find(y=>y.d===adminDate && y.m===b.dataset.m); x.s="delivered"; save(); toast("Marked delivered"); renderAdmin(); });
   B.querySelectorAll("[data-os]").forEach(sel=>sel.onchange=()=>{ S.orders.find(o=>o.id===sel.dataset.os).status=sel.value; save(); toast("Order updated"); });
 }
 
