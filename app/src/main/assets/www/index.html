@@ -62,6 +62,8 @@ body{overflow-x:hidden}
 .eyebrow{display:inline-flex;gap:8px;align-items:center;background:var(--leaf-l);color:var(--leaf);font-weight:700;font-size:13.5px;padding:6px 12px;border-radius:99px;letter-spacing:.02em}
 .hero h1{font-size:clamp(36px,5.2vw,62px);margin:16px 0 14px;color:var(--curry)}
 .hero h1 em{font-style:italic;color:var(--turmeric-d)}
+.hero h1.tagline{font-family:'Mukta','Noto Sans Devanagari','Nirmala UI',sans-serif;font-weight:700;line-height:1.2;letter-spacing:0;font-size:clamp(28px,3.9vw,50px)}
+.hero h1.tagline em{font-style:normal;display:block}
 .hero p.lead{font-size:19px;color:var(--muted);max-width:540px}
 .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 22px}
 .trust{display:flex;gap:22px;flex-wrap:wrap;color:var(--muted);font-size:14.5px}
@@ -296,7 +298,7 @@ footer a:hover{color:var(--turmeric)}
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">🌿 Roz taaza · Veg · Egg · Chicken · Bhakri thali</span>
-        <h1>Maa ke haath jaisa khana, <em>roz aapke darwaze par.</em></h1>
+        <h1 class="tagline">घर जैसा असली स्वाद <em>तो <span style="white-space:nowrap">NJ Kitchen</span> ही <span style="white-space:nowrap">दे सकता है।</span></em></h1>
         <p class="lead">Homemade tiffin with a 4-week no-repeat menu, Monday to Friday. Start with a 3-day trial from ₹450. Party orders, starters and laddus delivered across Pune.</p>
         <div class="cta">
           <a class="btn btn-p" href="#tiffin">Tiffin plan dekhein →</a>
@@ -314,7 +316,7 @@ footer a:hover{color:var(--turmeric)}
 
   <section class="block" style="padding-top:20px">
     <div class="wrap">
-      <div class="sh"><div><div class="kicker">Hamari Rasoi</div><h2>What we cook for you</h2></div><p>Tiffin is delivered in Wadgaonsheri, Kharadi, Viman Nagar and Kalyani Nagar. Party orders, starters and laddus go all over Pune.</p></div>
+      <div class="sh"><div><div class="kicker">Hamari Rasoi</div><h2>What we cook for you</h2></div><p>Tiffin is delivered in Wadgaonsheri, Kharadi, Viman Nagar, Ramwadi, Chandan Nagar, Bund Garden, Koregaon Park, Kalyani Nagar and Magarpatta. Party orders, starters and laddus go all over Pune.</p></div>
       <div class="grid g4" id="catCards"></div>
     </div>
   </section>
@@ -508,6 +510,7 @@ footer a:hover{color:var(--turmeric)}
       <div>
         <img src="images/logo-160.png" alt="NJ Kitchen logo" width="84" height="84" style="display:block;margin-bottom:10px">
         <h4>NJ Kitchen</h4>
+        <p style="font-family:'Mukta','Nirmala UI',sans-serif;font-weight:700;color:var(--turmeric);font-size:16px;margin-bottom:6px">घर जैसा असली स्वाद तो NJ Kitchen ही दे सकता है।</p>
         <p style="font-size:15px;max-width:300px">Homemade tiffin, party orders, starters and laddus. Cooked fresh in our kitchen at Wadgaonsheri, Pune, since 2024.</p>
         <p style="margin-top:12px;font-size:15px">📍 S.No. 56/20, Piraji Nagar, Pune Nagar Road & Sangamwadi, Wadgaonsheri, Pune 411014<br>📞 +91 86602 48225<br>✉️ soudagarmehbobi@gmail.com</p>
       </div>
@@ -533,7 +536,7 @@ footer a:hover{color:var(--turmeric)}
 /* ============ DATA ============ */
 const BRAND = "NJ Kitchen";
 const WHATSAPP = "+91 86602 48225";
-const TIFFIN_AREAS = ["Wadgaonsheri","Kharadi","Viman Nagar","Kalyani Nagar"];
+const TIFFIN_AREAS = ["Wadgaonsheri","Kharadi","Viman Nagar","Ramwadi","Chandan Nagar","Bund Garden","Koregaon Park","Kalyani Nagar","Magarpatta"];
 const PLAN_CATS = [["all","All plans"],["trial","Trial"],["small","Small Meal"],["full","Full Meal"],["large","Large Meal"],["diet","Diet Meal"],["bhakri","Bhakri Meal"]];
 const PLANS = [
   {id:"trial-veg", cat:"trial", type:"veg", name:"3-Day Trial (Pure Veg)", items:["3 veg meals","Taste our daily no-repeat menu"], opts:[3], price:{3:450}},
