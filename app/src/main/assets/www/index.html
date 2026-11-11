@@ -23,6 +23,43 @@ button{font-family:inherit;cursor:pointer}
 input,select,textarea{font-family:inherit;font-size:16px}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 
+/* compact tiles layout */
+.hero.mini{padding:18px 0 14px}
+.minihero{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.minilogo{border-radius:50%;box-shadow:0 6px 16px -6px rgba(0,0,0,.45);flex:none}
+.hero.mini h1.tagline{font-size:clamp(22px,2.9vw,36px);margin:0;color:var(--curry)}
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.tiles.two{grid-template-columns:repeat(2,minmax(0,260px))}
+.tile{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--paper);text-decoration:none;color:var(--ink);display:block;padding:0;cursor:pointer;transition:transform .15s,box-shadow .15s;text-align:left;font:inherit;width:100%}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.tile.on{outline:3px solid var(--curry);outline-offset:-3px}
+.tile img,.tile .emo,.tile .art2{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile .emo,.tile .art2{display:grid;place-items:center;font-size:clamp(34px,5vw,56px)}
+.tile .tt{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;background:linear-gradient(transparent,rgba(30,15,6,.82));color:#fff;line-height:1.15}
+.tile .tt b{display:block;font-family:'Fraunces',serif;font-size:clamp(14px,1.45vw,18px)}
+.tile .tt span{font-size:12.5px;opacity:.92}
+.tiles.plans{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.ptile{aspect-ratio:1;border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:14px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.ptile.pop{border:2px solid var(--turmeric)}
+.ptile h3{font-size:17px;line-height:1.15}
+.ptile .price{font-size:26px}
+.ptile .its{font-size:13px;color:var(--muted);line-height:1.3;flex:1;overflow:hidden}
+.ptile .btn{padding:9px 12px;font-size:14px;justify-content:center}
+.ptile .rib{position:absolute;top:8px;right:8px;font-size:10.5px;font-weight:800;background:var(--turmeric);padding:2px 8px;border-radius:99px}
+@media(max-width:1000px){.tiles{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:640px){.minilogo{width:58px;height:58px}.hero.mini{padding:10px 0 8px}.minihero{gap:10px;flex-wrap:nowrap}.minihero .note,#todayChip{display:none}.hero.mini h1.tagline{font-size:19px}.pagehead h1{font-size:23px}.tiles{grid-template-columns:repeat(3,1fr);gap:8px}.tile .tt{padding:18px 7px 7px}.tile .tt span{font-size:11px}.tiles.plans{grid-template-columns:repeat(2,1fr)}.ptile{aspect-ratio:auto;min-height:220px}.tiles.two{grid-template-columns:1fr 1fr}}
+.pagehead{padding:18px 0 4px}
+.pagehead h1{font-size:clamp(24px,3vw,36px)}
+.pagehead p{font-size:15px;margin-top:4px}
+section.block{padding:18px 0 34px}
+.gal{grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:860px){.gal{grid-template-columns:repeat(2,1fr)}}
+.dish h4{font-size:15px}.dish p{font-size:12.5px}
+.dish svg{width:84px;height:84px}
+.prod .art{height:auto;aspect-ratio:1.4}
+#snackGrid,#ladduGrid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.prod h4{font-size:16px}.prod .desc{font-size:13px}
+
 /* header */
 header{position:sticky;top:0;z-index:40;background:rgba(255,248,236,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:18px;height:68px}
@@ -281,6 +318,7 @@ footer a:hover{color:var(--turmeric)}
       <a href="#gallery" data-l="gallery">4-Week Menu</a>
       <a href="#catering" data-l="catering">Party Orders</a>
       <a href="#snacks" data-l="snacks">Starters</a>
+      <a href="#contact" data-l="contact">Contact</a>
       <a href="#laddu" data-l="laddu">Laddu Range</a>
     </nav>
     <div class="hbtns">
@@ -294,52 +332,23 @@ footer a:hover{color:var(--turmeric)}
 <main>
 <!-- HOME -->
 <div class="view" data-view="home">
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">🌿 Roz taaza · Veg · Egg · Chicken · Bhakri thali</span>
+  <section class="hero mini">
+    <div class="wrap minihero">
+      <img src="images/logo-160.png" alt="NJ Kitchen" width="92" height="92" class="minilogo">
+      <div style="flex:1;min-width:230px">
         <h1 class="tagline">घर जैसा असली स्वाद <em>तो <span style="white-space:nowrap">NJ Kitchen</span> ही <span style="white-space:nowrap">दे सकता है।</span></em></h1>
-        <p class="lead">Homemade tiffin with a 4-week no-repeat menu, Monday to Friday. Start with a 3-day trial from ₹450. Party orders, starters and laddus delivered across Pune.</p>
-        <div class="cta">
-          <a class="btn btn-p" href="#tiffin">Tiffin plan dekhein →</a>
-          <a class="btn btn-o" href="#gallery">Is hafte ka menu</a>
-        </div>
-        <div class="trust">
-          <div><b>4 weeks</b>no-repeat menu</div>
-          <div><b>₹450</b>3-day trial</div>
-          <div><b>Skip</b>any day, meals carry forward</div>
-        </div>
+        <p class="note" style="font-size:15px;margin-top:4px">🌿 Veg · Egg · Chicken · Bhakri thali · Homemade tiffin, party orders, starters & laddus in Pune</p>
       </div>
-      <div class="hero-photo"><img src="images/logo-160.png" alt="NJ Kitchen" style="position:absolute;width:110px;height:110px;aspect-ratio:auto;left:-26px;bottom:-26px;border-radius:50%;box-shadow:0 8px 20px -6px rgba(0,0,0,.45);z-index:2"><img src="images/tiffin-thali.jpg" alt="NJ Kitchen tiffin: dal, sabzi, rice, roti, salad and gulab jamun"><div class="chip-float" style="left:-12px;top:18px" id="todayChip">🔥 Aaj ki sabzi</div><div class="chip-float" style="right:-8px;bottom:22px">🫓 Fresh phulka, roz</div></div>
+      <div class="chip-float" id="todayChip" style="position:static">🔥 Aaj ki sabzi</div>
     </div>
   </section>
+  <section class="wrap" style="padding-bottom:30px"><div class="tiles" id="homeTiles"></div></section>
+</div>
 
-  <section class="block" style="padding-top:20px">
-    <div class="wrap">
-      <div class="sh"><div><div class="kicker">Hamari Rasoi</div><h2>What we cook for you</h2></div><p>Tiffin is delivered in Wadgaonsheri, Kharadi, Viman Nagar, Ramwadi, Chandan Nagar, Bund Garden, Koregaon Park, Kalyani Nagar and Magarpatta. Party orders, starters and laddus go all over Pune.</p></div>
-      <div class="grid g4" id="catCards"></div>
-    </div>
-  </section>
-
-  <section class="block" style="padding-top:10px">
-    <div class="wrap"><div id="areaBoxHome"></div></div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="sh"><div><div class="kicker">Is hafte ka menu</div><h2>This week's menu</h2><p class="note">Every tiffin: 3 chapati, daal, rice & salad. Choose either sabji of the day.</p></div><a class="btn btn-o btn-s" href="#gallery">View 4-week menu →</a></div>
-      <div class="gal" id="weekGal"></div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="sh"><div><div class="kicker">Hamari Rasoi se</div><h2>Straight from our kitchen</h2></div><p>Real photos of food cooked at NJ Kitchen, Wadgaonsheri.</p></div>
-      <div class="pgrid" id="photoGrid"></div>
-    </div>
-  </section>
-
-  <section class="block" id="contact">
+<!-- CONTACT -->
+<div class="view" data-view="contact">
+  <div class="wrap pagehead"><div class="kicker">Contact · Delivery areas · Our kitchen</div><h1>NJ Kitchen, Wadgaonsheri</h1></div>
+  <section class="block" id="contact" style="padding-top:10px">
     <div class="wrap">
       <div class="sh"><div><div class="kicker">Contact & Address</div><h2>Visit or call NJ Kitchen</h2></div></div>
       <div class="contact">
@@ -355,6 +364,14 @@ footer a:hover{color:var(--turmeric)}
       </div>
     </div>
   </section>
+  <section class="block">
+    <div class="wrap">
+      <div class="sh"><div><div class="kicker">Hamari Rasoi se</div><h2>Straight from our kitchen</h2></div><p>Real photos of food cooked at NJ Kitchen, Wadgaonsheri.</p></div>
+      <div class="pgrid" id="photoGrid"></div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0"><div class="wrap"><div id="areaBoxContact"></div></div></section>
 </div>
 
 <!-- TIFFIN -->
@@ -362,25 +379,17 @@ footer a:hover{color:var(--turmeric)}
   <div class="wrap pagehead">
     <div class="kicker">Tiffin Service Plans</div>
     <h1>Pick a plan. Pick your dates.</h1>
-    <p>Start with a 3-day or weekly trial, or choose a 20 / 30 meal plan. Delivery Monday to Friday. Not needed on a day? Leave that date out, or skip it later from your account. Your meal count stays the same.</p>
   </div>
   <section class="block" style="padding-top:20px">
     <div class="wrap">
-      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:22px">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
         <div class="toggle" id="mealToggle"><button data-m="20" class="on">20 Meals</button><button data-m="30">30 Meals</button></div>
-        <span class="note">Lunch, dinner or both: you choose at checkout. Lunch + Dinner doubles the plan, e.g. 30 meals → 60 meals (30 lunch + 30 dinner) at 2× price.</span>
+        <span class="note">Lunch + Dinner = double meals & price (30 → 60 meals). Skip any day, meals carry forward.</span>
       </div>
-      <div class="filters" id="planCats" style="margin-bottom:22px"></div>
-      <div class="grid g3" id="planCards"></div>
-      <div class="steps">
-        <div class="step"><div class="n">1</div><div><b>Login</b><br><span class="note">Mobile number + OTP</span></div></div>
-        <div class="step"><div class="n">2</div><div><b>Plan & area</b><br><span class="note">Delivery area must be serviceable</span></div></div>
-        <div class="step"><div class="n">3</div><div><b>Select dates</b><br><span class="note">Tap dates to add or remove</span></div></div>
-        <div class="step"><div class="n">4</div><div><b>Track meals</b><br><span class="note">Delivered & remaining in your account</span></div></div>
-      </div>
+      <div class="filters" id="planCats" style="margin-bottom:14px"></div>
+      <div class="tiles plans" id="planCards"></div>
     </div>
   </section>
-  <section class="block" style="padding-top:0"><div class="wrap"><div id="areaBoxTiffin"></div></div></section>
 </div>
 
 <!-- GALLERY -->
@@ -388,7 +397,7 @@ footer a:hover{color:var(--turmeric)}
   <div class="wrap pagehead">
     <div class="kicker">4 Weeks · 4 Unique Menus · No Repeats</div>
     <h1>4-week no-repeat menu</h1>
-    <p>Fresh, healthy and homemade meals, Monday to Friday. Every day you get a choice of two sabjis with 3 chapati, daal, rice and salad, plus a sweet every Thursday. Non-veg plans get egg / chicken curry as per the plan.</p>
+    <p>Mon–Fri · choose either sabji · 3 chapati, daal, rice & salad · ★ sweet on Thursday · non-veg plans get egg / chicken curry.</p>
   </div>
   <section class="block" style="padding-top:20px">
     <div class="wrap">
@@ -401,15 +410,16 @@ footer a:hover{color:var(--turmeric)}
 <!-- CATERING -->
 <div class="view" data-view="catering">
   <div class="wrap pagehead">
-    <img src="images/logo-320.png" alt="NJ Kitchen Home Kitchen & Catering Services" width="120" height="120" style="display:block;margin-bottom:10px">
     <div class="kicker">Party Orders · All over Pune</div>
-    <h1>Party order: full meal combo</h1>
-    <p>Birthdays, pooja, office lunches and family functions. Full meal combo at ₹149 per person, plus Kids Party Combos from ₹119. <a href="#catering" onclick="setTimeout(()=>document.getElementById('kids').scrollIntoView({behavior:'smooth'}),50)" style="color:var(--curry);font-weight:700">See kids combos ↓</a></p>
+    <h1>Party orders</h1>
   </div>
   <section class="block" style="padding-top:20px">
     <div class="wrap">
-      <div class="grid g2" style="margin-bottom:26px"><img class="lightimg" src="images/catering-spread.jpg" alt="NJ Kitchen party food spread"><img class="lightimg" src="images/tiffin-thali.jpg" alt="NJ Kitchen party food trays"></div>
-      <div class="card">
+      <div class="tiles two" id="partyTabs" style="margin-bottom:16px">
+        <button type="button" class="tile" data-pt="full"><img src="images/catering-spread.jpg" alt=""><span class="tt"><b>Full Meal Combo</b><span>₹149 / person</span></span></button>
+        <button type="button" class="tile" data-pt="kids"><span class="emo" style="background:linear-gradient(135deg,#FFD36E,#F28C8C)">🎈</span><span class="tt"><b>Kids Party Combos</b><span>From ₹119 / kid</span></span></button>
+      </div>
+      <div class="card" id="fullCard">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="font-size:26px;color:var(--curry)">Full Meal Combo</h3><div class="price">₹149 <small>/ person</small></div></div>
         <p class="note" style="margin-bottom:14px">Pick any one from each column.</p>
         <form id="cateringForm" class="grid" style="gap:14px">
@@ -440,7 +450,7 @@ footer a:hover{color:var(--turmeric)}
         <div id="catDone" style="display:none"></div>
       </div>
 
-      <div class="card" style="margin-top:26px" id="kids">
+      <div class="card" id="kids">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="font-size:26px;color:var(--curry)">🎈 Kids Party Combos</h3><span class="tag g">Choose your favourites · Celebrate with delicious bites!</span></div>
         <p class="note" style="margin:4px 0 14px">Choose a combo, then pick the items. Price is per kid.</p>
         <div class="grid g4" id="kidsCombos" style="gap:10px;margin-bottom:14px"></div>
@@ -515,7 +525,7 @@ footer a:hover{color:var(--turmeric)}
         <p style="margin-top:12px;font-size:15px">📍 S.No. 56/20, Piraji Nagar, Pune Nagar Road & Sangamwadi, Wadgaonsheri, Pune 411014<br>📞 +91 86602 48225<br>✉️ soudagarmehbobi@gmail.com</p>
       </div>
       <div><h4>Order</h4><a href="#tiffin">Tiffin Plans</a><a href="#catering">Party Orders</a><a href="#snacks">Starters</a><a href="#laddu">Laddu Range</a></div>
-      <div><h4>Explore</h4><a href="#gallery">4-Week Menu</a><a href="#home" onclick="setTimeout(()=>document.getElementById('contact').scrollIntoView(),50)">Contact & Address</a><a href="#account">My Account</a><a href="#kitchen">Kitchen Panel</a></div>
+      <div><h4>Explore</h4><a href="#gallery">4-Week Menu</a><a href="#contact">Contact & Address</a><a href="#account">My Account</a><a href="#kitchen">Kitchen Panel</a></div>
       <div><h4>Tiffin areas</h4><p style="font-size:14px" id="footAreas"></p></div>
     </div>
     <div class="copy"><span>© 2026 NJ Kitchen, Wadgaonsheri, Pune. All rights reserved.</span><span>Udyam Registered MSME · UDYAM-MH-26-0926342</span></div>
@@ -656,10 +666,12 @@ function ladduArt(c){
 }
 
 /* ============ ROUTER ============ */
-const VIEWS = ["home","tiffin","gallery","catering","snacks","laddu","account","kitchen"];
+const VIEWS = ["home","tiffin","gallery","catering","kids","snacks","laddu","account","kitchen","contact"];
 function route(){
   let v = location.hash.replace("#","") || "home";
   if(!VIEWS.includes(v)) v="home";
+  if(v==="kids"){ v="catering"; partyTab="kids"; } else if(v==="catering" && location.hash==="#catering"){ /* keep last tab */ }
+  if(v==="catering") showPartyTab();
   document.querySelectorAll(".view").forEach(el=>el.classList.toggle("on", el.dataset.view===v));
   document.querySelectorAll(".links a").forEach(a=>a.classList.toggle("on", a.dataset.l===v));
   $("#links").classList.remove("open");
@@ -671,13 +683,30 @@ window.addEventListener("hashchange", route);
 
 /* ============ HOME ============ */
 function renderCats(){
-  const cats = [
-    {t:"Tiffin Service",d:"Trials from ₹450, 20 / 30 meal plans, veg & non-veg.",h:"#tiffin",tag:"Selected areas",bg:"#FDF0D5",img:"images/tiffin-set.jpg"},
-    {t:"Party Orders",d:"Full meal combo ₹149/person · Kids combos from ₹119.",h:"#catering",tag:"All Pune",bg:"#F6E1D6",img:"images/catering-spread.jpg"},
-    {t:"Starters",d:"Samosa, vada, kanda bhajji and kothimbir vadi.",h:"#snacks",tag:"All Pune",bg:"#FBEBC8",art:snackArt("samosa",["#E2A545","#C7832B"])},
-    {t:"Laddu Range",d:"Besan, dink, dry fruit and more, made in pure ghee.",h:"#laddu",tag:"All Pune",bg:"#F8E3C2",art:ladduArt(["#E5A93A","#C9862A"])}
+  const today=menuFor(todayS());
+  const T=[
+    {h:"#tiffin", img:"images/tiffin-set.jpg", t:"Tiffin Plans", d:"Trial ₹450 · 20 / 30 meals"},
+    {h:"#gallery", img:"images/aloo-gobi-matar.jpg", t:"Today's Menu", d: today||"Weekend special"},
+    {h:"#gallery", img:"images/bharli-vangi.jpg", t:"4-Week Menu", d:"No repeats, Mon–Fri"},
+    {h:"#catering", img:"images/catering-spread.jpg", t:"Party Orders", d:"Full meal ₹149 / person"},
+    {h:"#kids", emo:"🎈", bg:"linear-gradient(135deg,#FFD36E,#F28C8C)", t:"Kids Combos", d:"From ₹119 / kid"},
+    {h:"#snacks", art:snackArt("samosa",["#E2A545","#C7832B"]), bg:"#FBEBC8", t:"Starters", d:"Samosa, vada, bhajji"},
+    {h:"#laddu", art:ladduArt(["#E5A93A","#C9862A"]), bg:"#F8E3C2", t:"Laddu Range", d:"Pure ghee laddus"},
+    {h:"#account", emo:"👤", bg:"linear-gradient(135deg,#E6F1E3,#BFD9B8)", t:"My Account", d:"Meals left · skip days"},
+    {act:"areas", emo:"📍", bg:"linear-gradient(135deg,#FDE7B5,#F4C26B)", t:"Delivery Areas", d:TIFFIN_AREAS.length+" areas · check yours"},
+    {h:"#contact", img:"images/tiffin-thali.jpg", t:"Our Kitchen", d:"Photos · address"},
+    {act:"wa", emo:"💬", bg:"linear-gradient(135deg,#1FAF55,#128C3E)", t:"WhatsApp Order", d:"+91 86602 48225"},
+    {h:"#contact", img:"images/logo-320.png", bg:"#111", t:"Contact Us", d:"Call · Map · Email", contain:true}
   ];
-  $("#catCards").innerHTML = cats.map(c=>`<a class="card cat" href="${c.h}">${c.img?`<div class="art ph"><img src="${c.img}" alt="${c.t}"></div>`:`<div class="art" style="background:${c.bg}">${c.art}</div>`}<span class="tag ${c.tag==='All Pune'?'g':''}" style="align-self:flex-start">${c.tag}</span><h3>${c.t}</h3><p>${c.d}</p><b style="color:var(--curry)">Explore →</b></a>`).join("");
+  $("#homeTiles").innerHTML=T.map((x,i)=>{
+    const media = x.img ? `<img src="${x.img}" alt="" loading="lazy"${x.contain?' style="object-fit:contain;background:#111;padding:8%"':''}>` : x.art ? `<span class="art2" style="background:${x.bg}">${x.art}</span>` : `<span class="emo" style="background:${x.bg}">${x.emo}</span>`;
+    const inner = `${media}<span class="tt"><b>${x.t}</b><span>${esc(x.d)}</span></span>`;
+    return x.act ? `<button type="button" class="tile" data-act="${x.act}">${inner}</button>` : `<a class="tile" href="${x.h}">${inner}</a>`;
+  }).join("");
+  $("#homeTiles").querySelectorAll("[data-act]").forEach(b=>b.onclick=()=>{
+    if(b.dataset.act==="wa") $("#waBtn").click();
+    else { openModal(`<h3>Tiffin delivery areas</h3><div id="areaBoxModal" style="margin-top:12px"></div>`); areaBox("#areaBoxModal"); }
+  });
 }
 function areaBox(id){
   $(id).innerHTML = `<div class="area-box"><div><div class="kicker" style="color:var(--turmeric)">Tiffin delivery area</div><h3>Do we deliver tiffin to you?</h3><p style="opacity:.85">Tiffin runs in fixed routes so food reaches you hot. Party orders, starters and laddus are delivered all over Pune.</p><div class="row"><select class="areaSel"><option value="">Select your area…</option>${TIFFIN_AREAS.map(a=>`<option>${a}</option>`).join("")}<option value="__other">My area is not listed</option></select><button class="btn btn-y areaChk">Check</button></div><div class="area-res"></div></div><div class="areas">${TIFFIN_AREAS.map(a=>`<span>📍 ${a}</span>`).join("")}</div></div>`;
@@ -708,6 +737,7 @@ function weekStart(){ // Monday of this week, or next week on Sat/Sun
   return addDays(t,-(g-1));
 }
 function renderWeek(){
+  if(!$("#weekGal")) return;
   const mon=weekStart(), t=todayS(); let h="";
   for(let k=0;k<5;k++){ const d=addDays(mon,k); const ix=menuIdx(d); h+=galCard(ix[0],ix[1],d,d===t); }
   $("#weekGal").innerHTML=h;
@@ -733,8 +763,8 @@ function renderPlans(){
   $("#planCats").innerHTML=PLAN_CATS.map(([k,l])=>`<button class="pill ${planCat===k?'on':''}" data-c="${k}">${l}</button>`).join("");
   $("#planCats").querySelectorAll("button").forEach(b=>b.onclick=()=>{planCat=b.dataset.c; renderPlans();});
   const list=PLANS.filter(p=>planCat==="all"||p.cat===planCat);
-  $("#planCards").innerHTML = list.map(p=>{ const n=p.opts.includes(mealsSel)?mealsSel:p.opts[0]; const tt=TYPE_TAG[p.type];
-    return `<div class="card plan ${p.pop?'pop':''}">${p.pop?'<span class="ribbon">⭐ MOST POPULAR</span>':''}${p.cat==='trial'?'<span class="ribbon" style="background:var(--leaf);color:#fff">TRY FIRST</span>':''}<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">${PLAN_CATS.find(c=>c[0]===p.cat)[1]}</span><span class="tag ${tt[1]}">${tt[0]}</span></div><h3>${p.name}</h3>${planPriceBlock(p,n)}<ul>${p.items.map(i=>`<li>${i}</li>`).join("")}</ul><button class="btn ${p.pop||p.cat==='trial'?'btn-p':'btn-o'}" style="justify-content:center;margin-top:auto" data-plan="${p.id}" data-n="${n}">${p.cat==='trial'?'Start trial →':'Subscribe →'}</button></div>`; }).join("");
+  $("#planCards").innerHTML = list.map(p=>{ const n=p.opts.includes(mealsSel)?mealsSel:p.opts[0]; const tt=TYPE_TAG[p.type]; const mrp=p.mrp&&p.mrp[n];
+    return `<div class="ptile ${p.pop?'pop':''}">${p.pop?'<span class="rib">⭐ POPULAR</span>':p.cat==='trial'?'<span class="rib" style="background:var(--leaf);color:#fff">TRY FIRST</span>':''}<span class="tag ${tt[1]}" style="align-self:flex-start;font-size:11px">${tt[0]}</span><h3>${p.name}</h3><div><span class="price">${inr(p.price[n])}</span> <span class="note">/ ${n} meals</span>${mrp?`<br><span class="note"><s>${inr(mrp)}</s> <b style="color:var(--leaf)">Save ${inr(mrp-p.price[n])}</b></span>`:''}</div><div class="its">${p.items.join(" · ")}</div><button class="btn ${p.pop||p.cat==='trial'?'btn-p':'btn-o'}" data-plan="${p.id}" data-n="${n}">${p.cat==='trial'?'Start trial →':'Subscribe →'}</button></div>`; }).join("");
   $("#planCards").querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>startSubscribe(b.dataset.plan, +b.dataset.n));
 }
 
@@ -1075,6 +1105,12 @@ function checkout(){
 }
 
 /* ============ PARTY ORDERS ============ */
+let partyTab="full";
+function showPartyTab(){
+  const f=$("#fullCard"), k=$("#kids"); if(!f||!k) return;
+  f.style.display = partyTab==="full"?"":"none"; k.style.display = partyTab==="kids"?"":"none";
+  document.querySelectorAll("#partyTabs [data-pt]").forEach(b=>b.classList.toggle("on", b.dataset.pt===partyTab));
+}
 let PSEL={};
 function renderCatering(){
   Object.keys(PARTY).forEach(k=>{ if(!PSEL[k]) PSEL[k]=PARTY[k][0]; });
@@ -1183,7 +1219,7 @@ function renderAdmin(){
 /* ============ INIT ============ */
 $("#footAreas").textContent=TIFFIN_AREAS.join(" · ");
 $("#waBtn").onclick=()=>openModal(`<h3>Chat with us on WhatsApp</h3><p style="margin:10px 0">Message us on <b>${WHATSAPP}</b> for tiffin, party orders and starters.</p><a class="btn btn-g" href="https://wa.me/918660248225" target="_blank" rel="noopener">Open WhatsApp</a>`);
-renderCats(); renderPhotos(); $("#todayChip").textContent= menuFor(todayS()) ? "🔥 Aaj: "+menuFor(todayS()) : "🗓️ Mon–Fri delivery"; areaBox("#areaBoxHome"); areaBox("#areaBoxTiffin"); renderWeek(); renderGallery(); renderPlans(); renderShop(); renderCatering(); updateHeader(); normalizeSubs(); route();
+renderCats(); renderPhotos(); $("#todayChip").textContent= menuFor(todayS()) ? "🔥 Aaj: "+menuFor(todayS()) : "🗓️ Mon–Fri delivery"; areaBox("#areaBoxContact"); renderWeek(); renderGallery(); renderPlans(); renderShop(); renderCatering(); document.querySelectorAll("#partyTabs [data-pt]").forEach(b=>b.onclick=()=>{ partyTab=b.dataset.pt; showPartyTab(); }); showPartyTab(); updateHeader(); normalizeSubs(); route();
 </script>
 </body>
 </html>
