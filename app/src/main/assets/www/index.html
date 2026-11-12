@@ -60,6 +60,13 @@ section.block{padding:18px 0 34px}
 #snackGrid,#ladduGrid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
 .prod h4{font-size:16px}.prod .desc{font-size:13px}
 
+.paybox{border:1.5px solid var(--line);border-radius:16px;padding:14px;margin-top:14px;background:#fff}
+.paytabs{display:flex;gap:16px;flex-wrap:wrap;font-weight:700;margin-bottom:10px}
+.paytabs input{width:17px;height:17px;vertical-align:-3px;margin-right:4px}
+.payqr{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.payqr img{width:170px;border-radius:12px;border:1px solid var(--line)}
+.upiid{background:var(--cream);border-radius:10px;padding:6px 10px;display:inline-flex;gap:8px;align-items:center;font-size:14px;word-break:break-all}
+.status.verify{background:#FFE9B8;color:#8A5A00}.status.paid{background:var(--leaf-l);color:var(--leaf)}.status.cod{background:#E3ECF8;color:#2B5797}
 /* header */
 header{position:sticky;top:0;z-index:40;background:rgba(255,248,236,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:18px;height:68px}
@@ -360,7 +367,7 @@ footer a:hover{color:var(--turmeric)}
           <div class="cline" style="border:0"><span>🏅</span><div>Udyam Registered MSME<br><span class="note">UDYAM-MH-26-0926342</span></div></div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px"><a class="btn btn-g btn-s" href="https://wa.me/918660248225" target="_blank" rel="noopener">💬 WhatsApp</a><a class="btn btn-o btn-s" href="https://www.google.com/maps/search/?api=1&query=Piraji+Nagar+Wadgaonsheri+Pune+411014" target="_blank" rel="noopener">🗺️ Open in Google Maps</a></div>
         </div>
-        <div class="card" style="padding:0;overflow:hidden"><img src="images/tiffin-set.jpg" alt="NJ Kitchen tiffin boxes" style="width:100%;height:100%;object-fit:cover;min-height:300px"></div>
+        <div class="card" style="text-align:center"><div class="kicker">Pay by Google Pay / any UPI app</div><img src="images/gpay-qr.jpg" alt="NJ Kitchen Google Pay QR code" style="width:100%;max-width:300px;border-radius:14px;margin:8px auto;display:block"><div class="upiid"><b>njkitchen2024-1@okhdfcbank</b></div></div>
       </div>
     </div>
   </section>
@@ -546,6 +553,35 @@ footer a:hover{color:var(--turmeric)}
 /* ============ DATA ============ */
 const BRAND = "NJ Kitchen";
 const WHATSAPP = "+91 86602 48225";
+const UPI_ID = "njkitchen2024-1@okhdfcbank";
+const upiLink = (amt,note) => `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent("NJ Kitchen")}&am=${amt}&cu=INR&tn=${encodeURIComponent(note||"NJ Kitchen order")}`;
+function payBlock(amt, note){
+  return `<div class="paybox">
+    <div class="paytabs"><label><input type="radio" name="pmode" value="upi" checked> 📱 Google Pay / UPI (scan QR)</label><label><input type="radio" name="pmode" value="cod"> 💵 Cash on delivery</label></div>
+    <div id="upiPart">
+      <div class="payqr"><img src="images/gpay-qr.jpg" alt="NJ Kitchen Google Pay QR code, UPI ID ${UPI_ID}"><div>
+        <div class="price" style="font-size:26px">${inr(amt)}</div>
+        <p class="note" style="margin:4px 0 8px">Scan with Google Pay, PhonePe, Paytm or any UPI app.</p>
+        <div class="upiid"><b>${UPI_ID}</b> <button type="button" class="btn btn-o btn-s" id="cpUpi">Copy</button></div>
+        <a class="btn btn-g btn-s" style="margin-top:8px" href="${upiLink(amt,note)}">Open GPay / UPI app →</a>
+      </div></div>
+      <label class="f" style="margin-top:10px">UPI transaction ID (UTR, 12 digits)<input id="utr" inputmode="numeric" maxlength="22" placeholder="After paying, enter the UTR / transaction ID"></label>
+      <p class="note">Your order is confirmed once NJ Kitchen checks the payment.</p>
+    </div>
+  </div>`;
+}
+function wirePay(){
+  const sync=()=>{ const m=document.querySelector('input[name="pmode"]:checked').value; $("#upiPart").style.display = m==="upi"?"":"none"; };
+  document.querySelectorAll('input[name="pmode"]').forEach(r=>r.onchange=sync); sync();
+  $("#cpUpi").onclick=async()=>{ try{ await navigator.clipboard.writeText(UPI_ID); toast("UPI ID copied"); }catch(e){ toast(UPI_ID); } };
+}
+function readPay(errEl){
+  const m=document.querySelector('input[name="pmode"]:checked').value;
+  if(m==="cod") return {payMode:"Cash on delivery", payStatus:"cod", utr:""};
+  const u=($("#utr").value||"").trim();
+  if(!/^[A-Za-z0-9]{8,22}$/.test(u)){ errEl.textContent="Please pay by scanning the QR and enter the UPI transaction ID (UTR)."; return null; }
+  return {payMode:"UPI (Google Pay QR)", payStatus:"to verify", utr:u};
+}
 const TIFFIN_AREAS = ["Wadgaonsheri","Kharadi","Viman Nagar","Ramwadi","Chandan Nagar","Bund Garden","Koregaon Park","Kalyani Nagar","Magarpatta"];
 const PLAN_CATS = [["all","All plans"],["trial","Trial"],["small","Small Meal"],["full","Full Meal"],["large","Large Meal"],["diet","Diet Meal"],["bhakri","Bhakri Meal"]];
 const PLANS = [
@@ -694,7 +730,7 @@ function renderCats(){
     {h:"#laddu", art:ladduArt(["#E5A93A","#C9862A"]), bg:"#F8E3C2", t:"Laddu Range", d:"Pure ghee laddus"},
     {h:"#account", emo:"👤", bg:"linear-gradient(135deg,#E6F1E3,#BFD9B8)", t:"My Account", d:"Meals left · skip days"},
     {act:"areas", emo:"📍", bg:"linear-gradient(135deg,#FDE7B5,#F4C26B)", t:"Delivery Areas", d:TIFFIN_AREAS.length+" areas · check yours"},
-    {h:"#contact", img:"images/tiffin-thali.jpg", t:"Our Kitchen", d:"Photos · address"},
+    {act:"pay", img:"images/gpay-qr.jpg", t:"Pay by GPay", d:"Scan QR · any UPI app"},
     {act:"wa", emo:"💬", bg:"linear-gradient(135deg,#1FAF55,#128C3E)", t:"WhatsApp Order", d:"+91 86602 48225"},
     {h:"#contact", img:"images/logo-320.png", bg:"#111", t:"Contact Us", d:"Call · Map · Email", contain:true}
   ];
@@ -705,6 +741,7 @@ function renderCats(){
   }).join("");
   $("#homeTiles").querySelectorAll("[data-act]").forEach(b=>b.onclick=()=>{
     if(b.dataset.act==="wa") $("#waBtn").click();
+    else if(b.dataset.act==="pay") openModal(`<h3>Pay NJ Kitchen</h3><p class="note">Scan with Google Pay, PhonePe, Paytm or any UPI app.</p><img src="images/gpay-qr.jpg" alt="NJ Kitchen Google Pay QR" style="width:100%;max-width:340px;display:block;margin:12px auto;border-radius:14px"><div style="text-align:center"><div class="upiid"><b>${UPI_ID}</b></div><br><a class="btn btn-g" style="margin-top:10px" href="upi://pay?pa=${UPI_ID}&pn=NJ%20Kitchen&cu=INR">Open GPay / UPI app →</a><p class="note" style="margin-top:10px">After paying, send the screenshot on WhatsApp ${WHATSAPP}.</p></div>`);
     else { openModal(`<h3>Tiffin delivery areas</h3><div id="areaBoxModal" style="margin-top:12px"></div>`); areaBox("#areaBoxModal"); }
   });
 }
@@ -927,20 +964,23 @@ function subStep3(){
     <tr><td>Dates</td><td>${dates.length} days: <b>${nice(dates[0])}</b> to <b>${nice(dates[dates.length-1])}</b>${SUB.slot==="both"?`<br><span class="note">${nL} lunches · ${nD} dinners</span>`:''}</td></tr>
     <tr><td>Amount</td><td><span class="price" style="font-size:28px">${inr(amt)}</span>${SUB.slot==="both"?`<br><span class="note">${inr(p.price[SUB.meals])} × 2 (lunch + dinner)</span>`:''}</td></tr>
   </table>
-  <label class="f" style="margin-top:14px">Payment method<select id="pMode"><option>UPI (GPay / PhonePe / Paytm)</option><option>Debit / Credit Card</option><option>Cash on first delivery</option></select></label>
-  <p class="note" style="margin-top:8px">Demo mode: no money is charged. A payment gateway (e.g. Razorpay) is connected at launch.</p>
-  <div style="display:flex;gap:10px;justify-content:space-between;margin-top:16px"><button class="btn btn-o" id="pBack">← Change dates</button><button class="btn btn-g" id="pPay">Pay ${inr(amt)} & confirm</button></div>`);
+  ${payBlock(amt, "NJ Kitchen tiffin "+p.name)}
+  <div class="err" id="pErr" style="margin-top:8px"></div>
+  <div style="display:flex;gap:10px;justify-content:space-between;margin-top:10px"><button class="btn btn-o" id="pBack">← Change dates</button><button class="btn btn-g" id="pPay">Confirm order</button></div>`);
+  wirePay();
   $("#pBack").onclick=subStep2;
   $("#pPay").onclick=()=>{
+    const pay=readPay($("#pErr")); if(!pay) return;
     const u=me(); u.address=SUB.address; u.area=SUB.area;
     const entries=[]; dates.forEach(d=>SUB.sel[d].forEach(m=>entries.push({d,m,s:"scheduled"})));
-    const sub={id:uid("TF"), mobile:S.session, planId:SUB.planId, planMeals:SUB.meals, meals:totalMeals(), slot:SUB.slot, area:SUB.area, address:SUB.address, wkend:true, variant:SUB.variant, amount:amt, payMode:$("#pMode").value, created:todayS(), dates:entries, v:2};
+    const sub={id:uid("TF"), mobile:S.session, planId:SUB.planId, planMeals:SUB.meals, meals:totalMeals(), slot:SUB.slot, area:SUB.area, address:SUB.address, wkend:true, variant:SUB.variant, amount:amt, ...pay, created:todayS(), dates:entries, v:2};
     S.subs.push(sub); save(); closeModal();
     toast("🎉 Subscription confirmed! "+sub.id);
     location.hash="#account"; if(location.hash==="#account") renderAccount();
   };
 }
 
+const payTag = o => o.payStatus==="paid" ? '<span class="status paid">PAID</span>' : o.payStatus==="to verify" ? '<span class="status verify">PAYMENT TO VERIFY</span>' : o.payStatus==="cod" ? '<span class="status cod">CASH ON DELIVERY</span>' : '';
 /* ============ SUBSCRIPTION MATH ============ */
 function migrateSub(s){ // older subs: one entry per day
   if(s.v===2) return false;
@@ -1006,7 +1046,7 @@ function renderAccount(){
       const byDay={}; s.dates.forEach(x=>{ (byDay[x.d]=byDay[x.d]||[]).push(x); }); const t=todayS();
       const next=st.upcoming[0];
       body+=`<div class="card" style="margin-bottom:22px">
-        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px"><div><h3 style="font-size:24px">${p.name}, ${s.meals} meals</h3><span class="note">${s.id} · ${SLOTS[s.slot]} · ${esc(s.area)}</span></div><span class="status ${done?'delivered':'scheduled'}">${done?'COMPLETED':'ACTIVE'}</span></div>
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px"><div><h3 style="font-size:24px">${p.name}, ${s.meals} meals</h3><span class="note">${s.id} · ${SLOTS[s.slot]} · ${esc(s.area)} · ${inr(s.amount)} ${payTag(s)}</span></div><span class="status ${done?'delivered':'scheduled'}">${done?'COMPLETED':'ACTIVE'}</span></div>
         <div class="subcard">
           <div>${ring(st.delivered/s.meals, st.remaining, "meals remaining")}
             <div class="stats"><div class="stat"><b>${s.meals}</b><span>Total</span></div><div class="stat"><b style="color:var(--leaf)">${st.delivered}</b><span>Delivered</span></div><div class="stat"><b style="color:var(--chili)">${st.skipped}</b><span>Meals skipped</span></div></div>
@@ -1089,16 +1129,19 @@ function checkout(){
   <div class="grid" style="gap:12px;margin-top:14px">
     <div class="frow"><label class="f">Name<input id="coName" value="${esc(u.name)}"></label><label class="f">Pincode<input id="coPin" maxlength="6" inputmode="numeric" placeholder="411xxx"></label></div>
     <label class="f">Full address<textarea id="coAddr" rows="2">${esc(u.address)}</textarea></label>
-    <div class="frow"><label class="f">Delivery date<input type="date" id="coDate" min="${addDays(todayS(),1)}" value="${addDays(todayS(),1)}"></label><label class="f">Payment<select id="coPay"><option>UPI</option><option>Card</option><option>Cash on Delivery</option></select></label></div>
+    <div class="frow"><label class="f">Delivery date<input type="date" id="coDate" min="${addDays(todayS(),1)}" value="${addDays(todayS(),1)}"></label><div></div></div>
     <div class="counter" style="margin:0"><span>${S.cart.reduce((a,i)=>a+i.qty,0)} items · delivery charge confirmed on call</span><b>${inr(tot+del)}</b></div>
+    ${payBlock(tot+del,"NJ Kitchen order")}
     <div class="err" id="coErr"></div>
     <button class="btn btn-g" id="coPlace" style="justify-content:center">Place order</button>
   </div>`);
+  wirePay();
   $("#coPlace").onclick=()=>{
     const pin=$("#coPin").value.trim(), addr=$("#coAddr").value.trim();
     if(!/^41[0-2]\d{3}$/.test(pin)) return $("#coErr").textContent="Please enter a valid Pune pincode (starts with 411 / 412 / 410).";
     if(addr.length<8) return $("#coErr").textContent="Please enter your full address.";
-    const o={id:uid("OD"),mobile:u.mobile,name:$("#coName").value.trim()||u.name,address:addr,pin,date:$("#coDate").value,pay:$("#coPay").value,items:S.cart.map(i=>({...i})),total:tot+del,status:"placed",created:todayS()};
+    const pay=readPay($("#coErr")); if(!pay) return;
+    const o={id:uid("OD"),mobile:u.mobile,name:$("#coName").value.trim()||u.name,address:addr,pin,date:$("#coDate").value,pay:pay.payMode,payStatus:pay.payStatus,utr:pay.utr,items:S.cart.map(i=>({...i})),total:tot+del,status:"placed",created:todayS()};
     S.orders.push(o); S.cart=[]; if(!u.address) u.address=addr; save(); updateHeader(); closeModal();
     toast("✅ Order placed: "+o.id); acctTab="orders"; location.hash="#account"; renderAccount();
   };
@@ -1203,9 +1246,9 @@ function renderAdmin(){
         return `<tr><td><b>${esc(u.name)}</b><br><span class="note">${esc(s.mobile)}</span></td><td>${esc(s.address)}</td><td>${p.name}${s.variant?`<br><span class="note">${esc(s.variant)}</span>`:''}<br><span class="tag">${SLOT_L[x.m]}</span></td><td>${st.remaining}/${s.meals}</td><td>${x.s==="delivered"?`<span class="status delivered">DELIVERED</span>`:`<button class="btn btn-g btn-s" data-dv="${s.id}" data-m="${x.m}">Mark delivered</button>`}</td></tr>`;}).join("")}</table></div>`;
     });
   } else if(adminTab==="subs"){
-    h+= S.subs.length? `<div class="card"><table class="tbl"><tr><th>ID</th><th>Customer</th><th>Plan</th><th>Area</th><th>Delivered</th><th>Remaining</th><th>Ends</th></tr>${S.subs.slice().reverse().map(s=>{const u=S.users[s.mobile]||{}; const st=subStats(s); const last=s.dates.filter(x=>x.s!=='skipped').map(x=>x.d).sort().pop(); return `<tr><td>${s.id}</td><td>${esc(u.name)}<br><span class="note">${esc(s.mobile)}</span></td><td>${PLANS.find(p=>p.id===s.planId).name} · ${s.meals}</td><td>${esc(s.area)}</td><td>${st.delivered}</td><td><b>${st.remaining}</b></td><td>${nice(last)}</td></tr>`;}).join("")}</table></div>` : `<div class="card empty-st">No subscriptions yet.</div>`;
+    h+= S.subs.length? `<div class="card"><table class="tbl"><tr><th>ID</th><th>Customer</th><th>Plan</th><th>Area</th><th>Delivered</th><th>Remaining</th><th>Ends</th><th>Payment</th></tr>${S.subs.slice().reverse().map(s=>{const u=S.users[s.mobile]||{}; const st=subStats(s); const last=s.dates.filter(x=>x.s!=='skipped').map(x=>x.d).sort().pop(); return `<tr><td>${s.id}</td><td>${esc(u.name)}<br><span class="note">${esc(s.mobile)}</span></td><td>${PLANS.find(p=>p.id===s.planId).name} · ${s.meals}</td><td>${esc(s.area)}</td><td>${st.delivered}</td><td><b>${st.remaining}</b></td><td>${nice(last)}</td><td>${inr(s.amount)}<br>${payTag(s)}${s.utr?`<br><span class="note">UTR ${esc(s.utr)}</span>`:''}${s.payStatus==="to verify"||s.payStatus==="cod"?`<br><button class="btn btn-g btn-s" data-paid="s:${s.id}" style="margin-top:4px">Mark paid</button>`:''}</td></tr>`;}).join("")}</table></div>` : `<div class="card empty-st">No subscriptions yet.</div>`;
   } else if(adminTab==="orders"){
-    h+= S.orders.length? `<div class="card"><table class="tbl"><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Delivery</th><th>Status</th></tr>${S.orders.slice().reverse().map(o=>`<tr><td>${o.id}</td><td>${esc(o.name)}<br><span class="note">${esc(o.mobile)} · ${esc(o.pin)}</span><br><span class="note">${esc(o.address)}</span></td><td>${o.items.map(i=>`${esc(i.name)} (${esc(i.v)}) × ${i.qty}`).join("<br>")}</td><td>${inr(o.total)}<br><span class="note">${esc(o.pay)}</span></td><td>${nice(o.date)}</td><td><select data-os="${o.id}">${["placed","delivered","cancelled"].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join("")}</select></td></tr>`).join("")}</table></div>` : `<div class="card empty-st">No shop orders yet.</div>`;
+    h+= S.orders.length? `<div class="card"><table class="tbl"><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Delivery</th><th>Status</th></tr>${S.orders.slice().reverse().map(o=>`<tr><td>${o.id}</td><td>${esc(o.name)}<br><span class="note">${esc(o.mobile)} · ${esc(o.pin)}</span><br><span class="note">${esc(o.address)}</span></td><td>${o.items.map(i=>`${esc(i.name)} (${esc(i.v)}) × ${i.qty}`).join("<br>")}</td><td>${inr(o.total)}<br>${payTag(o)||`<span class="note">${esc(o.pay)}</span>`}${o.utr?`<br><span class="note">UTR ${esc(o.utr)}</span>`:''}${o.payStatus==="to verify"||o.payStatus==="cod"?`<br><button class="btn btn-g btn-s" data-paid="o:${o.id}" style="margin-top:4px">Mark paid</button>`:''}</td><td>${nice(o.date)}</td><td><select data-os="${o.id}">${["placed","delivered","cancelled"].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join("")}</select></td></tr>`).join("")}</table></div>` : `<div class="card empty-st">No shop orders yet.</div>`;
   } else {
     h+= S.enquiries.length? `<div class="card"><table class="tbl"><tr><th>ID</th><th>Customer</th><th>Event</th><th>Order</th><th>Estimate</th><th>Notes</th></tr>${S.enquiries.slice().reverse().map(e=>`<tr><td>${e.id}<br><span class="status new">NEW</span></td><td>${esc(e.name)}<br><span class="note">${esc(e.mobile)}</span></td><td>${esc(e.occasion)}<br>${nice(e.date)}${e.time?' · ⏰ '+esc(e.time):''} · ${esc(e.guests)} ${e.id.startsWith("KP")?"kids":"guests"}<br><span class="note">${esc(e.address||"")} ${esc(e.area)}</span></td><td>${e.kind?`<b>${esc(e.kind)}</b><br>`:''}${esc(e.combo||e.pkgName)}${e.starters?`<br><span class="note">Starters: ${esc(e.starters)}</span>`:''}</td><td>${e.estimate?inr(e.estimate):'—'}</td><td>${esc(e.notes)}</td></tr>`).join("")}</table></div>` : `<div class="card empty-st">No party order requests yet.</div>`;
   }
@@ -1213,6 +1256,7 @@ function renderAdmin(){
   B.querySelectorAll("[data-at]").forEach(b=>b.onclick=()=>{adminTab=b.dataset.at;renderAdmin();});
   const dd=$("#adDate"); if(dd) dd.onchange=()=>{adminDate=dd.value||todayS();renderAdmin();};
   B.querySelectorAll("[data-dv]").forEach(b=>b.onclick=()=>{ const s=S.subs.find(x=>x.id===b.dataset.dv); const x=s.dates.find(y=>y.d===adminDate && y.m===b.dataset.m); x.s="delivered"; save(); toast("Marked delivered"); renderAdmin(); });
+  B.querySelectorAll("[data-paid]").forEach(b=>b.onclick=()=>{ const [k,id]=b.dataset.paid.split(":"); const o=(k==="s"?S.subs:S.orders).find(x=>x.id===id); o.payStatus="paid"; save(); toast("Payment marked received"); renderAdmin(); });
   B.querySelectorAll("[data-os]").forEach(sel=>sel.onchange=()=>{ S.orders.find(o=>o.id===sel.dataset.os).status=sel.value; save(); toast("Order updated"); });
 }
 

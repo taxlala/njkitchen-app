@@ -21,15 +21,15 @@ jobs:
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon --stacktrace
       - name: Rename APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk NJKitchen-v1.5.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk NJKitchen-v1.6.apk
       - uses: actions/upload-artifact@v4
         with:
           name: NJKitchen-APK
-          path: NJKitchen-v1.5.apk
+          path: NJKitchen-v1.6.apk
       - name: Publish APK as a release
         if: github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release delete v1.5 --yes --cleanup-tag || true
-          gh release create v1.5 NJKitchen-v1.5.apk --title "NJ Kitchen v1.5" --notes "Simpler block-wise layout: home tiles, square plan blocks, party tabs, contact page."
+          gh release delete v1.6 --yes --cleanup-tag || true
+          gh release create v1.6 NJKitchen-v1.6.apk --title "NJ Kitchen v1.6" --notes "Google Pay QR payment with UTR, cash on delivery, kitchen payment verification."
